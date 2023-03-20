@@ -1,6 +1,6 @@
 ---
-title: Principios de Visualización de Datos - Parte 2
-description: Parte 2 de ejercicios de principios de visualización de datos
+título: Principios de Visualización de Datos - Parte 2
+descripción: Parte 2 de ejercicios de principios de visualización de datos
 ---
 
 ## Ejercicio 1: personalización de parcelas - mira y aprende
@@ -36,7 +36,7 @@ state <- dat$state
 rate <- dat$count/(dat$population/10000)*(52/dat$weeks_reporting)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -47,7 +47,7 @@ state <- dat$state
 rate <- dat$count/(dat$population/10000)*(52/dat$weeks_reporting)
 ```
 
-`@solution`
+`@solución`
 ```{r}
 state <- reorder(state, rate)
 print(state)
@@ -61,9 +61,9 @@ ex() %>% {
   check_function(.,"reorder") %>% check_arg("x") %>% check_equal()
   check_function(.,"levels") %>% check_result() %>% check_equal()
 }
-test_object("state", incorrect_msg = "Did you reorder `state` properly and then print it?")
+test_object("state", incorrect_msg = "¿Reordenaste `state` correctamente y luego lo imprimiste?")
 
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
@@ -81,15 +81,15 @@ skills:
 
 Ahora vamos a personalizar un poco más este gráfico creando una variable de tasa y reordenando por esa variable en su lugar.
 
-`@instructions`
+`@instrucciones`
 - Agregue una sola línea de código a la definición de la tabla `dat` que usa `mutate` para reordenar los estados por la variable de tasa.
 - El código de muestra proporcionado creará un gráfico de barras utilizando el `dat` recién definido.
 
-`@hint
+'@pista'
 - El código que necesita agregar es muy similar al utilizado en el ejercicio anterior - puede usar `reordenar` nuevamente.
 - Asegúrese de agregar el código al código que define `dat`.
 
-`@pre_exercise_code`
+'@código_pre_ejercicio'
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -97,7 +97,7 @@ library(dslabs)
 data(us_contagious_diseases)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -110,7 +110,7 @@ dat %>% ggplot(aes(state, rate)) +
   coord_flip()
 ```
 
-`@solution`
+`@solución`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -127,10 +127,10 @@ dat %>% ggplot(aes(state, rate)) +
 ```{r}
 test_error()
 ex() %>% {
-check_function(.,"reorder", not_called_msg="Don't forget to reorder the data by rate") 
+check_function(.,"reorder", not_called_msg="No olvides reordenar los datos por tarifa") 
 check_object(.,"dat") %>% check_equal()
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
@@ -164,16 +164,16 @@ murders %>% mutate(rate = total/population*100000) %>%
 
 y decide mudarse a un estado en la región occidental. ¿Cuál es el principal problema de esta interpretación?
 
-`@possible_answers`
+'@respuestas_posibles'
 - Las categorías están ordenadas alfabéticamente.
 - El gráfico no muestra errores estándar.
 - No muestra todos los datos. No vemos la variabilidad dentro de una región y es posible que los estados más seguros no estén en Occidente.
 - El Nordeste tiene el promedio más bajo.
 
-`@hint`
+'@pista'
 
 
-`@pre_exercise_code`
+'@código_pre_ejercicio'
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -209,17 +209,17 @@ skills:
 
 Para investigar más a fondo si mudarse a la región occidental es una buena decisión, hagamos un diagrama de caja de las tasas de homicidios por región, que muestre todos los puntos.
 
-`@instructions`
+`@instrucciones`
 - Ordene las regiones por su tasa media de asesinatos usando `mutate` y `reorder`.
 - Hacer un diagrama de caja de las tasas de homicidios por región.
 - Mostrar todos los puntos en el diagrama de caja.
 
-`@hint`
+'@pista'
 - Para ordenar las regiones por tasa, puede usar `mutar` y `reordenar` para ordenar la columna `región` por `tasa`.
 - Usa `geom_boxplot()` para hacer un diagrama de caja.
 - Usa `geom_point()` para mostrar los puntos.
 
-`@pre_exercise_code`
+'@código_pre_ejercicio'
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -227,7 +227,7 @@ library(dslabs)
 data("murders")
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -236,7 +236,7 @@ data("murders")
 murders %>% mutate(rate = total/population*100000)
 ```
 
-`@solution`
+`@solución`
 ```{r}
 murders %>% mutate(rate = total/population*100000) %>%
   mutate(region=reorder(region, rate, FUN=median)) %>%
@@ -277,12 +277,12 @@ Este es el final de la asignación de programación para esta sección. NO haga 
 
 Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
-`@hint`
+'@pista'
 - ¡No es necesario dar pistas!
 
-`@possible_answers`
+'@respuestas_posibles'
 - [Impresionante]
 - No
 
-`@feedback`
+'@comentario'
 - ¡Excelente! ¡Ahora vuelve al curso en edX!
