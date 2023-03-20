@@ -16,15 +16,15 @@ skills:
 
 El código de ejemplo proporcionado crea un diagrama de mosaico que muestra la tasa de casos de sarampión por población. Vamos a modificar el diagrama de mosaico para ver los casos de viruela.
 
-`@instructions`
+`@instrucciones`
 - Modifique el diagrama de mosaico para mostrar la tasa de casos de viruela en lugar de casos de sarampión.
 - Excluir del gráfico los años en los que se notificaron casos en menos de 10 semanas.
 
-`@hint`
+`@pista`
 - La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
 - Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
-`@pre_exercise_code`
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -33,7 +33,7 @@ library(dslabs)
 data(us_contagious_diseases)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -58,7 +58,7 @@ dat %>% ggplot(aes(year, state, fill = rate)) +
   xlab("")
 ```
 
-`@solution`
+`@solución`
 ```{r}
 library(dplyr)
 library(ggplot2)
