@@ -85,11 +85,11 @@ Ahora vamos a personalizar un poco más este gráfico creando una variable de ta
 - Agregue una sola línea de código a la definición de la tabla `dat` que usa `mutate` para reordenar los estados por la variable de tasa.
 - El código de muestra proporcionado creará un gráfico de barras utilizando el `dat` recién definido.
 
-'@pista'
+`@pista`
 - El código que necesita agregar es muy similar al utilizado en el ejercicio anterior - puede usar `reordenar` nuevamente.
 - Asegúrese de agregar el código al código que define `dat`.
 
-'@código_pre_ejercicio'
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -164,16 +164,16 @@ murders %>% mutate(rate = total/population*100000) %>%
 
 y decide mudarse a un estado en la región occidental. ¿Cuál es el principal problema de esta interpretación?
 
-'@respuestas_posibles'
+`@respuestas_posibles`
 - Las categorías están ordenadas alfabéticamente.
 - El gráfico no muestra errores estándar.
 - No muestra todos los datos. No vemos la variabilidad dentro de una región y es posible que los estados más seguros no estén en Occidente.
 - El Nordeste tiene el promedio más bajo.
 
-'@pista'
+`@pista`
 
 
-'@código_pre_ejercicio'
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -214,12 +214,12 @@ Para investigar más a fondo si mudarse a la región occidental es una buena dec
 - Hacer un diagrama de caja de las tasas de homicidios por región.
 - Mostrar todos los puntos en el diagrama de caja.
 
-'@pista'
+`@pista`
 - Para ordenar las regiones por tasa, puede usar `mutar` y `reordenar` para ordenar la columna `región` por `tasa`.
 - Usa `geom_boxplot()` para hacer un diagrama de caja.
 - Usa `geom_point()` para mostrar los puntos.
 
-'@código_pre_ejercicio'
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -277,12 +277,12 @@ Este es el final de la asignación de programación para esta sección. NO haga 
 
 Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
-'@pista'
+`@pista`
 - ¡No es necesario dar pistas!
 
-'@respuestas_posibles'
+`@respuestas_posibles`
 - [Impresionante]
 - No
 
-'@comentario'
+`@comentario`
 - ¡Excelente! ¡Ahora vuelve al curso en edX!
