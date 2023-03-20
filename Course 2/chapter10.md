@@ -15,16 +15,17 @@ skills:
 
 Para hacer el gráfico de la derecha en el ejercicio del último conjunto de evaluaciones, tuvimos que reordenar los niveles de las variables de los estados.
 
-`@instructions`
-- Redefine the `state` object so that the levels are re-ordered by rate.
-- Print the new object `state` and its levels (using `levels`) so you can see that the vector is now re-ordered by the levels.
+`@instrucciones`
+- Redefinir el objeto `estado` para que los niveles se reordenen por tasa.
+- Imprima el nuevo objeto `estado` y sus niveles (usando `niveles`) para que pueda ver que el vector ahora está reordenado por los niveles.
 
-`@hint`
-- You can use `reorder` to re-order the levels of the state object.
-- Remember that you are re-ordering by `rate`.
-- Inspect the levels of an object with `levels`.
+`@pista`
 
-`@pre_exercise_code`
+- Puedes usar `reordenar` para reordenar los niveles del objeto de estado.
+- Recuerda que estás reordenando por `tarifa`.
+- Inspeccionar los niveles de un objeto con `niveles`.
+
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -67,7 +68,7 @@ success_msg("Good job!")
 
 ---
 
-## Exercise 2: Customizing plots - redefining
+## Ejercicio 2: Personalización de Parcelas - Redefinición
 
 ```yaml
 type: NormalExercise
@@ -78,15 +79,15 @@ skills:
   - 1
 ```
 
-Now we are going to customize this plot a little more by creating a rate variable and reordering by that variable instead.
+Ahora vamos a personalizar un poco más este gráfico creando una variable de tasa y reordenando por esa variable en su lugar.
 
 `@instructions`
-- Add a single line of code to the definition of the `dat` table that uses `mutate` to reorder the states by the rate variable.
-- The sample code provided will then create a bar plot using the newly defined `dat`.
+- Agregue una sola línea de código a la definición de la tabla `dat` que usa `mutate` para reordenar los estados por la variable de tasa.
+- El código de muestra proporcionado creará un gráfico de barras utilizando el `dat` recién definido.
 
-`@hint`
-- The code you need to add is very similar to that used in the previous exercise - you can use `reorder` again.
-- Make sure you add the code to the code defining `dat`.
+`@hint
+- El código que necesita agregar es muy similar al utilizado en el ejercicio anterior - puede usar `reordenar` nuevamente.
+- Asegúrese de agregar el código al código que define `dat`.
 
 `@pre_exercise_code`
 ```{r}
@@ -134,7 +135,7 @@ success_msg("Good job!")
 
 ---
 
-## Exercise 3: Showing the data and customizing plots
+## Ejercicio 3: Mostrar los Datos y Personalizar Gráficos
 
 ```yaml
 type: MultipleChoiceExercise
@@ -145,7 +146,7 @@ skills:
   - 1
 ```
 
-Say we are interested in comparing gun homicide rates across regions of the US. We see this plot:
+Digamos que estamos interesados ​​en comparar las tasas de homicidios con armas de fuego en todas las regiones de los EE. UU. Vemos esta trama:
 
 ```{r}
 library(dplyr)
@@ -160,13 +161,14 @@ murders %>% mutate(rate = total/population*100000) %>%
   geom_bar(stat="identity") +
   ylab("Murder Rate Average")
 ```
-and decide to move to a state in the western region. What is the main problem with this interpretaion?
+
+y decide mudarse a un estado en la región occidental. ¿Cuál es el principal problema de esta interpretación?
 
 `@possible_answers`
-- The categories are ordered alphabetically.
-- The graph does not show standard errors.
-- It does not show all the data. We do not see the variability within a region and it's possible that the safest states are not in the West.
-- The Northeast has the lowest average.
+- Las categorías están ordenadas alfabéticamente.
+- El gráfico no muestra errores estándar.
+- No muestra todos los datos. No vemos la variabilidad dentro de una región y es posible que los estados más seguros no estén en Occidente.
+- El Nordeste tiene el promedio más bajo.
 
 `@hint`
 
@@ -188,15 +190,14 @@ murders %>% mutate(rate = total/population*100000) %>%
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = "Incorrect. Try again"
+msg3 = "Correcto! Buen trabajo!"
+msg1 = msg2 = msg4 = "Incorrecto. Intenta de nuevo."
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 4: Making a box plot
-
+## Ejercicio 4: Hacer un diagrama de caja
 ```yaml
 type: NormalExercise
 key: fd7566b82b
@@ -206,17 +207,17 @@ skills:
   - 1
 ```
 
-To further investigate whether moving to the western region is a wise decision, let's make a box plot of murder rates by region, showing all points.
+Para investigar más a fondo si mudarse a la región occidental es una buena decisión, hagamos un diagrama de caja de las tasas de homicidios por región, que muestre todos los puntos.
 
 `@instructions`
-- Order the regions by their median murder rate by using `mutate` and `reorder`.
-- Make a box plot of the murder rates by region.
-- Show all of the points on the box plot.
+- Ordene las regiones por su tasa media de asesinatos usando `mutate` y `reorder`.
+- Hacer un diagrama de caja de las tasas de homicidios por región.
+- Mostrar todos los puntos en el diagrama de caja.
 
 `@hint`
-- To order the regions by rate, you can use `mutate` and `reorder` to sort the `region` column by `rate`.
-- Use `geom_boxplot()` to make a boxplot.
-- Use `geom_point()` to show the points.
+- Para ordenar las regiones por tasa, puede usar `mutar` y `reordenar` para ordenar la columna `región` por `tasa`.
+- Usa `geom_boxplot()` para hacer un diagrama de caja.
+- Usa `geom_point()` para mostrar los puntos.
 
 `@pre_exercise_code`
 ```{r}
@@ -262,7 +263,7 @@ success_msg("Good job!")
 
 ---
 
-## End of Assessment: Data Visualization Principles, Part 2
+## Fin de la evaluación: Principios de visualización de datos, Parte 2
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -272,17 +273,16 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se puntúen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesario dar pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Impresionante]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Excelente! ¡Ahora vuelve al curso en edX!
