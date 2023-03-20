@@ -1,10 +1,9 @@
 ---
-title: Data Visualization Principles - Part 2
-description: Part 2 of data visualization principles exercises
+title: Principios de Visualización de Datos - Parte 2
+description: Parte 2 de ejercicios de principios de visualización de datos
 ---
 
-## Exercise 1: Customizing plots - watch and learn
-
+## Ejercicio 1: personalización de parcelas - mira y aprende
 ```yaml
 type: NormalExercise
 key: d7655f4b4a
@@ -14,7 +13,7 @@ skills:
   - 1
 ```
 
-To make the plot on the right in the exercise from the last set of assessments, we had to reorder the levels of the states' variables.
+Para hacer el gráfico de la derecha en el ejercicio del último conjunto de evaluaciones, tuvimos que reordenar los niveles de las variables de los estados.
 
 `@instructions`
 - Redefine the `state` object so that the levels are re-ordered by rate.
