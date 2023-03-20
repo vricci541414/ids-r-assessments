@@ -93,11 +93,11 @@ ex() %>% {
     check_arg(., "y") %>% check_equal(eval = FALSE)
     check_arg(., "fill") %>% check_equal(eval = FALSE)
   }
-  check_function(., "geom_tile", not_called_msg="Did you add the `geom_tile()` layer?")
+  check_function(., "geom_tile", not_called_msg="¿Agregaste la capa `geom_tile()`?")
   check_function(., "scale_x_continuous") %>% check_arg(., "expand") %>% check_equal(eval = TRUE)
   check_function(., "scale_fill_gradientn") %>% check_arg(., "trans") %>% check_equal(eval = TRUE)
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
@@ -113,18 +113,17 @@ skills:
   - 1
 ```
 
-
 El código de muestra proporcionado crea un gráfico de series de tiempo que muestra la tasa de casos de sarampión por población por estado. Vamos a modificar nuevamente este diagrama para ver casos de viruela.
 
-`@instructions`
+`@instrucciones`
 - Modifique el código de muestra para la gráfica de serie temporal para trazar datos de viruela en lugar de sarampión.
 - Una vez más, restrinja la trama a los años en los que se informaron casos en al menos 10 semanas.
 
-`@hint`
+`@pista`
 - La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
 - Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
-`@pre_exercise_code`
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -133,7 +132,7 @@ library(RColorBrewer)
 data(us_contagious_diseases)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -163,7 +162,7 @@ dat %>% ggplot() +
   geom_vline(xintercept=1963, col = "blue")
 ```
 
-`@solution`
+`@solución`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -203,7 +202,7 @@ ex() %>% {
     check_arg(., "y") %>% check_equal(eval = FALSE)
     check_arg(., "group") %>% check_equal(eval = FALSE)
   }
-  check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
+  check_function(., "geom_line", not_called_msg=""¿Agregaste la capa `geom_tile()`?")
   check_function(., "scale_y_continuous") %>% check_arg(., "trans") %>% check_equal(eval = TRUE)
 }
 success_msg("¡Buen trabajo!")
@@ -224,18 +223,18 @@ skills:
 
 Ahora vamos a ver las tasas de todas las enfermedades en un estado. Nuevamente, modificará el código de muestra para producir el gráfico deseado.
 
-`@instructions`
+`@instrucciones`
 - Para el estado de California, haga una gráfica de serie de tiempo que muestre las tasas de todas las enfermedades.
 - Incluya solo años con 10 o más semanas de informes.
 - Utilizar un color diferente para cada enfermedad.
 - Incluya su función `aes` dentro de `ggplot` en lugar de dentro de su capa `geom`.
 
-`@hint`
+`@pista`
 - Puede usar `color` dentro de `aes` para trazar cada enfermedad en un color diferente.
 - La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
 - Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
-`@pre_exercise_code`
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -244,7 +243,7 @@ library(RColorBrewer)
 data(us_contagious_diseases)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -259,7 +258,7 @@ us_contagious_diseases %>% filter(state=="California") %>%
   geom_line()
 ```
 
-`@solution`
+`@solución`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -306,18 +305,18 @@ skills:
 
 Ahora vamos a hacer una gráfica de serie de tiempo para las tasas de todas las enfermedades en los Estados Unidos. Para este ejercicio, proporcionamos menos código de muestra; puede echar un vistazo al ejercicio anterior para comenzar.
 
-`@instructions`
+`@instrucciones`
 - Calcule la tasa de EE. UU. usando `summarize` para sumar los estados. Llame a la variable `tasa`.
 - La tasa de EE. UU. para cada enfermedad será el número total de casos dividido por la población total.
 - Recuerde convertir a casos por 10.000.
 - Deberá filtrar por `!is.na(population)` para obtener todos los datos.
 - Graficar cada enfermedad en un color diferente.
 
-`@hint`
+`@pista`
 - Puede usar `color` dentro de `aes` para trazar cada enfermedad en un color diferente.
 - No necesita filtrar por `weeks_reporting` en este ejercicio.
 
-`@pre_exercise_code`
+`@código_pre_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -326,7 +325,7 @@ library(RColorBrewer)
 data(us_contagious_diseases)
 ```
 
-`@sample_code`
+`@código_de_ejemplo`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -335,7 +334,7 @@ library(RColorBrewer)
 data(us_contagious_diseases)
 ```
 
-`@solution`
+`@solución`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -381,12 +380,12 @@ Este es el final de las asignaciones de programación.
 
 Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
-`@hint`
+`@pista`
 - ¡No es necesario dar pistas!
 
-`@possible_answers`
+`@respuestas_posibles`
 - [Impresionante]
 - No
 
-`@feedback`
+`@comentario`
 - ¡Excelente! ¡Ahora vuelve al curso en edX!
