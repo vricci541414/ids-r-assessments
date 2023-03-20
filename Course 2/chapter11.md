@@ -1,9 +1,9 @@
 ---
-title: Data Visualization Principles - Part 3
-description: Part 3 of data visualization principles exercises
+titulo: Principios de visualización de datos - Parte 3
+descripción: Parte 3 de ejercicios de principios de visualización de datos
 ---
 
-## Exercise 1: Tile plot - measles and smallpox
+## Ejercicio 1: Diagrama de mosaico: sarampión y viruela
 
 ```yaml
 type: NormalExercise
@@ -14,15 +14,15 @@ skills:
   - 1
 ```
 
-The sample code given creates a tile plot showing the rate of measles cases per population. We are going to modify the tile plot to look at smallpox cases instead.
+El código de ejemplo proporcionado crea un diagrama de mosaico que muestra la tasa de casos de sarampión por población. Vamos a modificar el diagrama de mosaico para ver los casos de viruela.
 
 `@instructions`
-- Modify the tile plot to show the rate of smallpox cases instead of measles cases.
-- Exclude years in which cases were reported in fewer than 10 weeks from the plot.
+- Modifique el diagrama de mosaico para mostrar la tasa de casos de viruela en lugar de casos de sarampión.
+- Excluir del gráfico los años en los que se notificaron casos en menos de 10 semanas.
 
 `@hint`
-- The column that has the number of weeks in which cases were reported is called `weeks_reporting`.
-- To exclude years with fewer than 10 weeks of reported cases, modify the `filter` you use.
+- La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
+- Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
 `@pre_exercise_code`
 ```{r}
@@ -102,7 +102,7 @@ success_msg("Good job!")
 
 ---
 
-## Exercise 2. Time series plot - measles and smallpox
+## Ejercicio 2. Gráfica de series de tiempo - sarampión y viruela
 
 ```yaml
 type: NormalExercise
@@ -113,15 +113,16 @@ skills:
   - 1
 ```
 
-The sample code given creates a time series plot showing the rate of measles cases per population by state. We are going to again modify this plot to look at smallpox cases instead.
+
+El código de muestra proporcionado crea un gráfico de series de tiempo que muestra la tasa de casos de sarampión por población por estado. Vamos a modificar nuevamente este diagrama para ver casos de viruela.
 
 `@instructions`
-- Modify the sample code for the time series plot to plot data for smallpox instead of for measles.
-- Once again, restrict the plot to years in which cases were reported in at least 10 weeks.
+- Modifique el código de muestra para la gráfica de serie temporal para trazar datos de viruela en lugar de sarampión.
+- Una vez más, restrinja la trama a los años en los que se informaron casos en al menos 10 semanas.
 
 `@hint`
-- The column that has the number of weeks in which cases were reported is called `weeks_reporting`.
-- To exclude years with fewer than 10 weeks of reported cases, modify the `filter` you use.
+- La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
+- Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
 `@pre_exercise_code`
 ```{r}
@@ -205,12 +206,12 @@ ex() %>% {
   check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
   check_function(., "scale_y_continuous") %>% check_arg(., "trans") %>% check_equal(eval = TRUE)
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 3: Time series plot - all diseases in California
+## Ejercicio 3: Gráfica de series de tiempo - todas las enfermedades en California
 
 ```yaml
 type: NormalExercise
@@ -221,18 +222,18 @@ skills:
   - 1
 ```
 
-Now we are going to look at the rates of all diseases in one state. Again, you will be modifying the sample code to produce the desired plot.
+Ahora vamos a ver las tasas de todas las enfermedades en un estado. Nuevamente, modificará el código de muestra para producir el gráfico deseado.
 
 `@instructions`
-- For the state of California, make a time series plot showing rates for all diseases. 
-- Include only years with 10 or more weeks reporting. 
-- Use a different color for each disease.
-- Include your `aes` function inside of `ggplot` rather than inside your `geom` layer.
+- Para el estado de California, haga una gráfica de serie de tiempo que muestre las tasas de todas las enfermedades.
+- Incluya solo años con 10 o más semanas de informes.
+- Utilizar un color diferente para cada enfermedad.
+- Incluya su función `aes` dentro de `ggplot` en lugar de dentro de su capa `geom`.
 
 `@hint`
-- You can use `color` within `aes` to plot each disease in a different color.
-- The column that has the number of weeks in which cases were reported is called `weeks_reporting`.
-- To exclude years with fewer than 10 weeks of reported cases, modify the `filter` you use.
+- Puede usar `color` dentro de `aes` para trazar cada enfermedad en un color diferente.
+- La columna que tiene el número de semanas en las que se reportaron casos se llama `weeks_reporting`.
+- Para excluir años con menos de 10 semanas de casos notificados, modifique el "filtro" que utiliza.
 
 `@pre_exercise_code`
 ```{r}
@@ -283,16 +284,16 @@ ex() %>% {
     check_arg(., "y") %>% check_equal(eval = FALSE)
     check_arg(., "color") %>% check_equal(eval = FALSE)
   }
-  check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
+  check_function(., "geom_line", not_called_msg="¿Agregaste la capa `geom_line()`?")
 }
 test_student_typed("color = disease",  
-  not_typed_msg = "Remember to use the disease to set the color")
-success_msg("Good job!")
+  not_typed_msg = "Recuerda usar la enfermedad para fijar el color.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 4: Time series plot - all diseases in the United States
+## Ejercicio 4: Gráfica de series de tiempo - todas las enfermedades en los Estados Unidos
 
 ```yaml
 type: NormalExercise
@@ -303,18 +304,18 @@ skills:
   - 1
 ```
 
-Now we are going to make a time series plot for the rates of all diseases in the United States. For this exercise, we have provided less sample code - you can take a look at the previous exercise to get you started.
+Ahora vamos a hacer una gráfica de serie de tiempo para las tasas de todas las enfermedades en los Estados Unidos. Para este ejercicio, proporcionamos menos código de muestra; puede echar un vistazo al ejercicio anterior para comenzar.
 
 `@instructions`
-- Compute the US rate by using `summarize` to sum over states. Call the variable `rate`.
-    - The US rate for each disease will be the total number of cases divided by the total population. 
-    - Remember to convert to cases per 10,000.
-- You will need to filter for `!is.na(population)` to get all the data.
-- Plot each disease in a different color.
+- Calcule la tasa de EE. UU. usando `summarize` para sumar los estados. Llame a la variable `tasa`.
+- La tasa de EE. UU. para cada enfermedad será el número total de casos dividido por la población total.
+- Recuerde convertir a casos por 10.000.
+- Deberá filtrar por `!is.na(population)` para obtener todos los datos.
+- Graficar cada enfermedad en un color diferente.
 
 `@hint`
-- You can use `color` within `aes` to plot each disease in a different color.
-- You don't need to filter for `weeks_reporting` in this exercise.
+- Puede usar `color` dentro de `aes` para trazar cada enfermedad en un color diferente.
+- No necesita filtrar por `weeks_reporting` en este ejercicio.
 
 `@pre_exercise_code`
 ```{r}
@@ -359,14 +360,14 @@ ex() %>% {
     check_arg(., "y") %>% check_equal(eval = FALSE)
     check_arg(., "color") %>% check_equal(eval = FALSE)
   }
-  check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
+  check_function(., "geom_line", not_called_msg="¿Agregaste la capa `geom_line()`?")
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## End of Assessment: Data Visualization Principles, Part 3
+## Fin de la evaluación: Principios de visualización de datos, Parte 3
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -376,17 +377,16 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignments.
+Este es el final de las asignaciones de programación.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesario dar pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Impresionante]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Excelente! ¡Ahora vuelve al curso en edX!
