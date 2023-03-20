@@ -1,7 +1,6 @@
 ---
-title: Principios de Visualización de Datos - Parte 1
-description: >-
- Muestre los datos, facilite las comparaciones: use ejes comunes, considere transformaciones,
+título: Principios de Visualización de Datos - Parte 1
+descripción : Muestre los datos, facilite las comparaciones: use ejes comunes, considere transformaciones,
   Comparaciones fáciles: las señales visuales comparadas deben ser adyacentes
 ---
 
@@ -18,16 +17,16 @@ skills:
 
 Los gráficos circulares son apropiados:
 
-`@possible_answers`
+`@respuestas_posibles`
 - Cuando queremos mostrar porcentajes.
 - Cuando ggplot2 no está disponible.
 - Cuando estoy en una panadería.
 - Nunca. Las gráficas de barras y las tablas siempre son mejores.
 
-`@hint`
+`@pista`
 
 
-`@pre_exercise_code`
+`@pre_código_de_ejercicio`
 ```{r}
 
 ```
@@ -55,16 +54,16 @@ skills:
 
 ¿Cuál es el problema con esta trama?
 
-`@possible_answers`
+`@respuestas_posibles`
 - Los valores están mal. La votación final fue de 306 a 232.
 - El eje no comienza en 0. A juzgar por la longitud, parece que Trump recibió 3 veces más votos cuando en realidad fue un 30% más.
 - Los colores deben ser los mismos.
 - Los porcentajes deben mostrarse como un gráfico circular.
 
-`@hint`
+`@pista`
 
 
-`@pre_exercise_code`
+`@pre_código_de_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -100,16 +99,16 @@ skills:
 
 Echale un vistazo a las siguientes dos parcelas. Muestran la misma información: tasas de sarampión por estado en los Estados Unidos para 1928.
 
-`@possible_answers`
+`@respuestas_posibles`
 - Ambas parcelas proporcionan la misma información, por lo que son igualmente buenas.
 - El gráfico de la izquierda es mejor porque ordena los estados alfabéticamente.
 - La gráfica de la derecha es mejor porque ordena los estados por índice de enfermedad para que podamos ver rápidamente los estados con índices más altos y más bajos.
 - Ambos diagramas deberían ser gráficos circulares en su lugar.
 
-`@hint`
+`@pista`
 
 
-`@pre_exercise_code`
+`@pre_código_de_ejercicio`
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -152,18 +151,16 @@ xp: 50
 skills:
   - 1
 ```
-
 Este es el final de la asignación de programación para esta sección. NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se puntúen.
 
 Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
-`@hint`
+`@pista`
 - ¡No es necesario dar pistas!
 
-`@possible_answers`
+`@respuestas_posibles`
 - [Impresionante]
 - No
 
-`@feedback`
+`@comentario`
 - ¡Excelente! ¡Ahora vuelve al curso en edX!
-- ¡Ahora vuelve al curso en edX!
