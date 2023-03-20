@@ -1,11 +1,11 @@
 ---
-title: Data Visualization Principles - Part 1
+title: Principios de Visualización de Datos - Parte 1
 description: >-
-  Show the Data, Ease Comparisons - Use Common Axes, Consider Transformations,
-  Ease Comparisons - Compared Visual Cues Should Be Adjacent
+ Muestre los datos, facilite las comparaciones: use ejes comunes, considere transformaciones,
+  Comparaciones fáciles: las señales visuales comparadas deben ser adyacentes
 ---
 
-## Exercise 1: Customizing plots - Pie charts
+## Ejercicio 1: Personalización de parcelas - Gráficos circulares
 
 ```yaml
 type: MultipleChoiceExercise
@@ -16,13 +16,13 @@ skills:
   - 1
 ```
 
-Pie charts are appropriate:
+Los gráficos circulares son apropiados:
 
 `@possible_answers`
-- When we want to display percentages. 
-- When ggplot2 is not available. 
-- When I am in a bakery. 
-- Never. Barplots and tables are always better.
+- Cuando queremos mostrar porcentajes.
+- Cuando ggplot2 no está disponible.
+- Cuando estoy en una panadería.
+- Nunca. Las gráficas de barras y las tablas siempre son mejores.
 
 `@hint`
 
@@ -34,17 +34,16 @@ Pie charts are appropriate:
 
 `@sct`
 ```{r}
-msg1 = "Incorrect. Try again!"
-msg2 = "Incorrect. Try again!"
-msg3 = "Incorrect. Try again!"
-msg4 = "Correct! Good job. Pie charts are not a very effective visualization tool. "
+msg1 = "Incorrecto. ¡Inténtalo de nuevo!"
+msg2 = "Incorrecto. ¡Inténtalo de nuevo!"
+msg3 = "Incorrecto. ¡Inténtalo de nuevo!"
+msg4 = "¡Correcto! Buen trabajo. Los gráficos circulares no son una herramienta de visualización muy eficaz."
 test_mc(4, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 2. Customizing plots - What's wrong?
-
+## Ejercicio 2. Personalización de parcelas - ¿Qué está mal?
 ```yaml
 type: MultipleChoiceExercise
 key: ca5e3e9a17
@@ -54,13 +53,13 @@ skills:
   - 1
 ```
 
-What is the problem with this plot?
+¿Cuál es el problema con esta trama?
 
 `@possible_answers`
-- The values are wrong. The final vote was 306 to 232.
-- The axis does not start at 0. Judging by the length, it appears Trump received 3 times as many votes when in fact it was about 30% more. 
-- The colors should be the same.
-- Percentages should be shown as a pie chart.
+- Los valores están mal. La votación final fue de 306 a 232.
+- El eje no comienza en 0. A juzgar por la longitud, parece que Trump recibió 3 veces más votos cuando en realidad fue un 30% más.
+- Los colores deben ser los mismos.
+- Los porcentajes deben mostrarse como un gráfico circular.
 
 `@hint`
 
@@ -81,14 +80,14 @@ data.frame(candidate=c("Clinton","Trump"), electoral_votes = c(232, 306)) %>%
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = msg5 = "Incorrect. Try again."
+msg2 = "Correcto! Buen trabajo!"
+msg1 = msg3 = msg4 = msg5 = "Incorrecto. Intenta de nuevo."
 test_mc(2, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## Exercise 3: Customizing plots - What's wrong 2?
+## Ejercicio 3: Personalización de parcelas - ¿Qué pasa 2?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -99,13 +98,13 @@ skills:
   - 1
 ```
 
-Take a look at the following two plots. They show the same information: rates of measles by state in the United States for 1928.
+Echale un vistazo a las siguientes dos parcelas. Muestran la misma información: tasas de sarampión por estado en los Estados Unidos para 1928.
 
 `@possible_answers`
-- Both plots provide the same information, so they are equally good.
-- The plot on the left is better because it orders the states alphabetically.
-- The plot on the right is better because it orders the states by disease rate so we can quickly see the states with highest and lowest rates.
-- Both plots should be pie charts instead.
+- Ambas parcelas proporcionan la misma información, por lo que son igualmente buenas.
+- El gráfico de la izquierda es mejor porque ordena los estados alfabéticamente.
+- La gráfica de la derecha es mejor porque ordena los estados por índice de enfermedad para que podamos ver rápidamente los estados con índices más altos y más bajos.
+- Ambos diagramas deberían ser gráficos circulares en su lugar.
 
 `@hint`
 
@@ -137,14 +136,14 @@ grid.arrange(p1, p2, ncol = 2)
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = msg5 = "Incorrect. Try again"
+msg3 = "Correcto! Buen trabajo!"
+msg1 = msg2 = msg4 = msg5 = "Incorrecto. ¡Inténtalo de nuevo!"
 test_mc(3, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## End of Assessment: Data Visualization Principles, Part 1
+## Fin de la Evaluación: Principios de Visualización de Datos, Parte 1
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -154,17 +153,17 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se puntúen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesario dar pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Impresionante]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Excelente! ¡Ahora vuelve al curso en edX!
+- ¡Ahora vuelve al curso en edX!
