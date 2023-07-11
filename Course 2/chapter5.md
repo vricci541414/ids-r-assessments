@@ -3,7 +3,7 @@ title: Robust Summaries with Outliers
 description: 'dplyr, The Dot Placeholder, Group By, Sorting Data Tables'
 ---
 
-## Exercise 1. Exploring the Galton Dataset - Average and Median
+## Ejercicio 1. Exploración del conjunto de datos de Galton: Promedio y Mediana
 
 ```yaml
 type: NormalExercise
@@ -14,7 +14,7 @@ skills:
   - 1
 ```
 
-For this chapter, we will use height data collected by Francis Galton for his genetics studies. Here we just use height of the children in the dataset:
+Para este capítulo, utilizaremos los datos de altura recopilados por Francis Galton para sus estudios genéticos. Aquí solo usamos la altura de los niños en el conjunto de datos:
 
 ```{r}
 library(HistData)
@@ -23,10 +23,10 @@ x <- Galton$child
 ```
 
 `@instructions`
-Compute the average and median of these data. Note: do not assign them to a variable.
+Calcule el promedio y la mediana de estos datos. Noté: no los asigne a una variable.
 
 `@hint`
-You can use the `mean` and `median` functions.
+Puede utilizar las funciones  `mean` y `median`.
 
 `@pre_exercise_code`
 ```{r}
@@ -52,15 +52,15 @@ median(x)
 `@sct`
 ```{r}
 test_error()
-test_object("x", incorrect_msg = "Did you define `x` appropriately?")
-test_function("mean", incorrect_msg = "Are you calculating `mean` on the correct subset?")
-test_function("median", incorrect_msg = "Are you calculating `median` on the correct subset?")
-success_msg("Nice job! Notice that they are similar.")
+test_object("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+test_function("mean", incorrect_msg = "¿Está calculando la media (`mean`) en el subconjunto correcto?")
+test_function("median", incorrect_msg = "¿Está calculando la mediana (`median`) en el subconjunto correcto?")
+success_msg("¡Buen trabajo! Fíjese que son similares.")
 ```
 
 ---
 
-## Exercise 2. Exploring the Galton Dataset - SD and MAD
+## Ejercicio 2. Explorando el conjunto de datos Galton - SD y MAD
 
 ```yaml
 type: NormalExercise
@@ -71,13 +71,13 @@ skills:
   - 1
 ```
 
-Now for the same data compute the standard deviation and the median absolute deviation (MAD).
+Ahora, para los mismos datos, calcule la desviación estándar y la desviación absoluta mediana (MAD).
 
 `@instructions`
-Compute the standard deviation and the median absolute deviation of these data.
+Calcule la desviación estándar y la desviación absoluta mediana de estos datos.
 
 `@hint`
-Use the `sd` and `mad` functions.
+Usa las funciones `sd` y `mad`.
 
 `@pre_exercise_code`
 ```{r}
@@ -104,15 +104,15 @@ mad(x)
 `@sct`
 ```{r}
 test_error()
-test_object("x", incorrect_msg = "Did you define `x` appropriately?")
-test_function("sd", incorrect_msg = "Are you calculating `sd` on the correct subset?")
-test_function("mad", incorrect_msg = "Are you calculating `mad` on the correct subset?")
-success_msg("Nice job! Again notice that they are somewhat similar.")
+test_object("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+test_function("sd", incorrect_msg = "¿Está calculando `sd` en el subconjunto correcto?")
+test_function("mad", incorrect_msg = "¿Está calculando `mad` en el subconjunto correcto?")
+success_msg("¡Buen trabajo! Observe de nuevo que son algo similares.")
 ```
 
 ---
 
-## Exercise 3. Error impact on average
+## Ejercicio 3. Impacto del error en el promedio
 
 ```yaml
 type: NormalExercise
@@ -123,9 +123,9 @@ skills:
   - 1
 ```
 
-In the previous exercises we saw that the mean and median are very similar and so are the standard deviation and MAD. This is expected since the data is approximated by a normal distribution which has this property. 
+En los ejercicios anteriores vimos que el promedio y la mediana son muy similares y también lo son la desviación estándar y la MAD. Esto es de esperar ya que los datos se aproximan mediante una distribución normal que tiene esta propiedad.
 
-Now suppose that Galton made a mistake when entering the first value, forgetting to use the decimal point. You can imitate this error by typing:
+Ahora suponga que Galton cometió un error al ingresar el primer valor, olvidándose de usar el punto decimal. Puede imitar este error escribiendo:
 
 ```{r}
 library(HistData)
@@ -135,13 +135,13 @@ x_with_error <- x
 x_with_error[1] <- x_with_error[1]*10
 ```
 
-The data now has an outlier that the normal approximation does not account for. Let's see how this affects the average.
+Los datos ahora tienen un valor atípico que la aproximación normal no tiene en cuenta. Veamos cómo afecta esto al promedio.
 
 `@instructions`
-Report how many inches the average grows after this mistake. Specifically, report the difference between the average of the data with the mistake `x_with_error` and the data without the mistake `x`.
+Informaé cuántas pulgadas crece el promedio después de este error. Específicamente, reporte la diferencia entre el promedio de los datos con el error `x_with_error` y los datos sin el error `x`.
 
 `@hint`
-Subtract the means from each other.
+Resté los promedios entre sí.
 
 `@pre_exercise_code`
 ```{r}
@@ -170,17 +170,17 @@ mean(x_with_error)- mean(x)
 `@sct`
 ```{r}
 test_error()
-test_object("x", incorrect_msg = "Did you define `x` appropriately?")
-test_object("x_with_error", incorrect_msg = "Did you define `x_with_error` appropriately?")
-test_function("mean", incorrect_msg = "Are you calculating `mean` on the correct subset?")
-test_function("mean",index=2, incorrect_msg = "Are you calculating `mean` on the correct subset?")
-test_output_contains("mean(x_with_error)-mean(x)", incorrect_msg = "Are you calculating the difference between the two variables in the order given?")
-success_msg("Nice job! Notice the shift in mean.")
+test_object("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+test_object("x_with_error", incorrect_msg = "¿Definió `x_with_error` appropriately?")
+test_function("mean", incorrect_msg = "¿Está calculando la `mean` en el subconjunto correcto?")
+test_function("mean",index=2, incorrect_msg = "¿Está calculando la `mean` en el subconjunto correcto?")
+test_output_contains("mean(x_with_error)-mean(x)", incorrect_msg = "¿Está calculando la diferencia entre las dos variables en el orden dado?")
+success_msg("¡Buen trabajo! Observe el cambio en el promedio.")
 ```
 
 ---
 
-## Exercise 4. Error impact on SD
+## Ejercicio 4. Impacto del error en SD
 
 ```yaml
 type: NormalExercise
@@ -191,13 +191,13 @@ skills:
   - 1
 ```
 
-In the previous exercise we saw how a simple mistake in 1 out of over 900 observations can result in the average of our data increasing more than half an inch, which is a large difference in practical terms. Now let's explore the effect this outlier has on the standard deviation.
+En el ejercicio anterior vimos cómo un simple error en 1 de más de 900 observaciones puede resultar en que el promedio de nuestros datos aumente más de media pulgada, lo cual es una gran diferencia en términos prácticos. Ahora exploremos el efecto que tiene este valor atípico en la desviación estándar.
 
 `@instructions`
-Report how many inches the SD grows after this mistake. Specifically, report the difference between the SD of the data with the mistake `x_with_error` and the data without the mistake `x`.
+Reporte cuantas pulgadas crece la SD (desviaciones estándar) despues de este error. Específicamente, reporte la diferencia entre la SD de los datos con el error `x_with_error` y los datos sin el error `x`.
 
 `@hint`
-Subtract the standard deviations from each other.
+Resté las desviaciones estándar entre sí.
 
 `@pre_exercise_code`
 ```{r}
@@ -221,17 +221,17 @@ sd(x_with_error)- sd(x)
 
 `@sct`
 ```{r}
-ex() %>% check_predefined_objects("x", incorrect_msg = "Did you define `x` appropriately?")
-ex() %>% check_object("x_with_error") %>% check_equal(incorrect_msg = "Did you define `x_with_error` appropriately?")
-ex() %>% check_function("sd") %>% check_arg("x") %>% check_equal(incorrect_msg = "Are you calculating `sd` on the correct subset?")
-ex() %>% check_function("sd",index=2) %>% check_arg("x") %>% check_equal(incorrect_msg = "Are you calculating `sd` on the correct subset?")
-ex() %>% check_output_expr("sd(x_with_error)-sd(x)", missing_msg = "Are you calculating the difference between the two variables in the order given?")
-success_msg("Nice job! Notice the increase in the standard deviation.")
+ex() %>% check_predefined_objects("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+ex() %>% check_object("x_with_error") %>% check_equal(incorrect_msg = "¿Definió `x_with_error`apropiadamente?")
+ex() %>% check_function("sd") %>% check_arg("x") %>% check_equal(incorrect_msg = "¿Está calculando `sd` en el subconjunto correcto?")
+ex() %>% check_function("sd",index=2) %>% check_arg("x") %>% check_equal(incorrect_msg = "¿Está calculando `sd` en el subconjunto correcto?")
+ex() %>% check_output_expr("sd(x_with_error)-sd(x)", missing_msg = "¿Está calculando la diferencia entre las dos variables en el orden dado?")
+success_msg("¡Buen trabajo! Observe el aumento en la desviación estándar.")
 ```
 
 ---
 
-## Exercise 5. Error impact on median
+## Ejercicio 5. Impacto del error en la mediana
 
 ```yaml
 type: NormalExercise
@@ -242,15 +242,15 @@ skills:
   - 1
 ```
 
-In the previous exercises we saw how one mistake can have a substantial effect on the average and the standard deviation. 
+En los ejercicios anteriores vimos cómo un error puede tener un efecto sustancial en el promedio y la desviación estándar.
 
-Now we are going to see how the median and MAD are much more resistant to outliers. For this reason we say that they are _robust_ summaries.
+Ahora vamos a ver como la mediana y la MAD son mucho más resistentes a los valores atípicos. Por eso decimos que son resúmenes _robust_ (_robustos_).
 
 `@instructions`
-Report how many inches the median grows after the mistake. Specifically, report the difference between the median of the data with the mistake `x_with_error` and the data without the mistake `x`.
+Reporte cuántas pulgadas crece la mediana después del error. Específicamente, reporte la diferencia entre la mediana de los datos con el error `x_with_error` y los datos sin el error `x`.
 
 `@hint`
-Subtract the medians from each other.
+Resté las medianas entre sí.
 
 `@pre_exercise_code`
 ```{r}
@@ -275,17 +275,17 @@ median(x_with_error)- median(x)
 `@sct`
 ```{r}
 test_error()
-test_object("x", incorrect_msg = "Did you define `x` appropriately?")
-test_object("x_with_error", incorrect_msg = "Did you define `x_with_error` appropriately?")
-test_function("median", incorrect_msg = "Are you calculating `median` on the correct subset?")
-test_function("median",index=2, incorrect_msg = "Are you calculating `median` on the correct subset?")
-test_output_contains("median(x_with_error)-median(x)", incorrect_msg = "Are you calculating the difference in the two variables in the order given?")
-success_msg("Nice job! Notice the robustness of the median.")
+test_object("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+test_object("x_with_error", incorrect_msg = "Definió `x_with_error` apropiadamente?")
+test_function("median", incorrect_msg = "¿Está calculando `median` en el subconjunto correcto?")
+test_function("median",index=2, incorrect_msg = "¿Está calculando `median` en el subconjunto correcto?")
+test_output_contains("median(x_with_error)-median(x)", incorrect_msg = "¿Está calculando la diferencia en las dos variables en el orden dado?")
+success_msg("¡Buen trabajo! Note la robustez de la mediana.")
 ```
 
 ---
 
-## Exercise 6. Error impact on MAD
+## Ejercicio 6. Impacto del error en MAD
 
 ```yaml
 type: NormalExercise
@@ -296,13 +296,13 @@ skills:
   - 1
 ```
 
-We saw that the median barely changes. Now let's see how the MAD is affected.
+Vimos que la mediana apenas cambia. Ahora veamos cómo se ve afectado el MAD.
 
 `@instructions`
-Report how many inches the MAD grows after the mistake. Specifically, report the difference between the MAD of the data with the mistake `x_with_error` and the data without the mistake `x`.
+Reporte cuántas pulgadas crece el MAD después del error. Específicamente, reporte la diferencia entre la MAD de los datos con el error `x_with_error` y los datos sin el error `x`.
 
 `@hint`
-Subtract the MADs from each other.
+Resté los MAD entre sí.
 
 `@pre_exercise_code`
 ```{r}
@@ -327,17 +327,17 @@ mad(x_with_error)- mad(x)
 `@sct`
 ```{r}
 test_error()
-test_object("x", incorrect_msg = "Did you define `x` appropriately?")
-test_object("x_with_error", incorrect_msg = "Did you define `x_with_error` appropriately?")
-test_function("mad", incorrect_msg = "Are you calculating `mad` on the correct subset?")
-test_function("mad",index=2, incorrect_msg = "Are you calculating `mad` on the correct subset?")
-test_output_contains("mad(x_with_error)-mad(x)", incorrect_msg = "Are you calculating the difference in the two variables in the order given?")
-success_msg("Nice job! Notice the MAD doesn't change.")
+test_object("x", incorrect_msg = "¿Definió `x` apropiadamente?")
+test_object("x_with_error", incorrect_msg = "¿Definió `x_with_error` apropiadamente?")
+test_function("mad", incorrect_msg = "¿Está calculando `mad` en el subconjunto correcto?")
+test_function("mad",index=2, incorrect_msg = "¿Está calculando `mad` en el subconjunto correcto?")
+test_output_contains("mad(x_with_error)-mad(x)", incorrect_msg = "¿Está calculando la diferencia en las dos variables en el orden dado?")
+success_msg("¡Buen trabajo! Observe que el MAD no cambia.")
 ```
 
 ---
 
-## Exercise 7. Usefulness of EDA
+## Ejercicio 7. Utilidad de EDA
 
 ```yaml
 type: MultipleChoiceExercise
@@ -348,13 +348,13 @@ skills:
   - 1
 ```
 
-How could you use exploratory data analysis to detect that an error was made?
+¿Cómo podría usar el análisis exploratorio de datos para detectar que se cometió un error?
 
 `@possible_answers`
-- Since it is only one value out of many, we will not be able to detect this.
-- We would see an obvious shift in the distribution.
-- A boxplot, histogram, or qq-plot would reveal a clear outlier.
-- A scatter plot would show high levels of measurement error.
+- Dado que es solo un valor entre muchos, no podremos detectarlo.
+- Veríamos un cambio evidente en la distribución.
+- Una gráfica de caja, un histograma o una gráfica qq (cuantil-cuantil) revelaría un valor atípico claro.
+- Un diagrama de dispersión mostraría altos niveles de error de medición.
 
 `@hint`
 
@@ -366,14 +366,14 @@ How could you use exploratory data analysis to detect that an error was made?
 
 `@sct`
 ```{r}
-msg3 = "Correct! Good Job!"
-msg1 = msg2 = msg4 = msg5 = "Incorrect. Try again."
+msg3 = "¡Correcto! ¡Buen trabajo!"
+msg1 = msg2 = msg4 = msg5 = "Incorrecto. Intenté otra vez."
 test_mc(3, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## Exercise 8. Using EDA to explore changes
+## Ejercicio 8. Uso de EDA para explorar cambios
 
 ```yaml
 type: NormalExercise
@@ -384,15 +384,15 @@ skills:
   - 1
 ```
 
-We have seen how the average can be affected by outliers. But how large can this effect get? This of course depends on the size of the outlier and the size of the dataset.
+Hemos visto cómo el promedio puede verse afectado por valores atípicos. Pero, ¿qué tan grande puede llegar a ser este efecto? Por supuesto, esto depende del tamaño del valor atípico y del tamaño del conjunto de datos.
 
-To see how outliers can affect the average of a dataset, let's write a simple function that takes the size of the outlier as input and returns the average.
+Para ver cómo los valores atípicos pueden afectar el promedio de un conjunto de datos, escribamos una función simple que tome el tamaño del valor atípico como entrada y devuelva el promedio.
 
 `@instructions`
-Write a function called `error_avg` that takes a value `k` and returns the average of the vector `x` after the first entry changed to `k`. Show the results for `k=10000` and `k=-10000`.
+Escriba una función llamada `error_avg` que tome un valor `k` y devuelva el promedio del vector `x` después de que la primera entrada cambió a `k`. Muestre los resultados para `k=10000` y `k=-10000`.
 
 `@hint`
-Your function should replace the first value in the `x` vector with the only argument, `k`, and then calculate the `mean`. And remember to call the function on `k=10000` and `k=-10000`!
+Su función debe reemplazar el primer valor en el vector `x` con el único argumento, `k`, y luego calcular `mean`. ¡Y recuerde llamar a la función en `k=10000` y `k=-10000`!
 
 `@pre_exercise_code`
 ```{r}
@@ -427,20 +427,20 @@ error_avg(-10000)
 `@sct`
 ```{r}
 test_error()
-msg = "Double check how you're defining the `error_avg()` function."
+msg = "Vuelva a comprobar cómo estás definiendo la función `error_avg()`."
 fun_def <- ex() %>% check_fun_def("error_avg")
 fun_def %>% check_arguments()
 fun_def %>% check_call(10000) %>% check_result(msg)
 fun_def %>% check_body() %>% check_operator('mean')
-test_function_result("error_avg",index=1, incorrect_msg = "Are you calculating `error_avg` with `k=10000`?")
-test_function_result("error_avg",index=2, incorrect_msg = "Are you calculating `error_avg` with `k=-10000`?")
+test_function_result("error_avg",index=1, incorrect_msg = "¿Está calculando `error_avg` con `k=10000`?")
+test_function_result("error_avg",index=2, incorrect_msg = "¿Está calculando `error_avg` con `k=10000`?")
 test_error()
-success_msg("Nice job! Notice how changing a single value to a large outlying value can have a large effect on the mean.")
+success_msg("¡Buen trabajo! Observe cómo cambiar un solo valor a un valor atípico grande puede tener un gran efecto en el promedio.")
 ```
 
 ---
 
-## End of Assessment: Robust Summaries with Outliers
+## Fin de la Evaluación: Resúmenes Robustos con Valores Atípicos
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -450,17 +450,17 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se califiquen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Ciencia de datos: Visualización</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesaria ninguna pista!
 
 `@possible_answers`
 - [Awesome]
-- Nope
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Excelente! ¡Ahora vuelva al curso en edX!
+- ¡Ahora vuelva al curso en edX!

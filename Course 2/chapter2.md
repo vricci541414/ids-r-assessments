@@ -1,9 +1,9 @@
 ---
-title: 'Quantiles, Percentiles, and Boxplots'
-description: 'Quantile-Quantile Plots, Percentiles, Boxplots, Distribution of Female Heights'
+title: 'Cuantiles, Percentiles y Diagramas de caja'
+description: 'Gráficas de cuantil-cuantil, Percentiles, Diagramas de caja, Distribución de alturas femeninas'
 ---
 
-## Exercise 1. Vector lengths
+## Ejercicio 1. Longitud vectorial 
 
 ```yaml
 type: NormalExercise
@@ -14,15 +14,15 @@ skills:
   - 1
 ```
 
-When analyzing data it's often important to know the number of measurements you have for each category.
+Al analizar datos es importante saber la cantidad de medidas que tiene cada categoría.
 
 `@instructions`
-- Define a variable `male` that contains the male heights.
-- Define a variable `female` that contains the female heights.
-- Report the length of each variable.
+- Definir una variable `male` que tiene las alturas masculinas.
+- Definir una variable `female` que tiene las alturas femeninas.
+- Reportar la longitud de cada variable.
 
 `@hint`
-Use the `length` function after defining two vectors called `male` and `female` of subsetted heights. You will call length twice, once for each variable.
+Utilic la función `length` después de definir dos vectores llamados `male`  (masculino) y `female` (femenino) de alturas subdivididas. Utilice la función `length` dos veces, una vez para cada variable.
 
 `@pre_exercise_code`
 ```{r}
@@ -52,16 +52,16 @@ length(female)
 `@sct`
 ```{r}
 test_error()
-#test_output("female", incorrect_msg = "Are you subsetting correctly?")
-#test_output("male", incorrect_msg = "Are you subsetting correctly?")
-test_function("length",index=1, incorrect_msg = "You should be using length twice for this exercise")
-test_function("length",index=2, incorrect_msg = "You should be using length twice for this exercise")
-success_msg("Nice work!")
+#test_output("female", incorrect_msg = "¿Está subdividiendo correctamente?")
+#test_output("male", incorrect_msg = "¿Está subdividiendo correctamente?")
+test_function("length",index=1, incorrect_msg = "Debería usar 'length' dos veces para este ejercicio.")
+test_function("length",index=2, incorrect_msg = "Debería usar 'length' dos veces para este ejercicio.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 2. Percentiles
+## Ejercicio 2. Percentiles
 
 ```yaml
 type: NormalExercise
@@ -72,7 +72,8 @@ skills:
   - 1
 ```
 
-Suppose we can't make a plot and want to compare the distributions side by side. If the number of data points is large, listing all the numbers is inpractical. A more practical approach is to look at the percentiles. We can obtain percentiles using the `quantile` function like this
+Supongamos que no podemos hacer un gráfico y queremos comparar las distribuciones una al lado de la otra. Si el número de puntos de datos es grande, enumerar todos los números no es práctico. Un enfoque más práctico es observar los percentiles. Podemos obtener percentiles usando la función 'quantile' así
+
 
 ```{r}
 library(dslabs)
@@ -81,17 +82,19 @@ quantile(heights$height, seq(.01, 0.99, 0.01))
 ```
 
 `@instructions`
-- Create two five row vectors showing the 10th, 30th, 50th, 70th, and 90th percentiles for the heights of each sex called these vectors `female_percentiles` and `male_percentiles`.
-- Then create a data frame called `df` with these two vectors as columns. The column names should be `female` and `male` and should appear in that order. As an example consider that if you want a data frame to have column names `names` and `grades`, in that order, you do it like this:
+- Cree dos vectores de cinco filas que muestren los percentiles 10, 30, 50, 70 y 90 para las alturas de cada sexo y llame estos vectores `female_percentiles` y `male_percentiles`.
+- Luego cree un marco de datos llamado `df` con estos dos vectores como columnas. Los nombres de las columnas deben ser "female" y "male" y deben aparecer en ese orden. Como ejemplo, considere que si desea que un marco de datos tenga nombres de columna `names` y `grades`, en ese orden, se hace así:
+
 
 ```{r}
 df <- data.frame(names = c("Jose", "Mary"), grades = c("B", "A"))
 ```
-- Take a look at the `df` by printing it. This will provide some information on how male and female heights differ.
+- Eche un vistazo al marco de datos `df`. Esto proporcionará información sobre cómo difieren las alturas masculinas y femeninas.
 
 `@hint`
-You'll need to apply `quantile` to the `male` and `female` heights and specify the percentiles.
-Afterwards, you need to call `data.frame`. Make sure you have the columns in the specified order! Here is an example with sequences of numbers:
+Necesitará aplicar 'quantile' a las alturas de 'male' y 'female' y especificar los percentiles.
+Luego, debe llamar a `data.frame`. ¡Asegúrese de tener las columnas en el orden especificado! Aquí hay un ejemplo con secuencias de números:
+
 
 ```{r}
 male <- 50:80
@@ -133,15 +136,15 @@ df
 `@sct`
 ```{r}
 test_error()
-test_object("female_percentiles", incorrect_msg = "Make sure to use the `quantile` function.")
-test_object("male_percentiles", incorrect_msg = "Make sure to use the `quantile` function.")
-test_object("df",incorrect_msg = "You should be using `data.frame` to define `df` for this exercise. Make sure the columns are in the order `female`, `male`.")
-success_msg("Nice work!")
+test_object("female_percentiles", incorrect_msg = "Asegúrese de usar la función `quantile`.")
+test_object("male_percentiles", incorrect_msg = "Asegúrese de usar la función `quantile`.")
+test_object("df",incorrect_msg = "Debería de usar `data.frame` para definir `df` en este ejercicio. Asegúrese de que las columnas estén el orden `female`, `male`.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 3. Interpreting Boxplots - 1
+## Ejercicio 3. Interpretándo Diagramas de Caja - 1
 
 ```yaml
 type: MultipleChoiceExercise
@@ -152,16 +155,16 @@ skills:
   - 1
 ```
 
-Study the boxplots summarizing the distributions of populations sizes by country.
+Estudie los diagramas de caja que resumen las distribuciones de tamaños de población por país.
 
-Which continent has the country with the largest population size?
+¿Qué continente tiene el país con el mayor tamaño de población?
 
 `@possible_answers`
-- Africa
-- Americas
+- África
+- Américas
 - Asia
-- Europe
-- Oceania
+- Europa
+- Oceanía
 
 `@hint`
 
@@ -185,14 +188,15 @@ gapminder %>%
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = msg5 = "Incorrect. Try again"
+msg3 = "¡Correcto! ¡Buen trabajo!"
+msg1 = msg2 = msg4 = msg5 = "Incorrecto. Intente otra vez"
 test_mc(3, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## Exercise 4. Interpreting Boxplots - 2
+## Ejercicio 4. Interpretándo Diagramas de Caja - 2
+
 
 ```yaml
 type: MultipleChoiceExercise
@@ -203,16 +207,16 @@ skills:
   - 1
 ```
 
-Study the boxplots summarizing the distributions of populations sizes by country.
+Estudie los diagramas de caja que resumen las distribuciones de tamaños de población por país.
 
-Which continent has the largest median population?
+¿Qué continente tiene la población mediana más grande?
 
 `@possible_answers`
-- Africa
-- Americas
+- África
+- Américas
 - Asia
-- Europe
-- Oceania
+- Europa
+- Oceanía
 
 `@hint`
 
@@ -235,14 +239,14 @@ gapminder %>%
 
 `@sct`
 ```{r}
-msg1 = "Correct!  Good Job!"
-msg2 = msg3 = msg4 = msg5 = "Incorrect. Look very closely at where the medians are."
+msg1 = "¡Correcto!  ¡Buen trabajo!"
+msg2 = msg3 = msg4 = msg5 = "Incorrecto. Mire muy de cerca dónde están las medianas."
 test_mc(1, c(msg1, msg2, msg3, msg4, msg5))
 ```
 
 ---
 
-## Exercise 5. Interpreting Boxplots - 3
+## Ejercicio 5. Interpretándo Diagramas de Caja - 3
 
 ```yaml
 type: MultipleChoiceExercise
@@ -253,14 +257,14 @@ skills:
   - 1
 ```
 
-Again, look at the boxplots summarizing the distributions of populations sizes by country. To the nearest million, what is the `median` population size for Africa?
+Una vez más, mire los diagramas de caja que resumen las distribuciones de los tamaños de las poblaciones por país. Al millón más cercano, ¿cuál es el tamaño de la población 'median' (mediana) de África?
 
 `@possible_answers`
-- 100 million
-- 25 million
-- 10 million
-- 5 million
-- 1 million
+- 100 millones
+- 25 millones
+- 10 millones
+- 5 millones
+- 1 millón
 
 `@hint`
 
@@ -283,14 +287,14 @@ gapminder %>%
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = msg5 = "Incorrect. Look very closely at where the medians are."
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg2 = msg4 = msg5 = "Incorrecto. Mire muy de cerca dónde están las medianas."
 test_mc(3, c(msg1, msg2, msg3, msg4, msg5))
 ```
 
 ---
 
-## Exercise 6. Low quantiles
+## Ejercicio 6. Cuantiles bajos
 
 ```yaml
 type: MultipleChoiceExercise
@@ -301,7 +305,7 @@ skills:
   - 1
 ```
 
-Examine the following boxplots and report approximately what proportion of countries in Europe have populations below 14 million:
+Examine los siguientes diagramas de caja e informe aproximadamente qué proporción de países en Europa tienen una población abajo de 14 millones:
 
 `@possible_answers`
 - 0.75
@@ -330,14 +334,14 @@ gapminder %>%
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = msg5 = "Incorrect. Try again."
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg3 = msg4 = msg5 = "Incorrecto. Intente otra."
 test_mc(1, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## Exercise 7. Interquantile Range (IQR)
+## Ejercicio 7. Rango Intercuantílico (IQR en inglés)
 
 ```yaml
 type: MultipleChoiceExercise
@@ -348,14 +352,14 @@ skills:
   - 1
 ```
 
-Using the boxplot as guidance, which continent shown below has the largest interquartile range for log(population)?
+Usando el diagrama de caja como guía, ¿qué continente que se muestra a continuación tiene el rango intercuartílico más grande para log(population)?
 
 `@possible_answers`
-- Africa
-- Americas
+- África
+- Américas
 - Asia
-- Europe
-- Oceania
+- Europa
+- Oceanía
 
 `@hint`
 
@@ -378,14 +382,14 @@ gapminder %>%
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = msg5 = "Incorrect. Try again"
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg3 = msg4 = msg5 = "Incorrecto. Intente otra vez"
 test_mc(2, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## End of Assessment: Quantiles, Percentiles, and Boxplots
+## Fin de la evaluación: Cuantiles, Percentiles y Diagramas de caja
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -395,17 +399,17 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se califiquen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Ciencia de datos: Visualización</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesario dar pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Asombroso]
+- No
 
 `@feedback`
-- "Great! Now navigate back to the course on edX!"
-- "Now navigate back to the course on edX!"
+- "¡Excelente! Ahora navegue de regreso al curso en edX."
+- "Ahora navegue de regreso al curso en edX."

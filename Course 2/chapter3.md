@@ -1,9 +1,9 @@
 ---
-title: Distributions
-description: An overview of distributions and their characteristics
+title: Distribuciones
+description: Una descripción general sobre las distribuciones y sus características.
 ---
 
-## Exercise 1. Distributions - 1
+## Ejercicio 1. Distribuciones - 1
 
 ```yaml
 type: MultipleChoiceExercise
@@ -14,11 +14,32 @@ skills:
   - 1
 ```
 
-You may have noticed that numerical data is often summarized with the average value. For example, the quality of a high school is sometimes summarized with one number: the average score on a standardized test. Occasionally, a second number is reported: the standard deviation. So, for example, you might read a report stating that scores were 680 plus or minus 50 (the standard deviation). The report has summarized an entire vector of scores with with just two numbers. Is this appropriate? Is there any important piece of information that we are missing by only looking at this summary rather than the entire list? We are going to learn when these 2 numbers are enough and when we need more elaborate summaries and plots to describe the data.
+Es posible que haya notado que los datos numéricos a menudo se resumen con el valor promedio. Por ejemplo, la calidad de una escuela secundaria a veces se resume con un número: el puntaje promedio en una prueba estandarizada. Ocasionalmente, se informa un segundo número: la desviación estándar. Entonces, por ejemplo, podría leer un informe que indica que las puntuaciones fueron 680 más o menos 50 (la desviación estándar). El informe ha resumido un vector completo de puntajes con solo dos números. ¿Es esto apropiado? ¿Hay alguna información importante que nos falta al mirar solo este resumen en lugar de la lista completa? Vamos a aprender cuándo estos 2 números son suficientes y cuándo necesitamos resúmenes y diagramas más elaborados para describir los datos.
+
 
 Our first data visualization building block is learning to summarize lists of factors or numeric vectors. The most basic statistical summary of a list of objects or numbers is its distribution. Once a vector has been summarized as distribution, there are several data visualization techniques to effectively relay this information. In later assessments we will practice to write code for data visualization. Here we start with some multiple choice questions to test your understanding of distributions and related basic plots.
 
-In the murders dataset, the region is a categorical variable and on the right you can see its distribution. To the closet 5%, what proportion of the states are in the North Central region?
+Nuestro primer bloque de construcción de visualización de datos es aprender a resumir listas de factores o vectores numéricos. El resumen estadístico más básico de una lista de objetos o números es su distribución. Una vez que un vector se ha resumido como distribución, existen varias técnicas de visualización de datos para transmitir esta información de manera efectiva. En evaluaciones más adelante, practicaremos para escribir código para la visualización de datos. Aquí comenzamos con algunas preguntas de opción múltiple para evaluar su comprensión de las distribuciones y las gráficas básicas relacionadas a las distribuciones.
+
+En el conjunto de datos de 'murders', region (la región) es una variable categórica y a la derecha puede ver su distribución. Al 5% más cercano, ¿qué proporción de los estados se encuentran en la región Centro Norte?
+---
+
+## Ejercicio 1. Distribuciones - 1
+
+```yaml
+type: MultipleChoiceExercise
+key: 54f59fc608
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Es posible que haya notado que los datos numéricos a menudo se resumen con el valor promedio. Por ejemplo, la calidad de una escuela secundaria a veces se resume con un número: el puntaje promedio en una prueba estandarizada. Ocasionalmente, se informa un segundo número: la desviación estándar. Entonces, por ejemplo, podría leer un informe que indica que las puntuaciones fueron 680 más o menos 50 (la desviación estándar). El informe ha resumido un vector completo de puntajes con solo dos números. ¿Es esto apropiado? ¿Hay alguna información importante que nos falta al mirar solo este resumen en lugar de la lista completa? Vamos a aprender cuándo estos 2 números son suficientes y cuándo necesitamos resúmenes y diagramas más elaborados para describir los datos.
+
+Nuestro primer bloque de construcción de visualización de datos es aprender a resumir listas de factores o vectores numéricos. El resumen estadístico más básico de una lista de objetos o números es su distribución. Una vez que un vector se ha resumido como distribución, existen varias técnicas de visualización de datos para transmitir esta información de manera efectiva. En evaluaciones más adelantes en este curso, practicaremos cómo escribir código para la visualización de datos. Aquí comenzamos con algunas preguntas de opción múltiple para evaluar su comprensión de las distribuciones y las gráficas básicas relacionadas a las distribuciones.
+
+En el conjunto de datos de asesinatos llamado murders, region (la región) es una variable categórica y a la derecha puede ver su distribución. A el 5% más cercano, ¿qué proporción de los estados se encuentran en la región Centro Norte?
 
 `@possible_answers`
 - 75% 
@@ -47,14 +68,14 @@ murders %>% group_by(region) %>%
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = msg5 = "Incorrect. Try again"
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg2 = msg4 = msg5 = "Incorrecto. Intente otra vez"
 test_mc(3, c(msg1, msg2, msg3, msg4,msg5))
 ```
 
 ---
 
-## Exercise 2. Distributions - 2
+## Ejercicio 2. Distribuciones - 2
 
 ```yaml
 type: MultipleChoiceExercise
@@ -65,15 +86,15 @@ skills:
   - 1
 ```
 
-In the murders dataset, the region is a categorical variable and to the right is its distribution.
+En el conjunto de datos de asesinatos, la región es una variable categórica y a la derecha está su distribución.
 
-Which of the following is true:
+Cual de los siguientes es verdadero:
 
 `@possible_answers`
-- The graph is a histogram.
-- The graph shows only four numbers with a bar plot.
-- Categories are not numbers so it does not make sense to graph the distribution.
-- The colors, not the height of the bars, describe the distribution.
+- El gráfico es un histograma.
+- El gráfico muestra solo cuatro números con un gráfico de barras.
+- Las categorías no son números, por lo que no tiene sentido graficar la distribución.
+- Los colores, no la altura de las barras, describen la distribución.
 
 `@hint`
 
@@ -96,14 +117,14 @@ murders %>% group_by(region) %>%
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = "Incorrect. Try again"
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg3 = msg4 = "Incorrecto. Intente de nuevo"
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 3. Empirical Cumulative Distribution Function (eCDF)
+## Ejercicio 3. Función de Distribución Acumulativa Empírica (eCDF)
 
 ```yaml
 type: MultipleChoiceExercise
@@ -114,15 +135,15 @@ skills:
   - 1
 ```
 
-The plot shows the eCDF for male heights:
+El gráfico muestra el eCDF para las alturas masculinas:
 
-Based on the plot, what percentage of males are shorter than 75 inches?
+Según la gráfica, ¿qué porcentaje de hombres miden menos de 75 pulgadas?
 
 `@possible_answers`
 - 100%
 - 95%
 - 80%
-- 72 inches
+- 72 pulgadas
 
 `@hint`
 
@@ -140,14 +161,14 @@ heights %>% filter(sex=="Male") %>% ggplot(aes(height)) +
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = "Incorrect. Try again"
+msg2 = "¡Correcto! ¡Buen trabajo!"
+msg1 = msg3 = msg4 = "Incorrecto. Intente otra vez."
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 4. eCDF Male Heights
+## Ejercicio 4. eCDF Alturas masculinas
 
 ```yaml
 type: MultipleChoiceExercise
@@ -158,15 +179,16 @@ skills:
   - 1
 ```
 
-The plot shows the eCDF for male heights:
+El gráfico muestra el eCDF para las alturas masculinas:
 
-To the closest inch, what height `m` has the property that 1/2 of the male students are taller than `m` and 1/2 are shorter?
+Redondeado a la pulgada más cercana, ¿qué altura `m` tiene la propiedad de que la mitad de los estudiantes varones son más altos que `m` y la mitad son más bajos que 'm'?
+
 
 `@possible_answers`
-- 61 inches
-- 64 inches
-- 69 inches
-- 74 inches
+- 61 pulgadas
+- 64 pulgadas
+- 69 pulgadas
+- 74 pulgadas
 
 `@hint`
 
@@ -184,14 +206,14 @@ heights %>% filter(sex=="Male") %>% ggplot(aes(height)) +
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = "Incorrect. Try again"
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg2 = msg4 = "Incorrecto. Intente otra vez"
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 5. eCDF of Murder Rates
+## Ejercicio 5. eCDF de tasa de homicidios
 
 ```yaml
 type: MultipleChoiceExercise
@@ -202,9 +224,9 @@ skills:
   - 1
 ```
 
-Here is an eCDF of the murder rates across states.
+Aquí hay un eCDF de las tasas de homicidios en todos los estados.
 
-Knowing that there are 51 states (counting DC) and based on this plot, how many states have murder rates larger than 10 per 100,000 people?
+Sabiendo que hay 51 estados (contando DC) y basado en este gráfico, ¿cuántos estados tienen tasas de homicidios superiores a 10 por cada 100 000 personas?
 
 `@possible_answers`
 - 1
@@ -230,14 +252,14 @@ murders %>% mutate(murder_rate = total/population * 10^5) %>%
 
 `@sct`
 ```{r}
-msg1 = "Correct!  Good Job!"
-msg3 = msg2 = msg4 = "Incorrect. Try again"
+msg1 = "¡Correcto!  ¡Buen trabajo!"
+msg3 = msg2 = msg4 = "Incorrecto. Intente otra vez"
 test_mc(1, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 6. eCDF of Murder Rates - 2
+## ## Ejercicio 6. eCDF de tasa de homicidios - 2
 
 ```yaml
 type: MultipleChoiceExercise
@@ -248,15 +270,15 @@ skills:
   - 1
 ```
 
-Here is an eCDF of the murder rates across states:
+Aquí hay un eCDF de las tasas de homicidios en todos los estados:
 
-Based on the eCDF above, which of the following statements are true:
+Según el eCDF mostrado, ¿cuáles de las siguientes afirmaciones son verdaderas?
 
 `@possible_answers`
-- About half the states have murder rates above 7 per 100,000 and the other half below.
-- Most states have murder rates below 2 per 100,000.
-- All the states have murder rates above 2 per 100,000.
-- With the exception of 4 states, the murder rates are below 5 per 100,000.
+- Alrededor de la mitad de los estados tienen tasas de homicidio por encima de 7 por 100,000 y la otra mitad por debajo.
+- La mayoría de los estados tienen tasas de homicidio por debajo de 2 por 100,000.
+- Todos los estados tienen tasas de homicidio superiores a 2 por 100,000.
+- Con la excepción de 4 estados, las tasas de homicidios están por debajo del 5 por 100,000.
 
 `@hint`
 
@@ -276,14 +298,14 @@ murders %>% mutate(murder_rate = total/population * 10^5) %>%
 
 `@sct`
 ```{r}
-msg4 = "Correct!  Good Job!"
-msg3 = msg2 = msg1 = "Incorrect. Try again"
+msg4 = "¡Correcto!  ¡Buen trabajo!"
+msg3 = msg2 = msg1 = "Incorrecto. Intente otra vez"
 test_mc(4, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 7. Histograms
+## Ejercicio 7. Histogramas
 
 ```yaml
 type: MultipleChoiceExercise
@@ -294,9 +316,9 @@ skills:
   - 1
 ```
 
-Here is a histogram of male heights in our `heights` dataset:
+Aquí hay un histograma de estaturas masculinas en nuestro conjunto de datos de "heights":
 
-Based on this plot, how many males are between 62.5 and 65.5?
+Basado en esta gráfica, ¿cuántos hombres hay entre 62.5 y 65.5?
 
 `@possible_answers`
 - 11
@@ -321,14 +343,14 @@ heights %>%
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg4 = msg2 = msg1 = "Incorrect. Try again"
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg4 = msg2 = msg1 = "Incorrecto. Intente otra vez"
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 8. Histograms - 2
+## Ejercicio 8. Histogramas - 2
 
 ```yaml
 type: MultipleChoiceExercise
@@ -339,9 +361,9 @@ skills:
   - 1
 ```
 
-Here is a histogram of male heights in our `heights` dataset:
+Aquí hay un histograma de estaturas masculinas en nuestro conjunto de datos de 'heights:
 
-About what **percentage** are shorter than 60 inches?
+¿Aproximadamente qué **porcentaje** mide menos de 60 pulgadas?
 
 `@possible_answers`
 - 1%
@@ -366,14 +388,14 @@ heights %>%
 
 `@sct`
 ```{r}
-msg1 = "Correct!  Good Job!"
-msg4 = msg2 = msg3 = "Incorrect. Try again"
+msg1 = "¡Correcto!  ¡Buen trabajo!"
+msg4 = msg2 = msg3 = "Incorrecto. Intente otra vez"
 test_mc(1, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 9. Density plots
+## Ejercicio 9. Gráficas de densidad
 
 ```yaml
 type: MultipleChoiceExercise
@@ -384,7 +406,7 @@ skills:
   - 1
 ```
 
-Based on this density plot, about what proportion of US states have populations larger than 10 million?
+Basado en esta gráfica de densidad, ¿qué proporción de estados de EE. UU. tienen poblaciones de más de 10 millones?
 
 `@possible_answers`
 - 0.02
@@ -406,14 +428,14 @@ murders %>% ggplot(aes(x=population/10^6)) + geom_density(fill = "grey") + scale
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg4 = msg1 = msg3 = "Incorrect. Try again"
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg4 = msg1 = msg3 = "Incorrecto. Intente otra vez"
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 10. Density plots - 2
+## Ejercicio 10. Gráficas de densidad - 2
 
 ```yaml
 type: MultipleChoiceExercise
@@ -424,14 +446,15 @@ skills:
   - 1
 ```
 
-Here are three density plots. Is it possible that they are from the same dataset? 
-Which of the following statements is true:
+Aquí hay tres diagramas de densidad. ¿Es posible que sean del mismo conjunto de datos?
+Cuál de las siguientes afirmaciones es verdadera:
+
 
 `@possible_answers`
-- It is impossible that they are from the same dataset.
-- They are from the same dataset, but different due to code errors.
-- They are the same dataset, but the first and second undersmooth and the third oversmooths.
-- They are the same dataset, but the first does  not have the x-axis in the log scale, the second undersmooths and the third oversmooths.
+- Es imposible que sean del mismo conjunto de datos.
+- Son del mismo conjunto de datos, pero diferentes debido a errores de código.
+- Son el mismo conjunto de datos, pero el primero y el segundo no suaviza suficiente y el tercero suaviza demasiado.
+- Son el mismo conjunto de datos, pero el primero no tiene el eje-x en la escala logarítmica, el segundo no suaviza suficiente y el tercero suaviza demasiado.
 
 `@hint`
 
@@ -451,14 +474,14 @@ grid.arrange(p1,p2,p3,ncol=2)
 
 `@sct`
 ```{r}
-msg4 = "Correct!  Good Job!"
-msg2 = msg1 = msg3 = "Incorrect. Try again"
+msg4 = "¡Correcto!  ¡Buen trabajo!"
+msg2 = msg1 = msg3 = "Incorrecto. Intente otra vez"
 test_mc(4, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## End of Assessment: Distributions
+## Fin de la evaluación: Distribuciones
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -469,17 +492,17 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se califiquen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Ciencia de datos: Visualización</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesario dar pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Asombroso]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- "¡Excelente! Ahora navegue de regreso al curso en edX."
+- "Ahora navegue de regreso al curso en edX."
