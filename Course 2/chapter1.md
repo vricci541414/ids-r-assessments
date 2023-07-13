@@ -1,10 +1,10 @@
 ---
-title: Data Types
-description: In this course we introduce you to the basics of various data types.
+title: Tipos de Datos
+description: En ester curso, lo introducimos a los conceptos básicos de varios tipos de datos. 
 free_preview: true
 ---
 
-## Exercise 1. Variable names
+## Ejercicio 1. Nombres de variables
 
 ```yaml
 type: NormalExercise
@@ -15,10 +15,10 @@ skills:
   - 1
 ```
 
-The type of data we are working with will often influence the data visualization technique we use. 
-We will be working with two types of variables: categorical and numeric. Each can be divided into two other groups: categorical can be ordinal or not, whereas numerical variables can be discrete or continuous.
+El tipo de datos con los que estamos trabajando influirá la técnica de visualización de datos que utilicemos.
+Estaremos trabajando con dos tipos de variables: categóricas y numéricas. Cada una se puede dividir en otros dos grupos: las categóricas pueden ser ordinales o no ordinales, mientras que las variables numéricas pueden ser discretas o continuas.
 
-We will review data types using some of the examples provided in the `dslabs` package. For example, the `heights` dataset.
+Revisaremos los tipos de datos utilizando algunos de los ejemplos en el paquete `dslabs`. Por ejemplo, el conjunto de datos `heights`.
 
 ```{r}
 library(dslabs)
@@ -26,11 +26,11 @@ data(heights)
 ```
 
 `@instructions`
-Let's start by reviewing how to extract the variable names from a dataset using the `names` function.
-What are the two variable names used in the `heights` dataset?
+Comencemos practicando cómo extraer los nombres de las variables de un conjunto de datos usando la función `names`.
+¿Cuáles son los dos nombres de las variables en el conjunto de datos `heights`?
 
 `@hint`
-Use the `names` function. We did this in the first course for the `murders` dataset:
+Utilice la función `names`. Hicimos esto en el primer curso para el conjunto de datos `murders`:
 ```{r}
 library(murders)
 names(murders)
@@ -58,14 +58,14 @@ names(heights)
 `@sct`
 ```{r}
 test_error()
-test_output_contains("names(heights)", incorrect_msg = "Are you calling the function on the correct dataset?")
-test_function("names", incorrect_msg = "You should be using a specific function to grab the names of the heights dataset")
-success_msg("Nice work!")
+test_output_contains("names(heights)", incorrect_msg = "¿Esta llamando la función en el conjunto de datos correcto?")
+test_function("names", incorrect_msg = "Debería usar una función específica para obtener los nombres del conjunto de datos de 'heights'")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 2. Variable type
+## Ejercicio 2. Tipo de variable.
 
 ```yaml
 type: MultipleChoiceExercise
@@ -76,19 +76,19 @@ skills:
   - 1
 ```
 
-We saw that `sex` is the first variable. We know what values are represented by this variable and can confirm this by looking at the first few entires:
+Vimos que `sex` es la primera variable. Sabemos qué valores están representados por esta variable y podemos confirmarlo mirando los primeros enteros:
 ```{r}
 library(dslabs)
 data(heights)
 head(heights)
 ```
-What data type is the `sex` variable?
+¿Qué tipo de datos es la variable `sex`?
 
 `@possible_answers`
-- Continuous
-- Categorical
+- Continuo
+- Categórica
 - Ordinal
-- None of the above
+- Ninguna de las anteriores
 
 `@hint`
 
@@ -102,16 +102,16 @@ head(heights)
 
 `@sct`
 ```{r}
-msg1 = "Incorrect. Looking at the correct variable?"
-msg2 = "Correct! Good Job"
-msg3 = "Incorrect. Try again!"
-msg4 = "Incorrect. It is one of the above?"
+msg1 = "Incorrecto. ¿Está mirando la variable correcta?
+msg2 = "¡Correcto! Buen trabajo"
+msg3 = "Incorrecto. ¡Intente otra vez!"
+msg4 = "Incorrecto. ¿Es uno de los anteriores?"
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 3. Numerical values
+## Ejercicio 3. Valores numéricos.
 
 ```yaml
 type: NormalExercise
@@ -122,9 +122,9 @@ skills:
   - 1
 ```
 
-Keep in mind that discrete numeric data can be considered ordinal. Although this is technically true, we usually reserve the term ordinal data for variables belonging to a small number of different groups, with each group having many members. 
+Tenga en cuenta que los datos numéricos discretos pueden considerarse ordinales. Aunque esto es técnicamente cierto, por lo general reservamos el término de datos ordinales para las variables que pertenecen a un pequeño número de grupos diferentes, cuyo cada grupo tiene muchos miembros.
 
-The `height` variable could be ordinal if, for example, we report a small number of values such as short, medium, and tall. Let's explore how many unique values are used by the heights variable. For this we can use the unique function:
+La variable `height` podría ser ordinal si, por ejemplo, reportamos una pequeña cantidad de valores como bajo, mediano y alto. Exploremos cuántos valores únicos utiliza la variable 'height. Para esto podemos usar la función unique:
 
 ```{r}
 x <- c(3, 3, 3, 3, 4, 4, 2)
@@ -132,10 +132,10 @@ unique(x)
 ```
 
 `@instructions`
-Use the `unique` and `length` functions to determine how many unique heights were reported.
+Utilice las funciones `unique` y `length` para determinar cuántas alturas únicas se reportaron.
 
 `@hint`
-Here is an example:
+Aquí hay un ejemplo:
 ```{r}
 x <- c(3, 3, 3, 3, 4, 4, 2)
 length(unique(x))
@@ -165,15 +165,15 @@ length(unique(x))
 `@sct`
 ```{r}
 test_error()
-test_output_contains("139", incorrect_msg = "Are you calling the function on the correct dataset?")
-test_function("unique", incorrect_msg = "You should be using unique for this exercise")
-test_function("length", incorrect_msg = "You should be using length for this exercise")
-success_msg("Nice work!")
+test_output_contains("139", incorrect_msg = "¿Está llamando a la función en el conjunto de datos correcto?")
+test_function("unique", incorrect_msg = "Debería usar unique para este ejercicio.")
+test_function("length", incorrect_msg = "YDebería usar length para este ejercicio.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 4. Tables
+## Ejercicio 4. Tablas
 
 ```yaml
 type: NormalExercise
@@ -184,7 +184,7 @@ skills:
   - 1
 ```
 
-One of the useful outputs of data visualization is that we can learn about the distribution of variables. For categorical data we can construct this distribution by simply computing the frequency of each unique value. This can be done with the function `table`. Here is an example:
+Uno de los resultados útiles de la visualización de datos es que podemos aprender sobre la distribución de variables. Para datos categóricos, podemos construir esta distribución simplemente calculando la frecuencia de cada valor único. Esto se puede hacer con la función `table`. Aquí hay un ejemplo:
 
 ```{r}
 x <- c(3, 3, 3, 3, 4, 4, 2)
@@ -192,16 +192,16 @@ table(x)
 ```
 
 `@instructions`
-Use the `table` function to compute the frequencies of each unique height value. Because we are using the resulting frequency table in a later exercise we want you to save the results into an object and call it `tab`.
+Utilice la función `tablE` para calcular las frecuencias de cada valor de altura único. Debido a que estamos usando la tabla de frecuencia resultante en un ejercicio posterior, queremos que guarde los resultados en un objeto y lo llame 'tab'.
 
 `@hint`
-Here is an example
+Aquí hay un ejemplo
 ```{r}
 x <- c(3, 3, 3, 3, 4, 4, 2)
 tab <- table(x)
 ```
 
-In this exercise we will treat the height values as categorical, more specifically as ordinal, and compute these fequencies.
+En este ejercicio trataremos los valores de altura como categóricos, más específicamente como ordinales, y calcularemos estas frecuencias.
 
 `@pre_exercise_code`
 ```{r}
@@ -228,14 +228,14 @@ tab <- table(x)
 `@sct`
 ```{r}
 test_error()
-test_object("tab", incorrect_msg = "Are you calling the `table` function on the correct dataset?")
-test_function("table", incorrect_msg = "You should be using table for this exercise")
-success_msg("Nice work!")
+test_object("tab", incorrect_msg = "¿Está llamando a la función `table` en el conjunto de datos correcto?")
+test_function("table", incorrect_msg = "Debería usar la función `table` para este ejercicio.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 5. Indicator variables
+## Ejercicio 5. Variables indicadores
 
 ```yaml
 type: NormalExercise
@@ -246,13 +246,13 @@ skills:
   - 1
 ```
 
-To see why treating the reported heights as an ordinal value is not useful in practice we note how many values are reported only once.
+Para ver por qué tratar las alturas reportadas como un valor ordinal no es útil en la práctica, observemos cuántos valores se reportaron una sola vez.
 
 `@instructions`
-In the previous exercise we computed the variable `tab` which reports the number of times each unique value appears. For values reported only once `tab` will be 1. Use logicals and the function `sum` to count the number of times this happens.
+En el ejercicio anterior calculamos la variable `tab` que contiene el número de veces que aparece cada valor único. Para los valores reportados solo una vez, `tab` será 1. Use lógicos y la función `sum` para contar la cantidad de veces que esto sucede.
 
 `@hint`
-Here is an example
+Aquí hay un ejemplo
 ```{r}
 x <- c(3, 3, 3, 3, 4, 4, 2)
 tab <- table(x)
@@ -260,7 +260,7 @@ sum(tab==1)
 ```
 
 
-Use the function `sum` to count the number of times entries in `tab` are equal to 1.
+Utilice la función `sum` para contar el número de veces que las entradas en `tab` son iguales a 1.
 
 `@pre_exercise_code`
 ```{r}
@@ -287,14 +287,14 @@ sum(tab==1)
 `@sct`
 ```{r}
 test_error()
-test_output_contains("sum(tab==1)", incorrect_msg = "Are you calling the `sum` function on the table you created?")
-test_function("sum", incorrect_msg = "You should be using `sum` function for this exercise")
-success_msg("Nice work!")
+test_output_contains("sum(tab==1)", incorrect_msg = "¿Está llamando a la función `sum` en la tabla que hizo?")
+test_function("sum", incorrect_msg = "Debería usar la función `sum` para este ejercicio.")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 6. Data types - heights
+## Ejercicio 6. Tipos de datos - alturas
 
 ```yaml
 type: MultipleChoiceExercise
@@ -305,13 +305,13 @@ skills:
   - 1
 ```
 
-Since there are a finite number of reported heights and technically the height can be considered ordinal, which of the following is true:
+Dado que hay un número finito de alturas reportadas y técnicamente la altura puede considerarse ordinal, ¿cuál de las siguientes es verdadera?
 
 `@possible_answers`
-- It is more effective to consider heights to be numerical given the number of unique values we observe and the fact that if we keep collecting data even more will be observed.
-- It is actually preferable to consider heights ordinal since on a computer there are only a finite number of possibilities.
-- This is actually a categorical variable: tall, medium or short.
-- This is a numerical variable because numbers are used to represent it.
+- Es más efectivo considerar que las alturas son numéricas dada la cantidad de valores únicos que observamos y el hecho de que si seguimos recopilando datos, se observarán aún más.
+- De hecho, es preferible considerar las alturas como ordinales ya que en una computadora solo hay un número finito de posibilidades.
+- Esta es en realidad una variable categórica: alto, mediano o bajo.
+- Esta es una variable numérica porque se usan números para representarla.
 
 `@hint`
 
@@ -323,16 +323,16 @@ Since there are a finite number of reported heights and technically the height c
 
 `@sct`
 ```{r}
-msg1 = "Correct!  Good Job!"
-msg2 = "Incorrect. Try again"
-msg3 = "Incorrect. Try again"
-msg4 = "Incorrect. Try again"
+msg1 = "¡Correcto! ¡Buen trabajo!"
+msg2 = "Incorrecto. Intente otra vez"
+msg3 = "Incorrecto. Intente otra vez"
+msg4 = "Incorrecto. Intente otra vez"
 test_mc(1, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## End of Assessment: Data Types
+## Fin de la evaluación: Tipos de datos
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -342,17 +342,18 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO serán calificadas.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>
+Ciencia de datos: Visualización</a>.
 
 `@hint`
-- No hint necessary!
+- No pista necesaria
 
 `@possible_answers`
 - [Awesome]
-- Nope
+- No
 
 `@feedback`
-- "Great! Now navigate back to the course on edX!"
-- "Now navigate back to the course on edX!"
+- "¡Genial! ¡Ahora vuelva al curso en edX!"
+- ¡Ahora vuelva al curso en edX!"

@@ -1,9 +1,9 @@
 ---
-title: Exploring the gapminder dataset
-description: Visualizing gapminder results with dplyr and ggplot
+título: Explorando la base de datos de gapminder 
+descripción: Visualización de resultados de gapminder con dplyr y ggplot
 ---
 
-## Exercise 1. Life expectancy vs fertility - part 1
+## Ejercicio 1. Esperanza de vida vs fertilidad - parte 1 
 
 ```yaml
 type: NormalExercise
@@ -14,17 +14,17 @@ skills:
   - 1
 ```
 
-The Gapminder Foundation (www.gapminder.org) is a non-profit organization based in Sweden that promotes global development through the use of statistics that can help reduce misconceptions about global development.
+La fundación Gapminder (www.gapminder.org) es una organización sin fines de lucro ubicada en Suecia que promueve desarrollo global por medio del uso de estadísticas que pueden ayudar a reducir creencias erradas sobre desarrollo global. 
 
 `@instructions`
-- Using ggplot and the points layer, create a scatter plot of life expectancy versus fertility for the African continent in 2012. This means that fertility should be plotted on the x-axis and life expectancy on the y-axis.
-- Remember that you can use the R console to explore the gapminder dataset to figure out the names of the columns in the dataframe.
-- In this exercise we provide parts of code to get you going. You need to fill out what is missing. But note that going forward, in the next exercises, you will be required to write most of the code.
+- Por medio del uso de ggplot y la capa puntos, genere un gráfico de dispersión con datos sobre esperanza de vida versus fertilidad para el continente africano en 2012. Esto significa que la fertilidad deberá ser graficada en el eje x y la esperanza de vida en el eje y.  
+- Recuerde que puede utilizar la consola de R para explorar la base de datos de gapminder para identificar los nombres de las columnas en la base de datos. 
+- En este ejercicio nosotros le proveemos partes de código para que ponga en marcha su codificación. Usted deberá llenar lo que está faltante. Pero note que más adelante, en los siguientes ejercicios, requeriremos que usted escriba la mayoría de su código. 
 
 `@hint`
-- You should `filter` for the desired continent and year.
-- Make sure that when you call `ggplot(aes(firstvar, secondvar)` that you are replacing `firstvar` and `secondvar` with the appropriate names to plot life expectancy on the y axis and fertility on the x axis.
-- You can add the points layer using the call `geom_point`.
+- Usted deberá `filter` para encontrar el continente y el año de nuestro interés. 
+- Asegúrese de llamar `ggplot(aes(firstvar, secondvar)` para reemplazar `firstvar` y `secondvar` con los nombres apropiados para graficar la esperanza de vida en el eje y, mientras que la fertilidad en el eje x.  
+- Puede añadir la capa puntos usando `geom_point`.
 
 `@pre_exercise_code`
 ```{r}
@@ -40,7 +40,7 @@ library(dplyr)
 library(ggplot2)
 library(dslabs)
 data(gapminder)
-## fill out the missing parts in filter and aes
+## llene las partes faltantes en filter y aes 
 gapminder %>% filter( & ) %>%
   ggplot(aes( , )) +
   geom_point()
@@ -60,21 +60,21 @@ gapminder %>% filter(continent=="Africa" & year == 2012) %>%
 `@sct`
 ```{r}
 test_error()
-test_function("filter", incorrect_msg = "Don't forget to `filter` by `Africa` and `year` equaling 2012")
+test_function("filter", incorrect_msg = "No olvide filtrar con `filter` por el continente `Africa` y el año `year` 2012")
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "y") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_point", not_called_msg="Did you add the `geom_point()` layer?")
+   check_function(., "geom_point", not_called_msg="¿Añadió la capa `geom_point()`?")
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 2. Life expectancy vs fertility - part 2 - coloring your plot
+## Ejercicio 2. Esperanza de vida vs fertilidad - parte 2 - colorear su gráfico 
 
 ```yaml
 type: NormalExercise
@@ -85,15 +85,15 @@ skills:
   - 1
 ```
 
-Note that there is quite a bit of variability in life expectancy and fertility with some African countries having very high life expectancies. There also appear to be three clusters in the plot.
+Note que hay algo de variabilidad en la esperanza de vida y fertilidad ya que algunos países africanos tienen muy altas esperanzas de vida. Parece también que hay tres agrupaciones en el gráfico. 
 
 `@instructions`
-Remake the plot from the previous exercises but this time use color to distinguish the different regions of Africa to see if this explains the clusters. Remember that you can explore the gapminder data to see how the regions of Africa are labeled in the data frame!
+Rehaga el gráfico que hicimos en ejercicios previos pero esta vez utilice color para distinguir las diferentes regiones de África para ver si esto explica las agrupaciones. ¡Recuerde que puede explorar los datos de gapminder para ver cómo están etiquetadas las regiones de África en la base de datos! 
 
-Use `color` rather than `col` inside your `ggplot` call - while these two forms are equivalent in R, the grader specifically looks for `color`.
+Use `color` en lugar de `col` dentro de `ggplot` - mientras que ambas son equivalentes en R, el revisor de esta tarea estará calificando específicamente `color`.
 
 `@hint`
-Within `aes` there is a `color` variable. Otherwise, your code should stay the same as in the last exercise.
+Dentro de `aes` hay una variable `color`. Por lo demás, su código deberá ser el mismo que en el ejercicio pasado. 
 
 `@pre_exercise_code`
 ```{r}
@@ -125,7 +125,7 @@ gapminder %>% filter(continent=="Africa" & year == 2012) %>%
 `@sct`
 ```{r}
 test_error()
-test_function("filter", incorrect_msg = "Don't forget to `filter` by `Africa` and `year` equaling 2012")
+test_function("filter", incorrect_msg = "No olvide filtrar `filter` por el continente `Africa` y `year` 2012")
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
    check_function(., "aes") %>% {
@@ -133,14 +133,14 @@ ex() %>% {
        check_arg(., "y") %>% check_equal(eval = FALSE)
        check_arg(., "color") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_point", not_called_msg="Did you add the `geom_point()` layer?")
+   check_function(., "geom_point", not_called_msg="¿Añadió la capa `geom_point()`?")
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 3. Life expectancy vs fertility - part 3 - selecting country and region
+## Ejercicio 3. Esperanza de vida vs fertilidad - parte 3 - seleccionar país y región
 
 ```yaml
 type: NormalExercise
@@ -151,14 +151,14 @@ skills:
   - 1
 ```
 
-While many of the countries in the high life expectancy/low fertility cluster are from Northern Africa, three countries are not.
+Mientras que muchos de los países en la agrupación alta esperanza de vida/baja fertilidad pertenecen al norte de África, tres países no pertenecen. 
 
 `@instructions`
-- Create a table showing the country and region for the African countries (use `select`) that in 2012 had fertility rates of 3 or less and life expectancies of at least 70.
-- Assign your result to a data frame called `df`.
+- Genere una tabla mostrando el país y región para los países africanos (use `select`) que en 2012 tuvieron tasas de fertilidad de 3 o menos y esperanza de vida de al menos 70. 
+- Asigne su resultado a un marco de datos llamado `df`.
 
 `@hint`
-Use `filter` then `select`.
+Use `filter` y luego `select`.
 
 `@pre_exercise_code`
 ```{r}
@@ -187,21 +187,21 @@ df <- gapminder %>%
 `@sct`
 ```{r}
 test_error()
-test_function("filter", incorrect_msg = "Don't forget to `filter` by continent, year, fertility and life_expectancy")
-test_function("select", incorrect_msg = "Don't forget to `select` country and region")
+test_function("filter", incorrect_msg = "No olvide filtrar `filter` por continente, año, fertilidad y esperanza de vida (continent, year, fertility, life_expectancy)")
+test_function("select", incorrect_msg = "No olvide seleccionar `select` país y región (country, region)")
 ex() %>% {
    check_object(.,"df") %>% check_equal()
 }
 test_student_typed(c("fertility <= 3", "3 >= fertility", "fertility < 4", "4 > fertility"),  
-  not_typed_msg = "Remember to restrict to data with fertility at most 3")
+  not_typed_msg = "Recuerde restringir los datos a una fertilidad máxima de 3")
 test_student_typed(c("life_expectancy >= 70", "70 <= life_expectancy"),
-  not_typed_msg = "Remember to restrict to data with life expectancy at least 70")
-success_msg("Good job!")
+  not_typed_msg = "Recuerde restringir los datos a una esperanza de vida de al menos 70")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 4. Life expectancy and the Vietnam War - part 1
+## Ejercicio 4. Esperanza de vida y la guerra de Vietnam - parte 1 
 
 ```yaml
 type: NormalExercise
@@ -212,15 +212,15 @@ skills:
   - 1
 ```
 
-The Vietnam War lasted from 1955 to 1975. Do the data support war having a negative effect on life expectancy? We will create a time series plot that covers the period from 1960 to 2010 of life expectancy for Vietnam and the United States, using color to distinguish the two countries. In this start we start the analysis by generating a table.
+La guerra de Vietnam duró de 1955 a 1975. ¿Los datos apoyan a la idea que una guerra tiene efecto negativo en la esperanza de vida? Vamos a crear un gráfico de serie de tiempo que cubre el periodo de 1960 a 2010 con la esperanza de vida para Vietnam y los Estados Unidos, usando colores para distinguir entre ambos países. Comenzaremos el análisis por medio de generar una tabla de datos. 
 
 `@instructions`
-- Use `filter` to create a table with data for the years from 1960 to 2010 in Vietnam and the United States.
-- Save the table in an object called `tab`.
+- Use `filter` para crear una tabla con los datos de los años desde 1960 a 2010 en Vietnam y los Estados Unidos.
+- Guarde la tabla en un objeto llamado `tab`.
 
 `@hint`
-- Remember, you are still using the gapminder dataset!
-- You can create variables that contain the desired years and countries and use them when you call `filter`. For example, if you wanted data from Mexico and South Africa for all years, you could use `mycountries <- c("Mexico", "South Africa")` and then filter the gapminder dataset using `filter(country %in% mycountries)`.
+- Recuerde, ¡aún sigue utilizando la base de datos de gapminder! 
+- Usted puede crear variables que contengan los años y países requeridos y usarlos cuando usa `filter`. Por ejemplo, si quiere datos de México y África del Sur con todos los años, puede usar `mycountries <- c("Mexico", "South Africa")` y posteriormente filtrar la base de datos de gapminder usando `filter(country %in% mycountries)`.
 
 `@pre_exercise_code`
 ```{r}
@@ -249,16 +249,16 @@ tab <- gapminder %>% filter(year %in% years & country %in% countries)
 `@sct`
 ```{r}
 test_error()
-test_function("filter", incorrect_msg = "Don't forget to `filter` by country and year")
+test_function("filter", incorrect_msg = "No olvide filtrar `filter` por país y año")
 ex() %>% {
    check_object(.,"tab") %>% check_equal()
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 5. Life expectancy and the Vietnam War - part 2
+## Ejercicio 5. Esperanza de vida y la guerra de Vietnam - parte 2 
 
 ```yaml
 type: NormalExercise
@@ -269,16 +269,16 @@ skills:
   - 1
 ```
 
-Now that you have created the data table in Exercise 4, it is time to plot the data for the two countries.
+Ahora que ha creado una tabla de datos en el ejercicio 4, es tiempo de graficar los datos para los dos países. 
 
 `@instructions`
-- Use `geom_line` to plot life expectancy vs year for Vietnam and the United States and save the plot as `p`. The data table is stored in `tab`.
-- Use color to distinguish the two countries.
-- Print the object `p`.
+- Use `geom_line` para graficar la esperanza de vida vs años para Vietnam y los Estados Unidos y guarde los gráficos como `p`. La tabla de datos estará guardada en `tab`.
+- Use color para distinguir entre ambos países. 
+- Imprima el objeto `p`.
 
 `@hint`
-- Again remember that you can look at the gapminder dataset to figure out what different columns are called.
-- Year should be plotted on the x axis, and life expectancy should be plotted on the y axis.
+- De nuevo recuerde que puede ver en la base de datos de gapminder cómo se llaman las diferentes columnas. 
+- El año deberá ser graficado en el eje x y la esperanza de vida en el eje y. 
 
 `@pre_exercise_code`
 ```{r}
@@ -293,7 +293,7 @@ tab <- gapminder %>% filter(year %in% years & country %in% countries)
 
 `@sample_code`
 ```{r}
-p <- # code for your plot goes here - the data table is stored as `tab`
+p <- # el código para sus gráficos va aquí - la tabla de datos estará gusrdada como `tab`
 p
 ```
 
@@ -313,14 +313,14 @@ ex() %>% {
        check_arg(., "y") %>% check_equal(eval = FALSE)
        check_arg(., "color") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
+   check_function(., "geom_line", not_called_msg="¿Añadió la capa `geom_line()`?")
 }
-success_msg("Notice the dip in life expectancy during the time of the war.")
+success_msg("Note la caída en esperanza de vida durante el tiempo de la guerra.")
 ```
 
 ---
 
-## Exercise 6. Life expectancy in Cambodia
+## Ejercicio 6. Esperanza de vida en Camboya
 
 ```yaml
 type: NormalExercise
@@ -331,15 +331,15 @@ skills:
   - 1
 ```
 
-Cambodia was also involved in this conflict and, after the war, Pol Pot and his communist Khmer Rouge took control and ruled Cambodia from 1975 to 1979. He is considered one of the most brutal dictators in history. Do the data support this claim?
+Camboya también estuvo involucrado en este conflicto y, más tarde en esta guerra, Pol Pot y su comunista Khmer Rouge tomaron control y gobernaron Camboya de 1975 a 1979. Él es considerado como uno de los dictadores más brutales en la historia. ¿Los datos apoyan dicha afirmación? 
 
 `@instructions`
-Use a single line of code to create a time series plot from 1960 to 2010 of life expectancy vs year for Cambodia.
+Use una sola línea de código para crear un gráfico de serie de tiempo de 1960 a 2010 de esperanza de vida vs año para Camboya. 
 
 `@hint`
-- You can modify your `filter` code from Exercise 4 to create the time series plot for Cambodia instead of for the United States and Vietnam.
-- Then feed that output into `ggplot`, again plotting year on the x axis and life expectancy on the y axis.
-- Remember to use `geom_line()` to create the plot.
+- Puede modificar su código `filter` del ejercicio 4 para crear un gráfico de serie de tiempo para Camboya en lugar de Estados Unidos y Vietnam. 
+- Después ingrese ese resultado en `ggplot`, de nuevo graficando año en el eje x y esperanza de vida en el eje y. 
+- Recuerde utilizar `geom_line()` para crear el gráfico. 
 
 `@pre_exercise_code`
 ```{r}
@@ -376,14 +376,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "y") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_line", not_called_msg="Did you add the `geom_line()` layer?")
+   check_function(., "geom_line", not_called_msg="¿Añadió la capa `geom_line()`?")
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 7. Dollars per day - part 1
+## Ejercicio 7. Dólares por día - parte 1 
 
 ```yaml
 type: NormalExercise
@@ -394,19 +394,19 @@ skills:
   - 1
 ```
 
-Now we are going to calculate and plot dollars per day for African countries in 2010 using GDP data.
+Ahora vamos a calcular y graficar dólares por día para países africanos en 2010 usando datos del PIB. 
 
-In the first part of this analysis, we will create the dollars per day variable.
+En la primera parte de este análisis, vamos a crear la variable de dólares por día. 
 
 `@instructions`
-- Use `mutate` to create a `dollars_per_day` variable, which is defined as gdp/population/365.
-- Create the `dollars_per_day` variable for African countries for the year 2010.
-- Remove any `NA` values.
-- Save the mutated dataset as `daydollars`.
+- Use `mutate` para crear la variable `dollars_per_day` (dólares por día), la cual es definida por PIB/población/365. 
+- Genere la variable `dollars_per_day` para países africanos para el año 2010.
+- Remueva cualquier valor `NA`.
+- Guarde la base de datos cambiada como `daydollars`.
 
 `@hint`
-- First `mutate` and then `filter`.
-- You can remove `NA` values using `!is.na(dollars_per_day)`.
+- Primero mute, `mutate` y luego filtre, `filter`.
+- Puede remover los valores `NA` usando `!is.na(dollars_per_day)`.
 
 `@pre_exercise_code`
 ```{r}
@@ -420,7 +420,7 @@ data(gapminder)
 library(dplyr)
 library(dslabs)
 data(gapminder)
-daydollars <- # write your code here
+daydollars <- # escriba su código aquí
 ```
 
 `@solution`
@@ -435,13 +435,13 @@ daydollars <- gapminder %>% mutate(dollars_per_day = gdp/population/365) %>% fil
 ```{r}
 test_error()
 ex() %>% check_object("daydollars") %>% check_equal()
-test_function("filter", incorrect_msg = "Remember to `filter` by continent and year")
-success_msg("Good job!")
+test_function("filter", incorrect_msg = "Recuerde filtrar `filter` por continente y año")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 8. Dollars per day - part 2
+## Ejercicio 8. Dólares por día - parte 2
 
 ```yaml
 type: NormalExercise
@@ -452,19 +452,19 @@ skills:
   - 1
 ```
 
-Now we are going to calculate and plot dollars per day for African countries in 2010 using GDP data.
+Ahora vamos a calcular y graficar dólares por día para países africanos en 2010 usando datos del PIB. 
 
-In the second part of this analysis, we will plot the smooth density plot using a log (base 2) x axis.
+En la segunda parte de este análisis, vamos a graficar la densidad suave usando un logaritmo (base 2) en el eje x.
 
 `@instructions`
-- The dataset including the `dollars_per_day` variable is preloaded as `daydollars`.
-- Create a smooth density plot of dollars per day from `daydollars`.
-- Use `scale_x_continuous` to change the x-axis to a log (base 2) scale.
+- La base de datos que incluye la variable `dollars_per_day` está cargada previamente como `daydollars`.
+- Genere un gráfico de densidad suave para dólares por día con `daydollars`.
+- Use `scale_x_continuous` para cambiar el eje x a una escala de logaritmo (base 2).
 
 `@hint`
-- Use `ggplot` for the plotting of `dollars_per_day`
-- Use `geom_density` to create the smooth density plot.
-- Use `scale_x_continuous(trans = "log2")` to transform the x axis.
+- Use `ggplot` para graficar `dollars_per_day`
+- Use `geom_density` para crear el gráfico de densidad suave. 
+- Use `scale_x_continuous(trans = "log2")` para transformar el eje x. 
 
 `@pre_exercise_code`
 ```{r}
@@ -477,7 +477,7 @@ daydollars <- gapminder %>% mutate(dollars_per_day = gdp/population/365) %>% fil
 
 `@sample_code`
 ```{r}
-# your code here
+# su código aquí
 ```
 
 `@solution`
@@ -493,15 +493,15 @@ ex() %>% {
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_density", not_called_msg="Did you add the `geom_density()` layer?")
+   check_function(., "geom_density", not_called_msg="¿Añadió la capa de `geom_density()`?")
    check_function(., "scale_x_continuous") %>% check_arg(., "trans") %>% check_equal(eval = TRUE)
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 9. Dollars per day - part 3 - multiple density plots
+## Ejercicio 9. Dólares por día - parte 3 - múltiples gráficos de densidad 
 
 ```yaml
 type: NormalExercise
@@ -512,18 +512,18 @@ skills:
   - 1
 ```
 
-Now we are going to combine the plotting tools we have used in the past two exercises to create density plots for multiple years.
+Ahora vamos a combinar las herramientas de graficar que hemos usado en los dos ejercicios anteriores para crear gráficos de densidad para múltiples años. 
 
 `@instructions`
-- Create the `dollars_per_day` variable as in Exercise 7, but for African countries in the years 1970 and 2010 this time.
-    - Make sure you remove any `NA` values.
-- Create a smooth density plot of dollars per day for 1970 and 2010 using a log (base 2) scale for the x axis.
-- Use `facet_grid` to show a different density plot for 1970 and 2010.
+- Genere la variable `dollars_per_day` como en el ejercicio 7, pero para países africanos en los años 1970 y 2010 en esta ocasión.
+- Asegúrese de remover cualquier valor `NA`.
+- Genere un gráfico de densidad suave con los dólares por día para 1970 y 2010 usando una escala de logaritmo (base 2) para el eje x. 
+- Use `facet_grid` para mostrar un gráfico de densidad suave diferente para 1970 y 2010.
 
 `@hint`
-- Change the way you call `filter` to include both years.
-- Add `facet_grid(year~.)` at the end to show both plots.
-- Everything else stays the same is in the previous exercises!
+- Cambie la manera en la que llama `filter` para incluir ambos años. 
+- Añada `facet_grid(year~.)` al final para mostrar ambos gráficos. 
+- ¡Todo lo demás se mantiene de la misma manera que en ejercicios pasados!
 
 `@pre_exercise_code`
 ```{r}
@@ -567,13 +567,13 @@ ex() %>% {
    check_function(., "facet_grid")
 }
 test_student_typed("scale_x_continuous(trans = \"log2\")",  
-  not_typed_msg = "Remember to use a log2 scale on the x-axis")
-success_msg("Note the change in the density plots for the two different years.")
+  not_typed_msg = "Recuerde utilizar una escala log2 en el eje x")
+success_msg("Note el cambio en los gráficos de densidad para los dos diferentes años.")
 ```
 
 ---
 
-## Exercise 10. Dollars per day - part 4 - stacked density plot
+## Ejercicio 10. Dólares por día - parte 4 - gráfico de densidad apilado
 
 ```yaml
 type: NormalExercise
@@ -584,21 +584,21 @@ skills:
   - 1
 ```
 
-Now we are going to edit the code from Exercise 9 to show a stacked density plot of each region in Africa.
+Ahora vamos a editar el código del ejercicio 9 para mostrar el gráfico de densidad apilado para cada región en África. 
 
 `@instructions`
-- Much of the code will be the same as in Exercise 9:
-    - Create the `dollars_per_day` variable as in Exercise 7, but for African countries in the years 1970 and 2010 this time.
-    - Make sure you remove any `NA` values.
-    - Create a smooth density plot of dollars per day for 1970 and 2010 using a log (base 2) scale for the x axis.
-    - Use `facet_grid` to show a different density plot for 1970 and 2010. 
-- Make sure the densities are smooth by using `bw = 0.5`.
-- Use the `fill` and `position` arguments where appropriate to create the stacked density plot of each region.
+- La mayor parte del código será el mismo que en el ejercicio 9:
+- Genere la variable `dollars_per_day` como en el ejercicio 7, pero para países africanos para los años 1970 y 2010 esta vez.
+- Asegúrese de remover cualquier valor `NA`.
+- Genere un gráfico de densidad suave para dólares por día para 1970 y 2010 usando una escala logarítmica (base 2) para el eje x. 
+- Use `facet_grid` para mostrar diferentes gráficos de densidad para 1970 y 2010. 
+- Asegúrese de que las densidades son suaves por medio del uso de `bw = 0.5`.
+- Use los argumentos `fill` y `position` donde sea apropiado para crear gráficos de densidad apilados para cada región. 
 
 `@hint`
-- Use `fill = region` within `aes`.
-- Use `position = "stack"` within `geom_density`, along with `bw = 0.5`.
-- Everything else should stay the same!
+- Use `fill = region` en `aes`.
+- Use `position = "stack"` en `geom_density`, junto con `bw = 0.5`.
+- ¡Todo lo demás deberá ser lo mismo! 
 
 `@pre_exercise_code`
 ```{r}
@@ -648,13 +648,13 @@ ex() %>% {
    check_function(., "facet_grid")
 }
 test_student_typed("scale_x_continuous(trans = \"log2\")",  
-  not_typed_msg = "Remember to use a log2 scale on the x-axis")
-success_msg("Look at the graphs - do different regions of Africa show different patterns?")
+  not_typed_msg = "Recuerde usar la escala log2 en el eje x")
+success_msg("Mire los gráficos - ¿diferentes regiones en África muestran distintos patrones?")
 ```
 
 ---
 
-## Exercise 11. Infant mortality scatter plot - part 1
+## Ejercicio 11. Gráfico de dispersión sobre mortalidad infantil - parte 1 
 
 ```yaml
 type: NormalExercise
@@ -665,21 +665,21 @@ skills:
   - 1
 ```
 
-We are going to continue looking at patterns in the gapminder dataset by plotting infant mortality rates versus dollars per day for African countries.
+Vamos a continuar analizando patrones en la base de datos de gapminder por medio de graficar tasas de mortalidad infantil versus dólares por día en países africanos. 
 
 `@instructions`
-- Generate `dollars_per_day` using `mutate` and `filter` for the year 2010 for African countries.
-    - Remember to remove `NA` values for `infant_mortality` and `dollars_per_day`.
-- Store the mutated dataset in `gapminder_Africa_2010`.
-- Make a scatter plot of `infant_mortality` versus `dollars_per_day` for countries in the African continent.
-- Use color to denote the different regions of Africa.
+- Genere la variable de dólares por día `dollars_per_day` usando `mutate` y filtre `filter` para el año 2010 para países africanos. 
+- Recuerde remover los valores `NA` para `infant_mortality` y `dollars_per_day`.
+- Guarde la base de datos mutada en `gapminder_Africa_2010`.
+- Realice un gráfico de dispersión `infant_mortality` versus `dollars_per_day` para los países en el continente africano. 
+- Use color para denotar las diferentes regiones de África. 
 
 `@hint`
-- As in previous exercises, use `mutate` to generate `dollars_per_day`, which is equal to gpd/population/365.
-- You should `filter` for both `continent` and `year`.
-- Remove `NA` values for `dollars_per_day` and `infant_mortality`.
-- `geom_point()` can be used for creating a scatter plot.
-- `color = region` belongs within `aes`.
+- Como en ejercicios previos, use `mutate` para generar `dollars_per_day`, que es igual a PIB/población/365.
+- Usted debe filtrar `filter` para ambos `continent` y `year`.
+- Retire los valores `NA` para `dollars_per_day` y `infant_mortality`.
+- `geom_point()` puede ser usado para crear un gráfico de dispersión. 
+- `color = region` corresponde dentro de `aes`.
 
 `@pre_exercise_code`
 ```{r}
@@ -695,9 +695,9 @@ library(dplyr)
 library(ggplot2)
 library(dslabs)
 data(gapminder)
-gapminder_Africa_2010 <- # create the mutated dataset
+gapminder_Africa_2010 <- # crea la base de datos mutada 
 
-# now make the scatter plot
+# ahora hacemos el gráfico de dispersión 
 ```
 
 `@solution`
@@ -726,12 +726,12 @@ ex() %>% {
    }
    check_function(., "geom_point") 
 }
-success_msg("Good job! Does there appear to be a relationship between dollars per day and infant mortality?")
+success_msg("¡Buen trabajo! ¿Parece que existe una relación entre dólares por día y mortalidad infantil?")
 ```
 
 ---
 
-## Exercise 12. Infant mortality scatter plot - part 2 - logarithmic axis
+## Ejercicio 12. Gráfico de dispersión sobre mortalidad infantil - parte 2 - eje logarítmico
 
 ```yaml
 type: NormalExercise
@@ -742,16 +742,16 @@ skills:
   - 1
 ```
 
-Now we are going to transform the x axis of the plot from the previous exercise.
+Ahora vamos a transformar el eje x del gráfico del ejercicio anterior. 
 
 `@instructions`
-- The mutated dataset is preloaded as `gapminder_Africa_2010`.
-- As in the previous exercise, make a scatter plot of `infant_mortality` versus `dollars_per_day` for countries in the African continent.
-- As in the previous exercise, use color to denote the different regions of Africa.
-- Transform the x axis to be in the log (base 2) scale.
+- La base de datos mutada está precargada como `gapminder_Africa_2010`.
+- Como en el ejercicio previo, haga un grafico de dispersión de `infant_mortality` versus `dollars_per_day` para países del continente africano. 
+- Como en el ejercicio previo, use color para denotar las diferentes regiones de África. 
+- Transforme el eje x a una escala logarítmica (base 2).
 
 `@hint`
-The plotting code is the same as in the previous exercise - just add the axis transformation using `scale_x_continuous` with the appropriate argument.
+El código para graficar es el mismo que en el ejercicio previo - solamente añada la transformación del eje usando `scale_x_continuous` con el argumento apropiado. 
 
 `@pre_exercise_code`
 ```{r}
@@ -766,7 +766,7 @@ gapminder_Africa_2010 <- gapminder %>%
 
 `@sample_code`
 ```{r}
-gapminder_Africa_2010 %>% # your plotting code here
+gapminder_Africa_2010 %>% # el código para graficar va aquí 
 ```
 
 `@solution`
@@ -790,12 +790,12 @@ ex() %>% {
    check_function(., "geom_point")
    check_function(., "scale_x_continuous") %>% check_arg(., "trans") %>% check_equal() 
 }
-success_msg("Good job! Does the transformation help make any relationship between dollars per day and infant mortality clearer?")
+success_msg("¡Buen trabajo! ¿La transformación ayuda a establecer una relación más clara entre dólares por día y mortalidad infantil?")
 ```
 
 ---
 
-## Exercise 13. Infant mortality scatter plot - part 3 - adding labels
+## Ejercicio 13. Gráfico de dispersión sobre mortalidad infantil - parte 3 - añadiendo etiquetas
 
 ```yaml
 type: NormalExercise
@@ -806,23 +806,23 @@ skills:
   - 1
 ```
 
-Note that there is a large variation in infant mortality and dollars per day among African countries.
+Note que hay una gran variación en mortalidad infantil y dólares por día a través de los países africanos. 
 
-As an example, one country has infant mortality rates of less than 20 per 1000 and dollars per day of 16, while another country has infant mortality rates over 10% and dollars per day of about 1.
+Como ejemplo, un país tiene tasas de mortalidad infantil menores a 20 por 1000 y dólares por día de 16, mientras que otro país tiene mortalidad infantil de poco más de 10% y dólares por día de aproximadamente 1. 
 
-In this exercise, we will remake the plot from Exercise 12 with country names instead of points so we can identify which countries are which.
+En este ejercicio, reharemos el gráfico del ejercicio 12 con los nombres de los países en lugar de puntos, de manera que podremos identificar qué país es cuál. 
 
 `@instructions`
-- The mutated dataset is preloaded as `gapminder_Africa_2010`.
-- As in the previous exercise, make a scatter plot of `infant_mortality` versus `dollars_per_day` for countries in the African continent.
-- As in the previous exercise, use color to denote the different regions of Africa.
-- As in the previous exercise, transform the x axis to be in the log (base 2) scale.
-- Add a `geom_text` layer to display country names instead of points.
-- Be sure to call `aes()` within your call to `ggplot()`.
+- La base de datos mutada y precargada es `gapminder_Africa_2010`.
+- Como en  ejercicios previos, haga un gráfico de dispersión de `infant_mortality` versus `dollars_per_day` para países del continente africano. 
+- Como en el ejercicio anterior, use color para denotar las diferentes regiones de África.  
+- Como en el ejercicio anterior, transforme el eje x para estar en escala logarítmica (base 2).
+- Añada una capa `geom_text` para mostrar los nombres de los países en lugar de puntos. 
+- Asegúrese de llamar `aes()` dentro de llamar `ggplot()`.
 
 `@hint`
-- Use the `geom_text` layer instead of `geom_point` to show country names.
-- You will also need `label = country` to get the appropriate labels.
+- Use la capa `geom_text` en lugar de `geom_point` para mostrar los nombres de los países. 
+- También necesitará `label = country` para tener las etiquetas adecuadas. 
 
 `@pre_exercise_code`
 ```{r}
@@ -837,7 +837,7 @@ gapminder_Africa_2010 <- gapminder %>%
 
 `@sample_code`
 ```{r}
-gapminder_Africa_2010 %>% # your plotting code here
+gapminder_Africa_2010 %>% # su código de graficar va aquí
 ```
 
 `@solution`
@@ -862,12 +862,12 @@ ex() %>% {
    check_function(., "geom_text")
    check_function(., "scale_x_continuous") %>% check_arg(., "trans") %>% check_equal() 
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 14. Infant mortality scatter plot - part 4 - comparison of scatter plots
+## Ejercicio 14. Gráfico de dispersión sobre mortalidad infantil - parte 4 - comparación entre gráficos de dispersión
 
 ```yaml
 type: NormalExercise
@@ -878,19 +878,19 @@ skills:
   - 1
 ```
 
-Now we are going to look at changes in the infant mortality and dollars per day patterns African countries between 1970 and 2010.
+Ahora vamos a ver los cambios en los patrones de mortalidad infantil y dólares por día en países africanos entre 1970 y 2010. 
 
 `@instructions`
-- Generate `dollars_per_day` using `mutate` and `filter` for the years 1970 and 2010 for African countries.
-    - Remember to remove `NA` values.
-- As in the previous exercise, make a scatter plot of `infant_mortality` versus `dollars_per_day` for countries in the African continent.
-- As in the previous exercise, use color to denote the different regions of Africa.
-- As in the previous exercise, transform the x axis to be in the log (base 2) scale.
-- As in the previous exercise, add a layer to display country names in addition to points.
-- Use `facet_grid` to show different plots for 1970 and 2010. Align the plots vertically.
+- Genere `dollars_per_day` usando `mutate` y filtre `filter` para los años 1970 y 2010 para los países africanos. 
+- Recuerde remover los valores `NA`.
+- Así como en los ejercicios previos, haga un gráfico de dispersión de mortalidad infantil `infant_mortality` versus dólares por día `dollars_per_day` para países del continente africano. 
+- Así como en el ejercicio previo, use color para denotar las diferentes regiones de África.
+- Así como en el ejercicio previo, transforme el eje x para que sea una escala logarítmica (base 2).
+- Así como en el ejercicio previo, añada una capa para mostrar los nombres de los países además de los puntos. 
+- Use `facet_grid` para mostrar diferentes gráficos para 1970 y 2010. Asegúrese de alinear los gráficos verticalmente. 
 
 `@hint`
-Look back at Exercise 9 for a reminder of how to use `facet_grid` if you need help. All of the other code is very similar to everything you have done in the previous exercises.
+Mire atrás al ejercicio 9 para un recordatorio de cómo usar `facet_grid` si necesita ayuda. Todo el resto del código es muy similar al hecho en ejercicios anteriores. 
 
 `@pre_exercise_code`
 ```{r}
@@ -938,12 +938,12 @@ ex() %>% {
    check_function(., "facet_grid") %>% check_arg(., "rows") %>% check_equal(eval = FALSE)
    check_function(., "scale_x_continuous") %>% check_arg(., "trans") %>% check_equal(eval = FALSE) 
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## End of Assessment: Exploring the gapminder dataset
+## Fin de la Evaluación: Explorando la base de datos de gapminder 
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -953,17 +953,21 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la tarea de programación para esta sección. Por favor NO seleccione o explore tareas adicionales a las que se encuentran en esta página para esta sección. Advertencia: si usted continua con otras evaluaciones por medio de seleccionar la flecha que lleva al siguiente ejercicio o por medio de presionar Ctrl-K es posible que sus evaluaciones NO sean calificadas. 
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+##### ESTE SIGUIENTE LINK TIENE QUE SER ACTUALIZADO CUANDO SE TENGA LA PÁGINA DEL NUEVO CURSO#######
+
+Puede cerrar esta ventana y regresar a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+
+##### FIN DEL LINK QUE TIENE QUE SER ACTUALIZADO#######
 
 `@hint`
-- No hint necessary!
+- ¡No se necesitan pistas!
 
-`@possible_answers`
-- [Awesome]
-- Nope
+`@possible_answers`             
+- [Maravilloso]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Genial! ¡Ahora regrese al curso en edX!
+- ¡Ahora regrese al curso en edX!

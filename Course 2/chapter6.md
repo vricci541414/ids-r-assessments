@@ -1,11 +1,10 @@
 ---
-title: Introduction to ggplot2
-description: >-
-  You'll learn how to make use of the powerful R package, ggplot2, for
-  visualization
+Título: Introducción a ggplot2
+Descripción: >-
+  Aprenderá a usar el poderoso paquete de R, ggplot2, para visualización
 ---
 
-## Exercise 1. ggplot2 basics
+## Ejercicio 1. básicos de ggplot2
 
 ```yaml
 type: NormalExercise
@@ -16,7 +15,7 @@ skills:
   - 1
 ```
 
-Start by loading the dplyr and ggplot2 libraries as well as the `murders` data.
+Comience cargando las bibliotecas dplyr y ggplot2, así como los datos de `murders`.
 
 ```{r}
 library(dplyr)
@@ -25,35 +24,35 @@ library(dslabs)
 data(murders)
 ```
 
-Note that you can load both dplyr and ggplot2, as well as other packages, by installing and loading the tidyverse package.
+Note que puede cargar ambos dplyr y ggplot2, así como otros paquetes al instalar el paquete tidyverse. 
 
-With ggplot2 plots can be saved as objects. For example we can associate a dataset with a plot object like this
+Con ggplot2, los gráficos pueden ser guardados como objetos. Por ejemplo, podemos asociar una base de datos con un objeto así 
 
 ```{r}
 p <- ggplot(data = murders)
 ```
 
-Because `data` is the first argument we don't need to spell it out. So we can write this instead:
+Dado que `data` es el primer argumento, no necesitamos deletrearlo. Así que en su lugar, podemos escribirlo de la siguiente manera: 
 
 ```{r}
 p <- ggplot(murders)
 ```
 
-or, if we load `dplyr`, we can use the pipe:
+o, si cargamos `dplyr`, podemos usar el operador punto: 
 
 ```{r}
 p <- murders %>% ggplot()
 ```
 
-Remember the pipe sends the object on the left of `%>%` to be the first argument for the function the right of `%>%`.
+Recuerde que el operador punto envía el objeto de la izquierda de `%>%` a ser el primer argumento para la función a la derecha de `%>%`.
 
-Now let's get an introduction to `ggplot`.
+Ahora hagamos una introducción a `ggplot`.
 
 `@instructions`
-What is the `class` of the object `p`?
+¿Cuál es la clase, `class` del objeto `p`?
 
 `@hint`
-Use the `class` function.
+Utilice la función `class`.
 
 `@pre_exercise_code`
 ```{r}
@@ -89,17 +88,17 @@ class(p)
 `@sct`
 ```{r}
 test_error()
-test_function_result("class", incorrect_msg = "Make sure `p` is the argument.")
-test_function("class", incorrect_msg = "Use the `class` function and make sure that `p` is the argument.")
+test_function_result("class", incorrect_msg = "Asegúrese que `p` es el argumento.")
+test_function("class", incorrect_msg = "Use la función `class` y asegúrese que `p` es el argumento.")
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
 }
-success_msg("Nice job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 2. Printing
+## Ejercicio 2. Imprimir
 
 ```yaml
 type: MultipleChoiceExercise
@@ -110,14 +109,14 @@ skills:
   - 1
 ```
 
-Remember that to print an object you can use the command `print` or simply type the object. For example, instead of 
+Recuerde que para imprimir un objeto puede usar el comando imprimir `print` o simplemente escribir el objeto. Por ejemplo, en lugar de 
 
 ```{r}
 x <- 2
 print(x)
 ```
 
-you can simply type 
+simplemente puede escribir 
 
 
 ```{r}
@@ -125,22 +124,22 @@ x <- 2
 x
 ```
 
-Print the object `p` defined in exercise one 
+Imprima el objeto `p` definido en el ejercicio uno 
 
 ```{r}
 p <- ggplot(murders)
 ```
 
-and describe what you see.
+y describa lo que ve.
 
 `@possible_answers`
-- Nothing happens
-- A blank slate plot
-- A scatter plot
-- A histogram
+- No sucede nada
+- Un gráfico en blanco 
+- Un gráfico de dispersión 
+- Un histograma
 
 `@hint`
-The libraries and data you need are already pre-loaded, but you will still need to define `p`.
+Las bibliotecas y datos que necesitan ya se encuentran cargados previamente, pero de todas maneras necesitará definir `p`.
 
 `@pre_exercise_code`
 ```{r}
@@ -153,14 +152,14 @@ data(murders)
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg1 = msg3 = msg4 = "Incorrect. Try again."
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg3 = msg4 = "Incorrecto. Intente de nuevo."
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 3. Pipes
+## Ejercicio 3. Pipes (Operadores punto)
 
 ```yaml
 type: NormalExercise
@@ -171,13 +170,13 @@ skills:
   - 1
 ```
 
-Now we are going to review the use of pipes by seeing how they can be used with `ggplot`.
+Ahora vamos a revisar el uso de operadores punto viendo cómo pueden ser utilizados con `ggplot`.
 
 `@instructions`
-Using the pipe `%>%`, create an object `p` associated with the `heights` dataset instead of with the `murders` dataset as in previous exercises.
+El uso del operador `%>%`, crea un objeto `p` asociado con la base de datos de las alturas, `heights` en lugar de la base de datos de asesinatos, `murders` que había sido usada en ejercicios anteriores. 
 
 `@hint`
-If we were to use the pipe to create an object associated with the `murders` dataset, we would use the code `p <- murders %>% ggplot()`. The code we want here is very similar.
+Si usáramos el operador para crear un objeto asociado con la base de datos `murders`, usaríamos el código `p <- murders %>% ggplot()`. El código que queremos aquí es muy similar. 
 
 `@pre_exercise_code`
 ```{r}
@@ -190,7 +189,7 @@ library(dslabs)
 `@sample_code`
 ```{r}
 data(heights)
-# define ggplot object called p like in the previous exercise but using a pipe 
+# defina el objeto ggplot llamado p como en el ejercicio previo pero usando un operador punto 
 ```
 
 `@solution`
@@ -202,18 +201,18 @@ p <- heights %>% ggplot()
 `@sct`
 ```{r}
 test_error()
-test_function("ggplot", incorrect_msg = "Make sure you are calling `ggplot` and using the `heights` data.")
-test_pipe(absent_msg = "We want you to use the pipe `%>%` here.")
+test_function("ggplot", incorrect_msg = "Asegúrese de estar llamando `ggplot` y estar usando la base de datos de alturas `heights`.")
+test_pipe(absent_msg = "Queremos que use el operador `%>%` aquí.")
 
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
 }
-success_msg("Nice job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 4. Layers
+## Ejercicio 4. Capas
 
 ```yaml
 type: MultipleChoiceExercise
@@ -224,18 +223,18 @@ skills:
   - 1
 ```
 
-Now we are going to add layers and the corresponding aesthetic mappings. For the murders data, we plotted total murders versus population sizes in the videos.
+Ahora vamos a añadir capas y los correspondientes mapeos estéticos. Para los datos de murders, graficamos el número total de asesinatos versus los tamaños de la población en los videos. 
 
-Explore the `murders` data frame to remind yourself of the names for the two variables (total murders and population size) we want to plot and select the correct answer.
+Explore la base de asesinatos `murders` para recordarse de los nombres de las dos variables (total de asesinatos y tamaño de la población) queremos que grafique y seleccione la respuesta correcta. 
 
 `@possible_answers`
-- `state` and `abb`
-- `total_murders` and `population_size`
-- `total` and `population`
-- `murders` and `size`
+- `state` y `abb`
+- `total_murders` y `population_size`
+- `total` y `population`
+- `murders` y `size`
 
 `@hint`
-You can type `names(murders)` or read the help file by typing `?murders`.
+Puede escribir `names(murders)` o lea el archivo de ayuda escribiendo `?murders`.
 
 `@pre_exercise_code`
 ```{r}
@@ -247,14 +246,14 @@ data(murders)
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = "Incorrect. Try again."
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg2 = msg4 = "Incorrecto. Inténtelo de nuevo."
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 5. geom_point 1
+## Ejercicio 5. geom_point 1
 
 ```yaml
 type: NormalExercise
@@ -265,19 +264,19 @@ skills:
   - 1
 ```
 
-To create a scatter plot, we add a layer with the function `geom_point`. The aesthetic mappings require us to define the x-axis and y-axis variables respectively. So the code looks like this:
+Para crear un gráfico de dispersión, añadimos una capa con la función `geom_point`. Los mapeos estéticos requieren que definamos las variables de los ejes x y y respectivamente. 
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(x = , y = )) +
   geom_point()
 ```
-except we have to fill in the blanks to define the two variables `x` and `y`.
+excepto que tenemos que llenar los espacios para definir las dos variables `x` y `y`.
 
 `@instructions`
-Fill out the sample code with the correct variable names to plot total murders versus population size.
+Llene el código muestra con los nombres correctos de las variables para graficar el total de asesinatos versus el tamaño de la población. 
 
 `@hint`
-In the previous exercise we determined that the variable names we want here are `population` and `total`.
+En el ejercicio anterior determinamos que los nombres de las variables que queremos aquí son `population` (población) and `total`(total).
 
 `@pre_exercise_code`
 ```{r}
@@ -289,7 +288,7 @@ data(murders)
 
 `@sample_code`
 ```{r}
-## Fill in the blanks
+## Llene los espacios en blanco
 murders %>% ggplot(aes(x = , y = )) +
   geom_point()
 ```
@@ -303,8 +302,8 @@ murders %>% ggplot(aes(x = population, y = total)) +
 `@sct`
 ```{r}
 test_error()
-test_function("ggplot", incorrect_msg = "Make sure you are calling `ggplot` and using the `murders` data")
-test_pipe(absent_msg = "We want you to use the pipe `%>%` here.")
+test_function("ggplot", incorrect_msg = "Asegúrese de estar llamando al paquete  `ggplot` y que este utilizando los datos `murders`")
+test_pipe(absent_msg = "Queremos que utilice el operador punto `%>%` aquí.")
 
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
@@ -312,14 +311,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "y") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_point", not_called_msg="Did you add the `geom_point()` layer?")
+   check_function(., "geom_point", not_called_msg="¿Añadió la capa `geom_point()`?")
 }
-success_msg("Nice job!!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 6. geom_point 2
+## Ejercicio 6. geom_point 2
 
 ```yaml
 type: NormalExercise
@@ -330,7 +329,7 @@ skills:
   - 1
 ```
 
-Note that if we don't use argument names, we can obtain the same plot by making sure we enter the variable names in the desired order:
+Note que si no usamos el argumento names (nombres), podemos obtener el mismo gráfico al asegurarnos que escribamos el nombre de las variables en el orden deseado: 
 
 ```{r}
 murders %>% ggplot(aes(population, total)) +
@@ -338,10 +337,10 @@ murders %>% ggplot(aes(population, total)) +
 ```
 
 `@instructions`
-Remake the plot but flip the axes so that `total` is on the x-axis and `population` is on the y-axis.
+Vuelva a hacer el gráfico pero cambie los ejes, de manera que `total` se encuentre en el eje x y `population` en el eje y.
 
 `@hint`
-Remember to flip the order of `total` and `population` in your code.
+Recuerde cambiar el orden de `total` y `population` en su código.
 
 `@pre_exercise_code`
 ```{r}
@@ -371,14 +370,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "y") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_point", not_called_msg="Did you add the `geom_point()` layer?")
+   check_function(., "geom_point", not_called_msg="¿Añadió la capa `geom_point()`?")
 }
-success_msg("Nice job!!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 7. geom_point text
+## Ejercicio 7. texto geom_point 
 
 ```yaml
 type: MultipleChoiceExercise
@@ -389,26 +388,26 @@ skills:
   - 1
 ```
 
-If instead of points we want to add text, we can use the `geom_text()` or `geom_label()` geometries. However, note that the following code 
+Si en lugar de puntos queremos añadir texto, podemos usar las geometrías `geom_text()` o `geom_label()`. Sin embargo, note que el siguiente código 
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(population, total)) +
   geom_label()
 ```
 
-will give us the error message:
+nos dará el siguiente error de mensaje: 
 `Error: geom_label requires the following missing aesthetics: label`
 
-Why is this?
+¿Por qué es esto? 
 
 `@possible_answers`
-- We need to map a character to each point through the label argument in aes
-- We need to let `geom_label` know what character to use in the plot
-- The `geom_label` geometry does not require  x-axis and y-axis values.
-- `geom_label` is not a ggplot2 command
+- Necesitamos mapear un carácter a cada punto por medio del argumento etiqueta en aes
+- Necesitamos especificarle a `geom_label` qué carácter debe usar en el gráfico 
+- La geometría `geom_label` no requiere valores en los ejes x y y.
+- `geom_label` no es un comando de ggplot2
 
 `@hint`
-Read the help file for `geom_label` carefully and look at the required arguments.
+Lea el archivo de ayuda para `geom_label` cuidadosamente y fíjese en los argumentos requeridos.
 
 `@pre_exercise_code`
 ```{r}
@@ -420,14 +419,14 @@ data(murders)
 
 `@sct`
 ```{r}
-msg1 = "Correct!  Good Job!"
-msg3 = msg2 = msg4 = msg5 = "Incorrect. Try again"
+msg1 = "¡Correcto!  ¡Buen trabajo!"
+msg3 = msg2 = msg4 = msg5 = "Incorrecto. Inténtelo de nuevo."
 test_mc(1, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 8. geom_point text
+## Ejercicio 8. texto geom_point 
 
 ```yaml
 type: NormalExercise
@@ -438,16 +437,16 @@ skills:
   - 1
 ```
 
-You can also add labels to the points on a plot.
+También puede añadir etiquetas a los puntos en un gráfico. 
 
 `@instructions`
-Rewrite the code from the previous exercise to:
-- add a `label` aesthetic to `aes` equal to the state abbreviation
-- use `geom_label` instead of `geom_point`
+Reescriba el código del ejercicio anterior para: 
+- añadir un estético `label` a `aes` que sea igual a la abreviación del estado. 
+- use `geom_label` en lugar de `geom_point`
 
 `@hint`
-- The column name for abbreviation in the `murders` dataset is `abb`. You need to map it to the points using `aes` like this `aes(population, total, label = abb)`.
-- You will also need to change `geom_point` in the code to `geom_label`- see Exercise 7 for an example.
+- La columna name (nombre) para la abreviación de los nombres en la base de datos `murders` es `abb`. Necesitará mapearla a los puntos usando `aes` de esta manera `aes(population, total, label = abb)`.
+- También necesitará cambiar `geom_point` en el código a `geom_label`- vea el ejercicio 7 por un ejemplo. 
 
 `@pre_exercise_code`
 ```{r}
@@ -463,7 +462,7 @@ library(dplyr)
 library(ggplot2)
 library(dslabs)
 data(murders)
-## edit the next line to add the label
+## edite la siguiente línea para añadir la etiqueta 
 murders %>% ggplot(aes(population, total)) +
   geom_point()
 ```
@@ -489,14 +488,14 @@ ex() %>% {
        check_arg(., "y") %>% check_equal(eval = FALSE)
        check_arg(.,"label") %>% check_equal(eval=FALSE)
    }
-   check_function(., "geom_label", not_called_msg="Did you add the `geom_label()` layer?")
+   check_function(., "geom_label", not_called_msg="¿Añadió la capa `geom_label()`?")
 }
-success_msg("Great job!!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 9. geom_point colors
+## Ejercicio 9. colores geom_point 
 
 ```yaml
 type: MultipleChoiceExercise
@@ -507,16 +506,16 @@ skills:
   - 1
 ```
 
-Now let's change the color of the labels to blue. How can we do this?
+Ahora cambiemos el color de las etiquetas a azul. ¿Cómo podemos hacer esto? 
 
 `@possible_answers`
-- By adding a column called `blue` to `murders`
-- By mapping the colors through `aes` because each label needs a different color
-- By using the `color` argument in `ggplot`
-- By using the `color` argument in `geom_label` because we want all colors to be blue so we do not need to map colors
+- Añadiendo una columna llamada `blue` (azul) a `murders` (asesinatos)
+- Por medio de mapear los colores por medio de `aes` porque cada etiqueta necesita un color diferente 
+- Usando el argumento `color` en `ggplot`
+- Usando el argumento `color` en `geom_label` porque queremos que todos los colores sean azules y así no tendríamos que mapear colores 
 
 `@hint`
-Note that because all points will be blue this is not a mapping. We therefore assign the color outside of `aes`.
+Note que porque todos los puntos sean azules no sería mapeo. Consecuentemente asignamos el color afuera de `aes`.
 
 `@pre_exercise_code`
 ```{r}
@@ -529,14 +528,14 @@ data(murders)
 
 `@sct`
 ```{r}
-msg4 = "Correct!  Good Job!"
-msg3 = msg2 = msg1 = "Incorrect. Try again."
+msg4 = "¡Correcto!  ¡Buen trabajo!"
+msg3 = msg2 = msg1 = "Incorrecto. Inténtelo de nuevo."
 test_mc(4, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 10. geom_point colors 2
+## Ejercicio 10. colores 2 geom_point 
 
 ```yaml
 type: NormalExercise
@@ -547,21 +546,21 @@ skills:
   - 1
 ```
 
-Now let's go ahead and make the labels blue. We previously wrote this code to add labels to our plot:
+Ahora vamos a hacer las etiquetas azules. Previamente escribimos este código para añadir las etiquetas a nuestro gráfico: 
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(population, total, label= abb)) +
   geom_label()
 ```
-Now we will edit this code.
+Ahora vamos a editar este código. 
 
 `@instructions`
-- Rewrite the code above to make the labels blue by adding an argument to `geom_label`.
-- You do not need to put the `color` argument inside of an `aes` col.
-- Note that the grader expects you to use the argument `color` instead of `col`; these are equivalent.
+- Reescriba el código de arriba para hacer las etiquetas azules añadiendo un argumento a `geom_label`.
+- No necesita poner el argumento `color` dentro de `aes`.
+- Note que el revisor espera que utilice el argumento `color` en lugar de `col`; estos son equivalentes.
 
 `@hint`
-You can tell ggplot to make blue point via the `color` argument in `geom_label`. You can use the character `"blue"`. There is no need to use `aes` inside of `geom_label`.
+Puede decirle a ggplot que haga un punto azul por medio del argumento `color` en `geom_label`. Puede usar los caracteres `"blue"`. No hay necesidad de usar `aes` dentro de `geom_label`.
 
 `@pre_exercise_code`
 ```{r}
@@ -597,16 +596,16 @@ ex() %>% {
        check_arg(., "y") %>% check_equal(eval = FALSE)
        check_arg(.,"label") %>% check_equal(eval=FALSE)
    }
-   check_function(., "geom_label", not_called_msg="Did you add the `geom_label()` layer?") %>% {
+   check_function(., "geom_label", not_called_msg="¿Añadió la capa `geom_label()`?") %>% {
        check_arg(., "color") %>% check_equal(eval = FALSE)
    }
 }
-success_msg("Great job!!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 11. geom_labels by region
+## Ejercicio 11. geom_labels por región
 
 ```yaml
 type: MultipleChoiceExercise
@@ -617,16 +616,16 @@ skills:
   - 1
 ```
 
-Now suppose we want to use color to represent the different regions. So the states from the West will be one color, states from the Northeast another, and so on. In this case, which of the following is most appropriate:
+Ahora suponga que queremos que el color represente diferentes regiones. De manera que los estados del oeste sean de un color, estados del noreste de otro y así sucesivamente. En este caso, ¿cuál de las siguientes respuestas sería la más apropiada? 
 
 `@possible_answers`
-- Adding a column called `color` to `murders` with the color we want to use
-- Mapping the colors through the color argument of `aes` because each label needs a different color
-- Using the `color` argument in `ggplot`
-- Using the `color` argument in `geom_label` because we want all colors to be blue so we do not need to map colors
+- Añadiendo la columna `color` a `murders` con el color que queremos usar 
+- Mapear los colores por medio del argumento de `aes` porque cada etiqueta necesita un color diferente 
+- Utilizando el argumento `color` en `ggplot`
+- Utilizando el argumento `color` en `geom_label` porque queremos que todos los colores sean azules y así no tengamos que mapear colores 
 
 `@hint`
-Now we are assigning a different color to each state and this color is determined by one of the variables in the dataset. So we do need to assign the color through the `aes` mapping.
+Ahora estamos asignando un color diferente a cada estado y este color está determinado por una de las variables en la base de datos. Así que necesitamos asignar el color por medio del mapeo `aes`.
 
 `@pre_exercise_code`
 ```{r}
@@ -638,14 +637,14 @@ data(murders)
 
 `@sct`
 ```{r}
-msg2 = "Correct!  Good Job!"
-msg3 = msg4 = msg1 = "Incorrect. Try again."
+msg2 = "¡Correcto!  ¡Buen trabajo!"
+msg3 = msg4 = msg1 = "Incorrecto. Inténtelo de nuevo."
 test_mc(2, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 12. geom_label colors
+## Ejercicio 12. geom_label colores
 
 ```yaml
 type: NormalExercise
@@ -656,18 +655,19 @@ skills:
   - 1
 ```
 
-We previously used this code to make a plot using the state abbreviations as labels:
+Hemos usado este código previamente para hacer un gráfico usando las abreviaciones de los estados como etiquetas: 
+
 ```{r}
 murders %>% ggplot(aes(population, total, label = abb)) +
   geom_label()
 ```
-We are now going to add color to represent the region.
+Vamos a añadir un color para representar a la región. 
 
 `@instructions`
-Rewrite the code above to make the label color correspond to the state's region. Because this is a mapping, you will have to do this through the `aes` function. Use the existing `aes` function inside of the `ggplot` function.
+Reescriba el código de arriba para hacer que la etiqueta de color corresponda a la región del estado. Debido a que este es un mapeo, necesitará hacer esto por medio de la función `aes`. Use la función existente `aes` dentro de la función `ggplot`.
 
 `@hint`
-The variable that contains the information determining color is called `region`. We can assign `color = region` through `aes` and ggplot will automatically do what we want.
+La variable que contiene la información que determinará la región se llama `region`. Podemos asignar que el color sea igual a la región `color = region` por medio de `aes` y ggplot realizará automáticamente lo que queremos. 
 
 `@pre_exercise_code`
 ```{r}
@@ -679,7 +679,7 @@ data(murders)
 
 `@sample_code`
 ```{r}
-## edit this code
+## edite este código
 murders %>% ggplot(aes(population, total, label = abb)) +
   geom_label()
 ```
@@ -701,14 +701,14 @@ ex() %>% {
        check_arg(.,"label") %>% check_equal(eval=FALSE)
        check_arg(.,"color") %>% check_equal(eval=FALSE)
    }
-   check_function(., "geom_label", not_called_msg="Did you add the `geom_label()` layer?")
+   check_function(., "geom_label", not_called_msg="¿Añadió la capa `geom_label()`?")
 }
-success_msg("Nice plot!")
+success_msg("¡Gran gráfico!")
 ```
 
 ---
 
-## Exercise 13. Log-scale
+## Ejercicio 13. Escala logarítmica
 
 ```yaml
 type: NormalExercise
@@ -719,24 +719,24 @@ skills:
   - 1
 ```
 
-Now we are going to change the axes to log scales to account for the fact that the population distribution is skewed. Let's start by defining an object `p` that holds the plot we have made up to now:
+Ahora vamos a cambiar los ejes a escalas logarítmicas para considerar el hecho que la distribución de la población está sesgada. Vamos a intentar por medio de definir un objeto `p` que contenga el gráfico que hemos hecho hasta ahora: 
 
 ```{r}
 p <- murders %>% ggplot(aes(population, total, label = abb, color = region)) +
   geom_label() 
 ```
 
-To change the x-axis to a log scale we learned about the `scale_x_log10()` function. We can change the axis by adding this layer to the object `p` to change the scale and render the plot using the following code:
+Para cambiar los ejes x a una escala logarítmica hemos aprendido sobre la función `scale_x_log10()`. Podemos cambiar los ejes por medio de añadir esta capa al objeto `p` para cambiar la escala y representar el gráfico usando el siguiente código: 
 
 ```{r}
 p + scale_x_log10()
 ```
 
 `@instructions`
-Change **both** axes to be in the log scale on a single graph. Make sure you do not redefine `p` - just add the appropriate layers.
+Cambie **ambos** ejes para que estén en escala logarítmica en el mismo gráfico. Asegúrese que no redefina `p` - sólo añada las capas apropiadas. 
 
 `@hint`
-You will be adding two layers now. After defining `p` the resulting code will look something like this `p + layer_1 + layer_2`. Make sure you do not redefine `p` - just add the layers to it.
+Estará añadiendo dos capas ahora. Después de definir `p` el código resultante se verá algo como esto `p + layer_1 + layer_2`. Asegúrese que no redefina `p` - sólo añádale las capas. 
 
 `@pre_exercise_code`
 ```{r}
@@ -749,7 +749,7 @@ data(murders)
 `@sample_code`
 ```{r}
 p <- murders %>% ggplot(aes(population, total, label = abb, color = region)) + geom_label()
-## add layers to p here
+## añada las capas a p aquí
 ```
 
 `@solution`
@@ -761,7 +761,7 @@ p + scale_x_log10() + scale_y_log10()
 `@sct`
 ```{r}
 test_error()
-test_object("p",incorrect_msg = "Make sure to define `p`")
+test_object("p",incorrect_msg = "Asegúrese de definir `p`")
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
    check_function(., "aes") %>% {
@@ -770,16 +770,16 @@ ex() %>% {
        check_arg(.,"label") %>% check_equal(eval=FALSE)
        check_arg(.,"color") %>% check_equal(eval=FALSE)
    }
-   check_function(., "scale_x_log10", not_called_msg="Did you add the `scale_x_log10()` layer?")
-   check_function(., "scale_y_log10", not_called_msg="Did you add the `scale_y_log10()` layer?")
-   check_function(., "geom_label", not_called_msg="Did you add the `geom_label()` layer?")
+   check_function(., "scale_x_log10", not_called_msg="¿Añadió la capa `scale_x_log10()`?")
+   check_function(., "scale_y_log10", not_called_msg="Añadió la capa `scale_y_log10()`?")
+   check_function(., "geom_label", not_called_msg="Añadió la capa `geom_label()`?")
 }
-success_msg("Nice plot!")
+success_msg("¡Gran gráfico!")
 ```
 
 ---
 
-## Exercise 14. Titles
+## Ejercicio 14. Títulos
 
 ```yaml
 type: NormalExercise
@@ -790,7 +790,7 @@ skills:
   - 1
 ```
 
-In the previous exercises we created a plot using the following code:
+En los ejercicios anteriores hemos creado un gráfico usando el siguiente código: 
 
 ```{r}
 library(dplyr)
@@ -802,13 +802,13 @@ p<- murders %>% ggplot(aes(population, total, label = abb, color = region)) +
 p + scale_x_log10() + scale_y_log10()
 ```
 
-We are now going to add a title to this plot. We will do this by adding yet another layer, this time with the function `ggtitle`.
+Ahora estamos añadiendo título a este gráfico. Haremos esto por medio de añadir otra capa, pero esta vez con la función `ggtitle`.
 
 `@instructions`
-Edit the code above to add the title "Gun murder data" to the plot.
+Edite el código de arriba y añada el título "Gun murder data" (datos de asesinatos con pistola) al gráfico.
 
 `@hint`
-Use the function like this `p + ggtitle("Put title here")`.
+Use la función de la siguiente manera `p + ggtitle("Escriba el título aquí")`.
 
 `@pre_exercise_code`
 ```{r}
@@ -822,7 +822,7 @@ data(murders)
 ```{r}
 p <- murders %>% ggplot(aes(population, total, label = abb, color = region)) +
   geom_label()
-# add a layer to add title to the next line
+# añada una capa para escribir el título en la siguiente línea 
 p + scale_x_log10() + 
     scale_y_log10()
 ```
@@ -847,17 +847,17 @@ ex() %>% {
        check_arg(.,"label") %>% check_equal(eval=FALSE)
        check_arg(.,"color") %>% check_equal(eval=FALSE)
    }
-   check_function(., "scale_x_log10", not_called_msg="Did you add the `scale_x_log10()` layer?")
-   check_function(., "scale_y_log10", not_called_msg="Did you add the `scale_y_log10()` layer?")
-   check_function(., "geom_label", not_called_msg="Did you add the `geom_label()` layer?")
-   check_function(., "ggtitle", not_called_msg="Did you add the `ggtitle()` layer?") %>% check_arg(.,"label") %>% check_equal()
+   check_function(., "scale_x_log10", not_called_msg="¿Añadió la capa `scale_x_log10()`?")
+   check_function(., "scale_y_log10", not_called_msg="¿Añadió la capa `scale_y_log10()`?")
+   check_function(., "geom_label", not_called_msg="¿Añadió la capa `geom_label()` ?")
+   check_function(., "ggtitle", not_called_msg="¿Añadió la capa `ggtitle()`?") %>% check_arg(.,"label") %>% check_equal()
 }
-success_msg("Nice plot!")
+success_msg("¡Buen gráfico!")
 ```
 
 ---
 
-## Exercise 15. Histograms
+## Ejercicio 15. Histogramas
 
 ```yaml
 type: MultipleChoiceExercise
@@ -868,11 +868,11 @@ skills:
   - 1
 ```
 
-We are going to shift our focus from the `murders` dataset to explore the `heights` dataset.
+Vamos a redirigir nuestra atención de la base de datos `murders` a explorar la base sobre alturas `heights`.
 
-We use the `geom_histogram` function to make a histogram of the heights in the `heights` data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. 
+Utilizamos la función `geom_histogram` para hacer un histograma de las alturas en la base de datos `heights` (alturas). Cuando leemos documentación para esta función vemos que requiere solamente un mapeo, los valores que serán utilizados para el histograma. 
 
-What is the variable containing the heights in inches in the `heights` data frame?
+¿Cuál es la variable que contiene las alturas en pulgadas en la base de datos `heights`?
 
 `@possible_answers`
 - `sex`
@@ -881,7 +881,7 @@ What is the variable containing the heights in inches in the `heights` data fram
 - `heights$height`
 
 `@hint`
-Look at `names(heights)` to see the variable names.
+Explore `names(heights)` para ver los nombres de las variables. 
 
 `@pre_exercise_code`
 ```{r}
@@ -893,14 +893,14 @@ data(heights)
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = "Incorrect. Try again"
+msg3 = "¡Correcto!  ¡Buen trabajo!"
+msg1 = msg2 = msg4 = "Incorrecto. Inténtelo de nuevo."
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## Exercise 16. A second example
+## Ejercicio 16. Un segundo ejemplo
 
 ```yaml
 type: NormalExercise
@@ -911,7 +911,7 @@ skills:
   - 1
 ```
 
-We are now going to make a histogram of the heights so we will load the `heights` dataset. The following code has been pre-run for you to load the heights dataset:
+Ahora vamos a hacer un histograma de las alturas, así que cargaremos la base de datos `heights`. El siguiente código ha sido pre-corrido para que carguen la base de datos de las alturas: 
 
 ```{r}
 library(dplyr)
@@ -921,11 +921,11 @@ data(heights)
 ```
 
 `@instructions`
-- Create a ggplot object called `p` using the pipe to assign the heights data to a ggplot object.
-- Assign `height` to the x values through the `aes` function.
+- Cree un objeto de ggplot llamado `p` usando el operador (pipe) para asignar los datos de las alturas a un objeto ggplot.
+- Asigne `height` a los valores x por medio de la función `aes`.
 
 `@hint`
-Just as before, we will use the pipe `heights %>% ggplot( AES MAPPING HERE)`. But the `aes` mapping only has one variable now.
+Justo como antes, utilizaremos el operador `heights %>% ggplot( AES MAPEO AQUÍ)`. Pero el mapeo `aes` tiene solamente una variable ahora. 
 
 `@pre_exercise_code`
 ```{r}
@@ -937,7 +937,7 @@ data(heights)
 
 `@sample_code`
 ```{r}
-# define p here
+# defina p aquí
 p <- 
 ```
 
@@ -954,19 +954,19 @@ p <- heights %>%
 `@sct`
 ```{r}
 test_error()
-test_pipe(absent_msg = "We want you to use the pipe `%>%` here.")
+test_pipe(absent_msg = "Queremos que utilice el operador `%>%` aquí.")
 ex() %>% {
    check_function(., "ggplot") %>% check_arg(., "data") %>% check_equal()
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
    }
 }
-success_msg("Good job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 17. Histograms 2
+## Ejercicio 17. Histogramas 2
 
 ```yaml
 type: NormalExercise
@@ -977,13 +977,13 @@ skills:
   - 1
 ```
 
-Now we are ready to add a layer to actually make the histogram.
+Ahora estamos listos para añadir una capa que de hecho haga el histograma. 
 
 `@instructions`
-Add a layer to the object `p` (created in the previous exercise) using the `geom_histogram` function to make the histogram.
+Añada una capa al objeto `p` (creado en el ejercicio anterior) utilizando la función `geom_histogram` para hacer el histograma. 
 
 `@hint`
-We are simply adding a layer `+ geom_histogram`. Make sure you do not redefine `p`!
+Estamos simplemente añadiendo una capa `+ geom_histogram`. Asegúrese que no está redefiniendo `p`!
 
 `@pre_exercise_code`
 ```{r}
@@ -997,7 +997,7 @@ data(heights)
 ```{r}
 p <- heights %>% 
   ggplot(aes(height))
-## add a layer to p
+## añada una capa a p
 ```
 
 `@solution`
@@ -1015,14 +1015,14 @@ ex() %>% {
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_histogram", not_called_msg="Did you add the `geom_histogram()` layer?")
+   check_function(., "geom_histogram", not_called_msg="¿Añadió la capa `geom_histogram()`?")
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 18. Histogram binwidth
+## Ejercicio 18. Ancho de las barras en histograma
 
 ```yaml
 type: NormalExercise
@@ -1033,15 +1033,15 @@ skills:
   - 1
 ```
 
-Note that when we run the code from the previous exercise we get the following warning:
+Note que cuando corremos el código del ejercicio previo, nos aparecerá la siguiente advertencia: 
 
 >> `stat_bin() using bins = 30. Pick better value with binwidth.`
 
 `@instructions`
-Use the `binwidth` argument to change the histogram made in the previous exercise to use bins of size 1 inch.
+Use el argumento `binwidth` para cambiar el histograma hecho en el ejercicio previo para usar barras de una pulgada de tamaño. 
 
 `@hint`
-The `binwidth` argument goes inside the `geom_histogram` function.
+El argumento `binwidth` va dentro de la función `geom_histogram`.
 
 `@pre_exercise_code`
 ```{r}
@@ -1055,7 +1055,7 @@ data(heights)
 ```{r}
 p <- heights %>% 
   ggplot(aes(height))
-## add the geom_histogram layer but with the requested argument
+## añada la capa geom_histogram pero con el argumento requerido 
 ```
 
 `@solution`
@@ -1073,15 +1073,15 @@ ex() %>% {
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_histogram", not_called_msg="Did you add the `geom_point()` layer?") %>%
+   check_function(., "geom_histogram", not_called_msg="¿Añadió la capa `geom_point()`?") %>%
         check_arg(.,"binwidth") %>% check_equal(eval=FALSE)
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 19. Smooth density plot
+## Ejercicio 19. Gráfico de densidad suave
 
 ```yaml
 type: NormalExercise
@@ -1092,7 +1092,7 @@ skills:
   - 1
 ```
 
-Now instead of a histogram we are going to make a smooth density plot. In this case, we will not make an object `p`. Instead we will render the plot using a single line of code. In the previous exercise, we could have created a histogram using one line of code like this:
+Ahora en lugar de un histograma, vamos a hacer un gráfico de densidad suave. En este caso, no haremos un objeto `p`. En su lugar haremos un gráfico utilizando una sola línea de código. En el ejercicio anterior, pudimos haber creado un histograma usando una línea de código como ésta: 
 
 ```{r, eval=FALSE}
 heights %>% 
@@ -1100,13 +1100,13 @@ heights %>%
   geom_histogram()
 ```
 
-Now instead of `geom_histogram` we will use `geom_density` to create a smooth density plot.
+Ahora en lugar de `geom_histogram` utilizaremos `geom_density` para crear un gráfico de densidad suave. 
 
 `@instructions`
-Add the appropriate layer to create a smooth density plot of heights.
+Añada la capa apropiada para crear un gráfico de densidad suave de las alturas. 
 
 `@hint`
-Instead of using `geom_histogram`, use `geom_density`.
+En lugar de utilizar `geom_histogram`, utilice `geom_density`.
 
 `@pre_exercise_code`
 ```{r}
@@ -1118,7 +1118,7 @@ data(heights)
 
 `@sample_code`
 ```{r}
-## add the correct layer using +
+## añada la capa correcta utilizando +
 heights %>% 
   ggplot(aes(height))
 ```
@@ -1138,14 +1138,14 @@ ex() %>% {
    check_function(., "aes") %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_density", not_called_msg="Did you add the `geom_density()` layer?")
+   check_function(., "geom_density", not_called_msg="¿Añadió la capa `geom_density()`?")
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 20. Two smooth density plots
+## Ejercicio 20. Dos gráficos de densidad suave 
 
 ```yaml
 type: NormalExercise
@@ -1156,13 +1156,13 @@ skills:
   - 1
 ```
 
-Now we are going to make density plots for males and females separately. We can do this using the `group` argument within the `aes` mapping. Because each point will be assigned to a different density depending on a variable from the dataset, we need to map within `aes`.
+Ahora vamos a hacer gráficos de densidad para hombres y mujeres por separado. Para lograrlo, podemos utilizar el argumento `group` que se encuentra dentro del mapeo  `aes`. Debido a que cada punto será asignado a una densidad diferente dependiendo de la variable de la base de datos, necesitamos el mapeo dentro de `aes`.
 
 `@instructions`
-Create separate smooth density plots for males and females by defining `group` by sex. Use the existing `aes` function inside of the `ggplot` function.
+Genere dos gráficos de densidad suave para hombres y mujeres por medio de definir `group` por sexos separados. Utilice la función existente `aes` dentro de la función `ggplot`.
 
 `@hint`
-We just need to change the `aes` by adding the argument `group = sex`. Then you add the `geom_density` layer as before.
+Sólo necesitamos cambiar el `aes` por medio de añadir el argumento `group = sex`. Luego añade la capa `geom_density` como antes.
 
 `@pre_exercise_code`
 ```{r}
@@ -1174,7 +1174,7 @@ data(heights)
 
 `@sample_code`
 ```{r}
-## add the group argument then a layer with +
+## añada el argumento del grupo y luego una capa con + 
 heights %>% 
   ggplot(aes(height))
 ```
@@ -1195,14 +1195,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "group") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_density", not_called_msg="Did you add the `geom_density()` layer?")
+   check_function(., "geom_density", not_called_msg="¿Añadió la capa `geom_density()`?")
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 21. Two smooth density plots 2
+## Ejercicio 21. Dos gráficos de densidad suave 2 
 
 ```yaml
 type: NormalExercise
@@ -1213,21 +1213,21 @@ skills:
   - 1
 ```
 
-In the previous exercise we made the two density plots, one for each sex, using:
+En el ejercicio previo, hicimos dos gráficos de densidad suave, uno para cada sexo usando: 
 
 ```{r}
 heights %>% 
   ggplot(aes(height, group = sex)) + 
   geom_density()
 ```
-We can also assign groups through the `color` or `fill` argument. For example, if you type `color = sex` ggplot knows you want a different color for each sex. So two densities must be drawn. You can therefore skip the `group = sex` mapping.
-Using `color` has the added benefit that it uses color to distinguish the groups.
+También podemos asignar grupos por medio de los argumentos `color` o `fill`. Por ejemplo, si usted escribe `color = sex` ggplot sabe que usted quiere un color diferente para cada sexo. Así que dos densidades deberán ser dibujadas. Consecuentemente, puede saltarse el mapeo de `group = sex`.
+El uso de `color` tiene el beneficio añadido que usa color para distinguir los grupos. 
 
 `@instructions`
-Change the density plots from the previous exercise to add color.
+Cambie los gráficos de densidad del ejercicio anterios para añadir color. 
 
 `@hint`
-Instead of using `group = sex`, we can use `color = sex` within `aes` to do the mapping. And remember to add the smooth density layer!
+En lugar de usar `group = sex`, podemos usar `color = sex` dentro de `aes` para hacer el mapeo. ¡También recuerde añadir la capa de densidad suave! 
 
 `@pre_exercise_code`
 ```{r}
@@ -1239,7 +1239,7 @@ data(heights)
 
 `@sample_code`
 ```{r}
-## edit the next line to use color instead of group then add a density layer
+## edite la siguiente línea para usar color en lugar de grupo y luego añadir la capa de densidad  
 heights %>% 
   ggplot(aes(height, group = sex))
 ```
@@ -1260,14 +1260,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "color") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_density", not_called_msg="Did you add the `geom_density()` layer?")
+   check_function(., "geom_density", not_called_msg="¿Añadió la capa de `geom_density()`?")
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo!")
 ```
 
 ---
 
-## Exercise 22. Two smooth density plots 3
+## Ejercicio 22. Dos gráficos de densidad suave 3 
 
 ```yaml
 type: NormalExercise
@@ -1278,22 +1278,22 @@ skills:
   - 1
 ```
 
-We can also assign groups using the `fill` argument. When using the `geom_density` geometry, `color` creates a colored line for the smooth density plot while `fill` colors in the area under the curve.
+También podemos asignar grupos usando el argumento `fill`. Cuando usamos la geometría `geom_density`, `color` crea una línea de color para el gráfico de densidad suave mientras que `fill` colorea en el área bajo la curva. 
 
-We can see what this looks like by running the following code:
+Podemos ver cómo se ve esto al correr el siguiente código: 
 
 ```{r}
 heights %>% 
   ggplot(aes(height, fill = sex)) + 
   geom_density() 
 ```
-However, here the second density is drawn over the other. We can change this by using something called _alpha blending_.
+Sin embargo, aquí la segunda densidad es trazada sobre la otra. Podemos cambiar esto por medio de usar algo llamado _alpha blending_.
 
 `@instructions`
-Set the alpha parameter to 0.2 in the `geom_density` function to make this change.
+Fije el parámetro del alpha a 0.2 en la función `geom_density` para realizar este cambio. 
 
 `@hint`
-Make sure you set `alpha = 0.2` in the correct part of your code.
+Asegúrese de fijar el `alpha = 0.2` en la parte correcta de su código. 
 
 `@pre_exercise_code`
 ```{r}
@@ -1325,14 +1325,14 @@ ex() %>% {
        check_arg(., "x") %>% check_equal(eval = FALSE)
        check_arg(., "fill") %>% check_equal(eval = FALSE)
    }
-   check_function(., "geom_density", not_called_msg="Did you add the `geom_density()` layer?") %>% check_arg(.,"alpha") %>% check_equal(eval=TRUE)
+   check_function(., "geom_density", not_called_msg="¿Añadió la capa de `geom_density()`?") %>% check_arg(.,"alpha") %>% check_equal(eval=TRUE)
 }
-success_msg("Great job!")
+success_msg("¡Buen trabajo")
 ```
 
 ---
 
-## End of Assessment: Introduction to ggplot2
+## Fin de la Evaluación: Introducción a ggplot2
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -1342,17 +1342,21 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la tarea de programación para esta sección. Por favor NO seleccione o explore tareas adicionales a las que se encuentran en esta página para esta sección. Advertencia: si usted continua con otras evaluaciones por medio de seleccionar la flecha que lleva al siguiente ejercicio o por medio de presionar Ctrl-K es posible que sus evaluaciones NO sean calificadas. 
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+##### ESTE SIGUIENTE LINK TIENE QUE SER ACTUALIZADO CUANDO SE TENGA LA PÁGINA DEL NUEVO CURSO#######
+
+Puede cerrar esta ventana y regresar a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+
+##### FIN DEL LINK QUE TIENE QUE SER ACTUALIZADO####### 
 
 `@hint`
-- No hint necessary!
+- ¡No se necesitan pistas!
 
 `@possible_answers`
-- [Awesome]
-- Nope
+- [Maravilloso]
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Genial! ¡Ahora regrese al curso en edX!
+- ¡Ahora regrese al curso en edX!

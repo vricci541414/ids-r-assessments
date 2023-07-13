@@ -1,9 +1,9 @@
 ---
-title: Normal Distributions
-description: In this chapter we go over the normal distribution.
+title: Distribuciones normales
+description: En este capítulo repasamos la distribución normal     .
 ---
 
-## Exercise 1. Proportions
+## Ejercicio 1. Proporciones
 
 ```yaml
 type: NormalExercise
@@ -14,15 +14,15 @@ skills:
   - 1
 ```
 
-Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two number summary! To understand what these summaries are and why they are so widely used, we need to understand the normal distribution. 
+Los histogramas y los diagramas de densidad proporcionan excelentes resúmenes de una distribución. Pero, ¿podemos resumir aún más? Muchas veces vemos que el promedio y la desviación estándar se usan como estadísticas de resumen: ¡un resumen de dos números! Para entender qué son estos resúmenes y por qué se usan tanto, necesitamos entender la distribución normal.
 
-The normal distribution, also known as the bell curve and as the Gaussian distribution, is one of the most famous mathematical concepts in history. A reason for this is that approximately normal distributions occur in many situations. Examples include gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. Often data visualization is needed to confirm that our data follows a normal distribution.
+La distribución normal, también conocida como curva de campana y distribución gaussiana, es uno de los conceptos matemáticos más famosos de la historia. Una razón de esto es que las distribuciones aproximadamente normales ocurren en muchas situaciones. Los ejemplos incluyen ganancias de juegos de azar, alturas, pesos, presión arterial, puntajes de pruebas estandarizadas y errores de medición experimental. Muchas veces, se necesita la visualización de datos para confirmar que nuestros datos siguen una distribución normal.
 
-Here we focus on how the normal distribution helps us summarize data and can be useful in practice.
+Aquí nos enfocamos en cómo la distribución normal nos ayuda a resumir datos y puede ser útil en la práctica.
 
-One way the normal distribution is useful is that it can be used to approximate the distribution of a list of numbers without having access to the entire list. We will demonstrate this with the heights dataset.
+Una forma en que la distribución normal es útil es que se puede usar para aproximar la distribución de una lista de números sin tener acceso a la lista completa. Demostraremos esto con el conjunto de datos de alturas.
 
-Load the height data set and create a vector `x` with just the male heights:
+Cargue el conjunto de datos de altura y cree un vector `x` con solo las alturas masculinas:
 
 ```{r}
 library(dslabs)
@@ -31,17 +31,17 @@ x <- heights$height[heights$sex == "Male"]
 ```
 
 `@instructions`
-- What proportion of the data is between 69 and 72 inches (taller than 69 but shorter or equal to 72)? A proportion is between 0 and 1.
-- Use the `mean` function in your code. Remember that you can use `mean` to compute the proportion of entries of a logical vector that are `TRUE`.
+- ¿Qué proporción de los datos está entre 69 y 72 pulgadas (más alto que 69 pero más bajo o igual a 72)? Una proporción está entre 0 y 1.
+- Usa la función `mean` en su código. Recuerde que puede usar `mean` (promedio) para calcular la proporción de entradas de un vector lógico que son `TRUE` (verdaderos).
 
 `@hint`
-- Remember that you can create a logical vector with logical operators. For example, you can ask which entries of a vector are between 2 and 5 like this:
+- Recuerda que puedes crear un vector lógico con operadores lógicos. Por ejemplo, puede preguntar qué entradas de un vector están entre 2 y 5 de esta manera:
 
 ```{r}
 x <- 1:10
 x > 2 & x<=5
 ```
-- You can use `mean` to compute the proportion of entries that are `TRUE`.
+- Puede usar `mean` para calcular la proporción de entradas que son `TRUE`.
 
 `@pre_exercise_code`
 ```{r}
@@ -66,15 +66,15 @@ mean(x > 69 & x <= 72)
 `@sct`
 ```{r}
 test_error()
-#test_object("x", incorrect_msg = "`x` is not defined correctly.")
-test_function("mean", incorrect_msg = "Are you using `mean` on the correct subset?")
-test_output_contains("0.3337438", incorrect_msg = "Are you using `mean` using the correct logical expression?, it should be something like `x>a & x<=b`. ")
-success_msg("Nice job! Remember the value here, we'll reference it in the future.")
+#test_object("x", incorrect_msg = "`x` no está definido correctamente.")
+test_function("mean", incorrect_msg = "¿Está utilizando `mean` en el subconjunto correcto?")
+test_output_contains("0.3337438", incorrect_msg = "¿Está usando `mean` usando la expresión lógica correcta? Debería ser algo así como `x>a & x<=b`.")
+success_msg("¡Buen trabajo! Recuerde el valor aquí, lo mencionaremos en el futuro.")
 ```
 
 ---
 
-## Exercise 2. Averages and Standard Deviations
+## Ejercicio 2. Promedios y Desviaciones Estándar
 
 ```yaml
 type: NormalExercise
@@ -84,8 +84,7 @@ xp: 100
 skills:
   - 1
 ```
-
-Suppose all you know about the height data from the previous exercise is the average and the standard deviation and that its distribution is approximated by the normal distribution. We can compute the average and standard deviation like this:
+Suponga que todo lo que sabe sobre los datos de altura del ejercicio anterior es el promedio y la desviación estándar y que su distribución se aproxima a la distribución normal. Podemos calcular el promedio y la desviación estándar de esta manera:
 
 ```{r}
 library(dslabs)
@@ -95,16 +94,16 @@ avg <- mean(x)
 stdev <- sd(x)
 ```
 
-Suppose you only have `avg` and `stdev` below, but no access to `x`, can you approximate the proportion of the data that is between 69 and 72 inches?
+Suponga que solo tiene `avg` y `stdev` a continuación, pero no tiene acceso a `x`, ¿puede aproximar la proporción de los datos entre 69 y 72 pulgadas?
 
-Given a normal distribution with a mean `mu` and standard deviation `sigma`, you can calculate the proportion of observations less than or equal to a certain `value` with `pnorm(value, mu, sigma)`. Notice that this is the CDF for the normal distribution. We will learn much more about `pnorm` later in the course series, but you can also learn more now with `?pnorm`.
+Dada una distribución normal con una media 'mu' y una desviación estándar 'sigma', puede calcular la proporción de observaciones menores o iguales a un 'valor' determinado con 'pnorm(valor, mu, sigma)'. Observe que este es el CDF para la distribución normal. Aprenderemos mucho más sobre `pnorm` más adelante en la serie de cursos, pero también puede aprender más ahora con `?pnorm`.
 
 `@instructions`
-- Use the normal approximation to estimate the proportion the proportion of the data that is between 69 and 72 inches.
-- Note that you can't use `x` in your code, only `avg` and `stdev`. Also note that R has a function that may prove very helpful here - check out the `pnorm` function (and remember that you can get help by using `?pnorm`).
+- Usa la aproximación normal para estimar la proporción la proporción de los datos que está entre 69 y 72 pulgadas.
+- Tenga en cuenta que no puede usar `x` en su código, solo `avg` y `stdev`. También tenga en cuenta que R tiene una función que puede resultar muy útil aquí: consulte la función `pnorm` (y recuerde que puede obtener ayuda usando `?pnorm`).
 
 `@hint`
-Use the `pnorm` function with the correct arguments for `mean` and `sd` to predict the proportions to compute the proportion that is below 72 and subtract the proportion that is below 69.
+Use la función `pnorm` con los argumentos correctos para `mean` y `sd` para predecir las proporciones para calcular la proporción que está por debajo de 72 y restar la proporción que está por debajo de 69.
 
 `@pre_exercise_code`
 ```{r}
@@ -135,13 +134,13 @@ pnorm(72, avg, stdev) - pnorm(69, avg, stdev)
 `@sct`
 ```{r}
 test_error()
-test_output_contains("0.3061779", incorrect_msg = "Are you using `pnorm` on the correct average and sd? Remember you can estimate the proportion below 72 and subtract the proportion below 69. Use `pnorm` both these estimates.")
-success_msg("Nice job! Notice how similar they are.")
+test_output_contains("0.3061779", incorrect_msg = "¿Está utilizando `pnorm` en el promedio correcto y sd correcto? Recuerde que puede estimar la proporción por debajo de 72 y restar la proporción por debajo de 69. Use `pnorm` para ambas estimaciones.")
+success_msg("¡Buen trabajo! Fíjese en lo similares que son.")
 ```
 
 ---
 
-## Exercise 3. Approximations
+## Ejercicio 3. Aproximaciones
 
 ```yaml
 type: NormalExercise
@@ -152,9 +151,9 @@ skills:
   - 1
 ```
 
-Notice that the approximation calculated in the second question is very close to the exact calculation in the first question. The normal distribution was a useful approximation for this case. 
+Note que la aproximación calculada en la segunda pregunta es muy cercana al cálculo exacto en la primera pregunta. La distribución normal fue una aproximación útil para este caso.
 
-However, the approximation is not always useful. An example is for the more extreme values, often called the "tails" of the distribution. Let's look at an example. We can compute the proportion of heights between 79 and 81.
+Sin embargo, la aproximación no siempre es útil. Un ejemplo son los valores más extremos, a menudo llamados "colas" de la distribución. Veamos un ejemplo. Podemos calcular la proporción de alturas entre 79 y 81.
 
 ```{r}
 library(dslabs)
@@ -164,13 +163,13 @@ mean(x > 79 & x <= 81)
 ```
 
 `@instructions`
-- Use normal approximation to estimate the proportion of heights between 79 and 81 inches and save it in an object called `approx`.
-- Report how many times bigger the actual proportion is compared to the approximation.
+- Usa la aproximación normal para estimar la proporción de alturas entre 79 y 81 pulgadas y guárdela en un objeto llamado `aprox`.
+- Reporte cuántas veces mayor es la proporción real en comparación con la aproximación.
 
 `@hint`
-- Remember to calculate the average and standard deviation!
-- Then compute the normal approximation using `pnorm`.
-- Finally, calculate the ratio of the exact value and the approximation by dividing the two values.
+- ¡Recuerde calcular el promedio y la desviación estándar!
+- Luego calcule la aproximación normal usando `pnorm`.
+- Finalmente, calcule la relación entre el valor exacto y la aproximación dividiendo los dos valores.
 
 `@pre_exercise_code`
 ```{r}
@@ -200,13 +199,13 @@ exact/approx
 `@sct`
 ```{r}
 test_error()
-test_output_contains("exact/approx", incorrect_msg = "Calculate the ratio of your two previous assessment answers")
-success_msg("Nice job! Notice that at the tails of the distribution, the approximation is not as accurate.")
+test_output_contains("exact/approx", incorrect_msg = "Calcule la proporción de sus dos respuestas de evaluación anteriores")
+success_msg("¡Buen trabajo! Observe que en las colas de la distribución, la aproximación no es tan precisa.")
 ```
 
 ---
 
-## Exercise 4. Seven footers and the NBA
+## Ejercicio 4. Atletas de siete pies de altura y la NBA
 
 ```yaml
 type: NormalExercise
@@ -217,22 +216,22 @@ skills:
   - 1
 ```
 
-Someone asks you what percent of seven footers are in the National Basketball Association (NBA). Can you provide an estimate? Let's try using the normal approximation to answer this question.
+Alguien le pregunta qué porcentaje de jugadores de siete pies hay en la Asociación Nacional de Baloncesto (NBA). ¿Puede proporcionar una estimación? Intentemos usar la aproximación normal para responder esta pregunta.
 
-Given a normal distribution with a mean `mu` and standard deviation `sigma`, you can calculate the proportion of observations less than or equal to a certain `value` with `pnorm(value, mu, sigma)`. Notice that this is the CDF for the normal distribution. We will learn much more about `pnorm` later in the course series, but you can also learn more now with `?pnorm`.
+Dada una distribución normal con una media 'mu' y una desviación estándar 'sigma', puede calcular la proporción de observaciones menores o iguales a un determinado 'valor' con 'pnorm(valor, mu, sigma)'. Observe que este es el CDF para la distribución normal. Aprenderemos mucho más sobre `pnorm` más adelante en la serie de cursos, pero también puede aprender más ahora con `?pnorm`.
 
-First, we will estimate the proportion of adult men that are taller than 7 feet.
+Primero, estimaremos la proporción de hombres adultos que miden más de 7 pies.
 
-Assume that the distribution of adult men in the world as normally distributed with an average of 69 inches and a standard deviation of 3 inches.
+Suponga que la distribución de hombres adultos en el mundo se distribuye normalmente con un promedio de 69 pulgadas y una desviación estándar de 3 pulgadas.
 
 `@instructions`
-- Using the normal approximation, estimate the proportion of adult men that are taller than 7 feet, referred to as _seven footers_. Remember that 1 foot equals 12 inches.
-- Assume that the distribution of adult men in the world is normally distributed with an average of 69 inches and a standard deviation of 3 inches.
-- Use the `pnorm` function. Note that `pnorm` finds the proportion less than or equal to a given value, but you are asked to find the proportion greater than that value.
-- Print out your estimate; don't store it in an object.
+- Usando la aproximación normal, estime la proporción de hombres adultos que miden más de 7 pies, denominados _siete pies_. Recuerda que 1 pie equivale a 12 pulgadas.
+- Suponga que la distribución de hombres adultos en el mundo se distribuye normalmente con un promedio de 69 pulgadas y una desviación estándar de 3 pulgadas.
+- Usa la función `pnorm`. Tenga en cuenta que `pnorm` encuentra la proporción menor o igual a un valor dado, pero se le pide que encuentre la proporción mayor que ese valor.
+- Imprima su presupuesto; no lo almacene en un objeto.
 
 `@hint`
-Use the `pnorm` function. Remember 7 feet is `7*12` inches.
+Utilice la función `pnorm`. Recuerde que 7 pies son `7*12` pulgadas.
 
 `@pre_exercise_code`
 ```{r}
@@ -241,26 +240,26 @@ Use the `pnorm` function. Remember 7 feet is `7*12` inches.
 
 `@sample_code`
 ```{r}
-# use pnorm to calculate the proportion over 7 feet (7*12 inches)
+# Utilice pnorm para calcular la proporción sobre 7 pies (7*12 pulgadas)
 
 ```
 
 `@solution`
 ```{r}
-# use pnorm to calculate the proportion over 7 feet (7*12 inches)
+# Utilice pnorm para calcular la proporción sobre 7 pies (7*12 pulgadas)
 1 - pnorm(7*12, 69, 3)
 ```
 
 `@sct`
 ```{r}
 test_error()
-test_output_contains("2.866516e-07", incorrect_msg = "Make sure you are calculating the right tail of the distribution. `1 - your estimate`")
-success_msg("Great job!")
+test_output_contains("2.866516e-07", incorrect_msg = "Asegúrese de que está calculando la cola derecha de la distribución. `1 - su estimación`")
+success_msg("¡Gran trabajo!")
 ```
 
 ---
 
-## Exercise 5. Estimating the number seven footers
+## Ejercicio 5. Estimando el número de atletas de siete pies de altura
 
 ```yaml
 type: NormalExercise
@@ -271,18 +270,18 @@ skills:
   - 1
 ```
 
-Now we have an approximation for the proportion, call it `p`, of men that are 7 feet tall or taller.
+Ahora tenemos una aproximación para la proporción, llámela `p`, de hombres que miden 7 pies o más.
 
-We know that there are about 1 billion men between the ages of 18 and 40 in the world, the age range for the NBA. 
+Sabemos que hay alrededor de mil millones de hombres entre 18 y 40 años en el mundo, el rango de edad de atletas en la NBA.
 
-Can we use the normal distribution to estimate how many of these 1 billion men are at least seven feet tall?
+¿Podemos usar la distribución normal para estimar cuántos de estos mil millones de hombres miden al menos siete pies de altura?
 
 `@instructions`
-- Use your answer to the previous exercise to estimate the proportion of men that are seven feet tall or taller in the world and store that value as `p`.
-- Then multiply this value by 1 billion (10^9) round the number of 18-40 year old men who are seven feet tall or taller to the nearest integer with `round`. (Do not store this value in an object.)
+- Use su respuesta al ejercicio anterior para estimar la proporción de hombres que miden siete pies o más en el mundo y almacene ese valor como `p`.
+- Luego, multiplique este valor por mil millones (10^9) y redondee el número de hombres de 18 a 40 años que miden siete pies de alto o más al entero más cercano con la función `round`. (No almacene este valor en un objeto).
 
 `@hint`
-Use the `pnorm` function as in the previous exercise, but this time store the output in `p`. When you round, remember that 1 billion is 10^9 and then use the `round` function.
+Usa la función `pnorm` como en el ejercicio anterior, pero esta vez almacene el resultado en `p`. Cuando redondee, recuerde que mil millones es 10^9 y luego use la función  `round`.
 
 `@pre_exercise_code`
 ```{r}
@@ -303,13 +302,13 @@ round(p * 10^9)
 `@sct`
 ```{r}
 test_error()
-test_output_contains("287", incorrect_msg = "Make sure you are rounding to the nearest integer. Try the `round` function.")
-success_msg("Great job! Remember this answer - we will use it in the next exercise.")
+test_output_contains("287", incorrect_msg = "Asegúrese de redondear al entero más cercano. Pruebe la función `round`.")
+success_msg("¡Gran trabajo! Recuerde esta respuesta: la usaremos en el siguiente ejercicio.")
 ```
 
 ---
 
-## Exercise 6. How many seven footers are in the NBA?
+## Ejercicio 6. ¿Cuántos atletas de siete pies de altura hay en la NBA?
 
 ```yaml
 type: NormalExercise
@@ -320,15 +319,15 @@ skills:
   - 1
 ```
 
-There are about 10 National Basketball Association (NBA) players that are 7 feet tall or higher.
+Hay alrededor de 10 jugadores de la Asociación Nacional de Baloncesto (NBA) que miden 7 pies de altura o más.
 
 `@instructions`
-- Use your answer to exercise 4 to estimate the proportion of men that are seven feet tall or taller in the world and store that value as `p`.
-- Use your answer to the previous exercise (exercise 5) to round the number of 18-40 year old men who are seven feet tall or taller to the nearest integer and store that value as `N`. Note that R is case-sensitive, so do not use `n`.
-- Then calculate the proportion of the world's 18 to 40 year old seven footers that are in the NBA. (Do not store this value in an object.)
+- Usa su respuesta al ejercicio 4 para estimar la proporción de hombres que miden siete pies o más en el mundo y almacene ese valor como `p`.
+- Use su respuesta al ejercicio anterior (ejercicio 5) para redondear el número de hombres de 18 a 40 años que miden siete pies o más al entero más cercano y almacene ese valor como `N`. Tenga en cuenta que R distingue entre mayúsculas y minúsculas, así que no use `n`.
+- Luego calcule la proporción de jugadores de siete pies de edad de 18 a 40 años del mundo que están en la NBA. (No almacene este valor en un objeto).
 
 `@hint`
-Use the `pnorm` function as in exercise 4, but this time store the output in `p`. When you round, remember that 1 billion is 10^9 - and store that object in `N`. Use the information given about the number of NBA players to calculate the proportion!
+Usa la función `pnorm` como en el ejercicio 4, pero esta vez almacena la salida en `p`. Cuando redondee, recuerde que mil millones es 10^9, y almacene ese objeto en `N`. ¡Use la información dada sobre el número de jugadores de la NBA para calcular la proporción!
 
 `@pre_exercise_code`
 ```{r}
@@ -350,13 +349,13 @@ N <- round(p * 10^9)
 `@sct`
 ```{r}
 test_error()
-test_output_contains("10/N", incorrect_msg = "Divide the number of NBA 7 footers by your previous answer to get a proportion")
-success_msg("Great job! That's a higher percentage than I would have imagined!")
+test_output_contains("10/N", incorrect_msg = "Divida el número de jugadores de la NBA de 7 pies de altura por su respuesta anterior para obtener una proporción")
+success_msg("¡Gran trabajo! ¡Es un porcentaje más alto de lo que hubiera imaginado!")
 ```
 
 ---
 
-## Exercise 7. Lebron James' height
+## Ejercicio 7. La altura de Lebron James
 
 ```yaml
 type: NormalExercise
@@ -367,7 +366,7 @@ skills:
   - 1
 ```
 
-In the previous exerceise we estimated the proportion of seven footers in the NBA using this simple code:
+En el ejercicio anterior estimamos la proporción de siete pies en la NBA usando este código simple:
 
 ```{r}
 p <- 1 - pnorm(7*12, 69, 3)
@@ -375,14 +374,14 @@ N <- round(p * 10^9)
 10/N
 ```
 
-Repeat the calculations performed in the previous question for Lebron James' height: 6 feet 8 inches. 
-There are about 150 players, instead of 10, that are at least that tall in the NBA.
+Repita los cálculos realizados en la pregunta anterior para la altura de Lebron James: 6 pies y 8 pulgadas.
+Hay alrededor de 150 jugadores, en lugar de 10, que son al menos tan altos en la NBA.
 
 `@instructions`
-Report the estimated proportion of people at least Lebron's height that are in the NBA.
+Indiqué la proporción estimada de personas que están en la NBA de al menos la la misma altura de Lebron.
 
 `@hint`
-Make sure to modify the code for `p` to reflect Lebron James' height and for the final proportion to reflect the number of NBA players at least that tall in the NBA.
+Asegúrese de modificar el código para `p` para reflejar la altura de Lebron James y para que la proporción final refleje la cantidad de jugadores de la NBA que tienen al menos esa altura en la NBA.
 
 `@pre_exercise_code`
 ```{r}
@@ -391,7 +390,7 @@ Make sure to modify the code for `p` to reflect Lebron James' height and for the
 
 `@sample_code`
 ```{r}
-## Change the solution to previous answer
+## Cambié la solución a la respuesta anterior
 p <- 1 - pnorm(7*12, 69, 3)
 N <- round(p * 10^9)
 10/N
@@ -407,14 +406,15 @@ N <- round(p * 10^9)
 `@sct`
 ```{r}
 test_error()
-test_object("p", incorrect_msg = "Make sure the heights are in inches and it represents Lebron's height. The average and standard deviation are the same since it is the same population.")
-test_output_contains("150/N", incorrect_msg = "Did you remember to change the number of people in the NBA that are that height?")
-success_msg("Great job! Is it just harder to get into the NBA if you're not 7 feet tall?")
+test_object("p", incorrect_msg = "Asegúrese de que las alturas estén en pulgadas y represente la altura de Lebron. El promedio y la desviación estándar son iguales ya que es la misma población.")
+
+test_output_contains("150/N", incorrect_msg = "¿Recordó cambiar el número de personas en la NBA que tienen esa altura?")
+success_msg("¡Gran trabajo! ¿Es más difícil ingresar a la NBA si uno no mide 7 pies de altura?")
 ```
 
 ---
 
-## Exercise 8. Interpretation
+## Ejercicio 8. Interpretación
 
 ```yaml
 type: MultipleChoiceExercise
@@ -425,15 +425,15 @@ skills:
   - 1
 ```
 
-In answering the previous questions, we found that it is not at all rare for a seven footer to become an NBA player. 
+Al responder a las preguntas anteriores, descubrimos que no es raro que un jugador de siete pies se convierta en un jugador de la NBA.
 
-What would be a fair critique of our calculations?
+¿Cuál sería una crítica justa de nuestros cálculos?
 
 `@possible_answers`
-- Practice and talent are what make a great basketball player, not height.
-- The normal approximation is not appropriate for heights.
-- As seen in exercise 3, the normal approximation tends to underestimate the extreme values. It's possible that there are more seven footers than we predicted.
-- As seen in exercise 3, the normal approximation tends to overestimate the extreme values. It's possible that there are less seven footers than we predicted.
+- La práctica y el talento son lo que hace a un gran jugador de baloncesto, no la altura.
+- La aproximación normal no es adecuada para alturas.
+- Como se vio en el ejercicio 3, la aproximación normal tiende a subestimar los valores extremos. Es posible que haya más jugadores de siete pies de altura de los que predijimos.
+- Como se vio en el ejercicio 3, la aproximación normal tiende a sobrestimar los valores extremos. Es posible que haya menos jugadores de siete pies de altura de los que predijimos.
 
 `@hint`
 
@@ -445,14 +445,14 @@ What would be a fair critique of our calculations?
 
 `@sct`
 ```{r}
-msg3 = "Correct!  Good Job!"
-msg1 = msg2 = msg4 = "Incorrect. Try again"
+msg3 = "¡Correcto! ¡Buen trabajo!"
+msg1 = msg2 = msg4 = "Incorrecto. Intenté otra vez."
 test_mc(3, c(msg1, msg2, msg3, msg4))
 ```
 
 ---
 
-## End of Assessment: Normal Distribution
+## Fin de la Evaluación: Distribución Normal
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -462,17 +462,17 @@ skills:
   - 1
 ```
 
-This is the end of the programming assignment for this section. Please DO NOT click through to additional assessments from this page. WARNING: if you continue the assessments by clicking on the arrow to get the next exercise or by hitting Ctrl-K your assessments may NOT get scored.
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. ADVERTENCIA: si continúa con las evaluaciones haciendo clic en la flecha para pasar al siguiente ejercicio o presionando Ctrl-K, es posible que sus evaluaciones NO se califiquen.
 
-You can close this window and return to <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Data Science: Visualization</a>.
+Puede cerrar esta ventana y volver a <a href='https://www.edx.org/course/data-science-visualization-harvardx-ph125-2x'>Ciencia de datos: Visualización</a>.
 
 `@hint`
-- No hint necessary!
+- ¡No es necesaria ninguna pista!
 
 `@possible_answers`
 - [Awesome]
-- Nope
+- No
 
 `@feedback`
-- Great! Now navigate back to the course on edX!
-- Now navigate back to the course on edX!
+- ¡Excelente! ¡Ahora vuelva al curso en edX!
+- ¡Ahora vuelva al curso en edX!
