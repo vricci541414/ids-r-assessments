@@ -1,0 +1,225 @@
+---
+title: Trazados Básicos
+description: >-
+  Participaremos en lo básico de hacer trazados en R con gráficos de dispersión, histogramas y
+  diagramas de caja.
+---
+
+## Gráficos de dispersión
+
+```yaml
+type: NormalExercise
+key: c535f6f10b
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Hicimos un trazado de homicidios totales contra población y notamos una relación fuerte: no es sorprendente que los estados con mayor población tengan más homicidios. Puede ejecutar el código en la consola para obtener el trazado.
+
+```{r}
+library(dslabs)
+data(murders)
+
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+
+plot(population_in_millions, total_gun_murders)
+```
+
+Observe que muchos estados tienen poblaciones por debajo de los 5 millones de habitantes y están agrupados en el trazado. Podemos obtener más información al construir este trazado en la escala logarítmica.
+
+`@instructions`
+- Transforme las variables usando la transformación logarítmica en base 10
+- Traze el número de homicidios transformados logarítmicamente contra la población.
+
+`@hint`
+Una vez que defina los objetos `log10_population` y `log10_total_gun_murders` trazas uno contra el otro usando
+`plot(log10_population, log10_total_gun_murders)`
+
+```
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Defina algunas variables (lleve en cuenta que el conjunto de datos ha sido cargado para usted)
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+plot(population_in_millions, total_gun_murders)
+
+# Transforme la población (la población original, sin ajustar, no la población en millones) usando la transformación logarítmica en base 10 y guardela en el objeto log10_population
+
+# Transforme el total de homicidios con arma usando la transformación logarítmica en base 10 y guardela en el objeto log10_total_gun_murders
+
+# Cree un gráfico de dispersión con la población transformada logarítmicamente y los homicidios
+
+```
+
+`@solution`
+```{r}
+# Defina algunas variables (lleve en cuenta que el conjunto de datos ha sido cargado para usted)
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+plot(population_in_millions, total_gun_murders)
+
+# Transforme la población (la población original, sin ajustar, no la población en millones) usando la transformación logarítmica en base 10 y guardela en el objeto log10_population
+log10_population<- log10(murders$population)
+
+# Transforme el total de homicidios con arma usando la transformación logarítmica en base 10 y guardela en el objeto log10_total_gun_murders
+log10_total_gun_murders <- log10(murders$total)
+
+# Cree un gráfico de dispersión con la población transformada logarítmicamente y los homicidios 
+plot(log10_population, log10_total_gun_murders)
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("log10_population", undefined_msg = "Defina log10_population primero.", incorrect_msg = "Está aplicando la transformación logarítmica en base 10 a la variable correcta?")
+test_object("log10_total_gun_murders", undefined_msg = "Defina log10_total_gun_murders primero.", incorrect_msg = "Transforme la variable usando logaritmo en base 10.")
+test_function("plot",args=c("x","y"), incorrect_msg = "Disperse la población contra los homicidios.")
+success_msg("Ese trazado luce mejor!")
+```
+
+---
+
+## Histogramas
+
+```yaml
+type: NormalExercise
+key: 6d782c33a3
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ahora vamos a crear un histograma.
+
+`@instructions`
+- Calcule la población en millones y guardela en el objeto `population_in_millions`
+- Cree un histograma de las poblaciones estatales usando la función `hist`
+
+`@hint`
+
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Almacene la población en millones y guardela en population_in_millions 
+population_in_millions <- murders$population/10^6
+
+
+# Cree un histograma de esta variable
+
+```
+
+`@solution`
+```{r}
+# Almacene la población en millones (igual que en la pregunta anterior)
+population_in_millions <- murders$population/10^6
+
+# Cree un histograma de esta variable
+hist(population_in_millions)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("population_in_millions", undefined_msg = "Primero defina la población.", incorrect_msg = "Revise su código!")
+test_function("hist",args=c("x"), incorrect_msg = "Vuelva a revisar el código.")
+success_msg("Obtuvimos un histograma! Genial!")
+```
+
+---
+
+## Diagramas de caja
+
+```yaml
+type: NormalExercise
+key: 41b5550054
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ahora vamos a crear diagramas de caja. Los diagramas de caja son útiles para cuando queremos un resumen de varias variables o de varios estratos de la misma variable. Crear demasiados diagramas de caja se puede volver demasiado incómodo.
+
+`@instructions`
+En una sola línea de código:
+
+- Estratifique las poblaciones estatales por región.
+- Genere diagramas de caja para los estratos.
+
+Tenga en cuenta que puede lograr esto usando `population~region` dentro de `boxplot` para generar los estratos y especificar el conjunto de datos con el argumento `data` .
+
+`@hint`
+Asegurese de especificar el conjunto de datos. En la función `boxplot` especifique el argumento `data = murders`.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+```
+
+`@sample_code`
+```{r}
+# Cree un diagrama de caja de las poblaciones estatales por región para el conjunto de datos murders
+
+```
+
+`@solution`
+```{r}
+# Cree un diagrama de caja de las poblaciones estatales por región y especifique el conjunto de datos 
+boxplot(population~region, data = murders)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("boxplot",args=c("formula","data"), incorrect_msg = "Revise el código. use ~ sign e incluya el conjunto de datos")
+success_msg("Buen trabajo! Ahora conoce los tres tipos de trazados básicos en R!")
+```
+
+---
+
+## Fin de la evaluación 8
+
+```yaml
+type: PureMultipleChoiceExercise
+key: bd1aeba6dc
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el fin del trabajo asignado de programación de esta sección. Por favor NO avanze a evaluaciones adicionales desde esta página. Por favor SÍ conteste la pregunta en esta página. Si avanza a otra página sin contestar la pregunta, puede que sus resultados NO sean grabados.
+
+Seleccione "Fantastico" para obtener los "puntos" por la pregunta y entonces devuélvase al curso en edX.
+
+Ya puede cerrar esta ventana para volver a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- No hint necessary!
+
+`@possible_answers`
+- [Fantastico]
+- Nope
+
+`@feedback`
+- Fabuloso! Ahora regrese al curso en edX!
+- Ahora regrese al curso en edX!

@@ -1,0 +1,540 @@
+---
+title: Indexación
+description: >-
+  R proporciona una forma poderosa y conveniente de indexar los vectores. Ahora aprenderemos
+  algunas maneras de hacer eso!
+---
+
+## Vectores Lógicos
+
+```yaml
+type: NormalExercise
+key: 010704f684
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Aquí usaremos operadores lógicos para crear un vector lógico.
+
+`@instrucciones`
+- Calcule la tasa de homicidios por cada 100,000 para cada estado y guardela en un objeto llamado `murder_rate`. 
+- Entonces use los operadores lógicos para crear un vector lógic y nómbralo `low`. Este vector nos dirá cuál de las entradas de `murder_rate` son menores de 1, y cuales no lo son, en una sola línea de código.
+
+`@pista`
+El código para calcular la tasa de homicidios es: `murders$total/murders$population*100000`.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde la tasa de homicidios por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total / murders$population * 100000
+
+# Guarde los valores de tasas de homicidio por cada 100,000 que sean menores que 1, `murder_rate < 1`, en el objeto `low` 
+```
+
+`@solution`
+```{r}
+# Guarde la tasa de homicidios por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de tasas de homicidio por cada 100,000 que sean menores que 1, `murder_rate < 1`, en el objeto `low` 
+low <- murder_rate < 1
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("low", undefined_msg = "Define low!", incorrect_msg = "Debe referirse a las tasas de homicidio menores de 1.")
+success_msg("Buen trabajo!")
+```
+
+---
+
+## which
+
+```yaml
+type: NormalExercise
+key: 6830d22730
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+La función `which()` nos ayuda a saber directamente cuales valores son bajos o altos, etc. Usemosla en este ejercicio.
+
+`@instrucciones`
+- Use los resultados del ejercicio anterior y la función `which` para determinar los índices `murder_rate` asociados con los valores menores de 1.
+
+`@pista`
+`which` devolverá los lógicos verdaderos (TRUE) .
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde la tasa de homicidios por cada 100,000 para cada estado, en murder_rate
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de murder_rate < 1 en low 
+low <- murder_rate < 1
+
+# Obtenga los índices de las entradas menores que 1
+
+```
+
+`@solution`
+```{r}
+# Guarde la tasa de homicidios por cada 100,000 para cada estado, en murder_rate
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de murder_rate < 1 en low 
+low <- murder_rate < 1
+
+# Obtenga los índices de las entradas menores que 1
+which(low)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("which(low)", incorrect_msg = "Make sure you use `which` on the correct logical vector!")
+test_function("which", incorrect_msg = "Use the command from the instructions.")
+success_msg("Awesome!")
+```
+
+---
+
+## Ordenando vectores
+
+```yaml
+type: NormalExercise
+key: d40747abe4
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Note que si queremos saber cuales entradas de un vector son menores que un valor particular podemos utilizar código como el siguiente:
+
+```{r}
+small <- murders$population < 1000000
+murders$state[small]
+```
+
+El código de arriba nos muestra los estados con poblaciones menores que un millón.
+
+`@instrucciones`
+- Use los resultados del ejercicio anterior para reportar los nombres de los estados con tasas de homicidio menores que 1, usando los corchetes cuadrados para obtener los nombres de los estados del conjunto de datos.
+
+`@pista`
+
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(dslabs)
+```
+
+`@sample_code`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en murder_rate
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de murder_rate < 1 en low
+low <- murder_rate < 1
+
+# Nombres de estados con tasas de homicidio menores que 1
+
+```
+
+`@solution`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de `murder_rate` < 1 en `low` 
+low <- murder_rate < 1
+
+# Nombres de estados con tasas de homicidio menores que 1
+murders$state[low]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("murders$state[low]", incorrect_msg = "Siga el código del ejemplo!")
+success_msg("Buen trabajo!")
+```
+
+---
+
+## Filtrando
+
+```yaml
+type: NormalExercise
+key: 68370abd10
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+
+
+`@instrucciones`
+Ahora usaremos el código de los ejercicios anteriores to report the states para reportar los estados en el noreste con una tasa de homicidio menor que 1.
+- Defina `low` como lo hizo anteriormente.
+- Use el operador `&` para crear un nuevo objeto `ind` que sea verdadero cuando `low` es verdad y el estado está localizado en el noreste.
+- Use los corchetes `[` y `ind` para nombrar los nombres de los estados que satisfacen esta condición.
+
+`@pista`
+Use el vector lógico `low` anteriormente definido y el operador lógico `&`. Para estados con poblaciones con menos de un millón lucirá así: 
+
+```{r}
+ind <- low & murders$population < 1000000
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de `murder_rate` < 1 en `low` 
+low <- murder_rate < 1
+
+# Cree un vector ind para estados localizados en el noreste y con tasas de homicidio menores que 1. 
+
+# Nombres de estados `ind` 
+
+```
+
+`@solution`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+# Guarde los valores de `murder_rate` < 1 en `low` 
+low <- murder_rate < 1
+
+# Estados localizados en el noreste con tasas de homicidio menores que 1; guarde en 'ind'
+ind <- low & murders$region=="Northeast"
+
+# Nombres de estados `ind`
+murders$state[ind]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("murder_rate", undefined_msg = "Defina murder rate", incorrect_msg = "No cambie nada, solo corra el código.")
+test_object("low", undefined_msg = "Defina low!", incorrect_msg = "Lo mismo que el ejercicio anterior.")
+test_object("ind", undefined_msg = "Asegúrese de definir ind primero!", incorrect_msg = 'Use el código ind <- low & murders$region=="Northeast".')
+test_output_contains("murders$state[ind]", incorrect_msg = "Use [] para obtener los nombres.")
+success_msg("Eso estuvo fenomenal! Sigamos con el próximo ejercicio.")
+```
+
+---
+
+## Filtrando, a continuación
+
+```yaml
+type: NormalExercise
+key: 11c3753c9c
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+
+
+`@instrucciones`
+En un ejercicio anterior calculamos la tasa de homicidio para cada estado y el promedio de estos valores.
+- Cuantos estados quedan por debajo del promedio?
+
+`@pista`
+
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+
+# Calcule la tasa promedio de homicidio usando `mean` y guárdela en el objeto llamado `avg`
+
+
+# Cuantos estados tienen tasas de homicidio por debajo de avg ? Compruebe esto usando sum 
+
+```
+
+`@solution`
+```{r}
+# Guarde la tasa de homicidio por cada 100,000 para cada estado, en `murder_rate`
+murder_rate <- murders$total/murders$population*100000
+
+# Calcule la tasa promedio de homicidio usando `mean` y guárdela en el objeto llamado `avg`
+avg <-mean(murder_rate)
+
+# Cuantos estados tienen tasas de homicidio por debajo de avg ? Compruebe esto usando sum 
+sum(murder_rate < avg)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("murder_rate", undefined_msg = "Primero defina murder rate !", incorrect_msg = "La misma formula de antes.")
+test_object("avg", undefined_msg = "", incorrect_msg = "Calcule el promedio y guárdelo aquí.")
+test_function("sum", incorrect_msg = "Compruebe el número de estados con una tasa de homicidio por debajo del promedio.")
+test_output_contains("27", incorrect_msg = "Contaste el número de estados con una tasa de homicidios por debajo de `avg`?")
+success_msg("Fantástico!")
+```
+
+---
+
+## Match
+
+```yaml
+type: NormalExercise
+key: 26843a3448
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+En este ejercicio usamos la función `match` para identificar los estados con las abreviaturas AK, MI, and IA.
+
+`@instrucciones`
+- Define un vector de caracteres con las abreviaturas.
+- Comience definiendo un índice de las entradas de `murders$abb` que correspondan a las tres abreviaturas.
+- Use el operador `[` para extraer los estados.
+
+`@pista`
+Una vez que defina `abbs <- c("AK", "MI", "IA")` puede usar match para averiguar los índices a los cuales corresponden con `ind <- match(abbs , murders$abb)`
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde las 3 abreviaturas en un vector llamado `abbs` (recuerde que son vectores de caracteres y requieren comillas)
+
+# Coordine los abbs a los murders$abb y guárdelo en ind
+
+# Imprima de ind los nombres de los estados
+
+```
+
+`@solution`
+```{r}
+# Guarde las 3 abreviaturas en un vector llamado `abbs` (recuerde que son vectores de caracteres y requieren comillas)
+abbs <- c("AK", "MI", "IA")
+
+# Coordine los abbs a los murders$abb y guárdelo en `ind`
+ind <- match(abbs , murders$abb)
+
+# Imprima de `ind` los nombres de los estados
+murders$state[ind]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("abbs", undefined_msg = "Defina abbs!", incorrect_msg = "Revise las abreviaturas guardadas.")
+test_object("ind", undefined_msg = "Defina ind!", incorrect_msg = "Asegúrese de utilizar la función match ")
+test_output_contains("murders$state[ind]", incorrect_msg = "Use corchetes.")
+success_msg("Excelente!")
+```
+
+---
+
+## %in%
+
+```yaml
+type: NormalExercise
+key: 8f682dcf90
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Si en vez de un índice queremos un logico que nos diga si cada elemento de un primer vector se encuentra en un segundo vector, podemos usar la función `%in%`.
+Por ejemplo: 
+
+```{r}
+x <- c(2, 3, 5)
+y <- c(1, 2, 3, 4)
+x%in%y
+```
+Nos devuelve dos verdaderos (`TRUE`) seguidos por un falso (`FALSE`) porque el 2 y el 3 se encuentran en `y` pero el 5 no.
+
+`@instrucciones`
+Cuál de las siguientes son abreviaturas reales: MA, ME, MI, MO, MU?
+- Defina un vector de caracteres con las abreviaturas MA, ME, MI, MO, MU.
+- Use el operador `%in%` para crear un vector lógico que sea verdadero (TRUE) cuando la abreviatura se encuentra en `murders$abb`.
+
+`@pinta`
+Observe lo que devuelve este código: 
+```{r}
+states <- c("New York", "Houston")
+states%in%murders$state 
+```
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde las 5 abreviatures en `abbs`. (recuerde que son vectores de caracteres)
+
+
+# Use la función %in% para comprobar si las entradas de abbs son abreviaturas en el data frame de homicidios
+
+```
+
+`@solution`
+```{r}
+# Guarde las 5 abreviatures en `abbs`. (recuerde que son vectores de caracteres)
+abbs <- c("MA", "ME", "MI", "MO", "MU") 
+
+# Use la función %in% para comprobar si las entradas de abbs son abreviaturas en el data frame de homicidios
+abbs%in%murders$abb
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("abbs", undefined_msg = "Defina abbs!", incorrect_msg = "Asegúrese de guardar las 5 abreviaturas en abbs.")
+test_output_contains("abbs%in%murders$abb", incorrect_msg = "Revise el código. ")
+success_msg("Buen trabajo!")
+```
+
+---
+
+## Operador lógico
+
+```yaml
+type: NormalExercise
+key: bad79337d1
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+
+
+`@instrucciones`
+Volvemos a trabajar con los caracteres `abbs <- c("MA", "ME", "MI", "MO", "MU")`
+
+- Anteriormente calculamos el índice `abbs%in%murders$abb`. Basado en eso, y usando la función `which` y el operador `!` , obtenga el índice de las entradas de `abbs` que **no son**  abreviaturas.
+- Muestre las entradas de `abbs` que no son abreviaturas reales.
+
+`@pista`
+Use el código `ind <- which(!abbs%in%murders$abb)` para obtener el índice. Entonces puede usar el corchete `[` para extraer los valores correctos de `abbs`.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde las 5 abreviaturas en abbs. (recuerde que son vectores de caracteres)
+abbs <- c("MA", "ME", "MI", "MO", "MU") 
+
+# Use la función `which` y el operador `!` para averiguar cuál de las abreviaturas indexadas no forman parte del conjunto de datos y guardalas en `ind`
+
+# Identifica las abreviaturas de `abbs` que estan en `ind`
+
+```
+
+`@solution`
+```{r}
+# Guarde las 5 abreviaturas en abbs. (recuerde que son vectores de caracteres)
+abbs <- c("MA", "ME", "MI", "MO", "MU") 
+
+# Use la función `which` y el operador `!` para averiguar cuál de las abreviaturas indexadas no forman parte del conjunto de datos y guardalas en `ind` 
+ind <- which(!abbs%in%murders$abb)
+
+# Identifica las abreviaturas de `abbs` que estan en `ind`
+abbs[ind]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("ind", undefined_msg = "Asegúrese que defina a ind primero!", incorrect_msg = "Use la función which y el operador ! ." )
+test_output_contains("abbs[ind]", incorrect_msg = "Revise la manera de la que está accediendo a las abreviaturas.")
+success_msg("Awesome!")
+```
+
+---
+
+## Fin de la Evaluación 6
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 693e3e8928
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el fin del trabajo de programación para esta sección. Por favor NO continue a evaluaciones adicionales desde esta página. Por favor SI conteste la pregunta en esta página. Si continua a otras evaluaciones, puede que su resultado NO sea grabado.
+
+Seleccione "Asombroso" para obtener los "puntos" por esta pregunta y entonces regrese al curso en edX.
+
+Ya puede cerrar esta ventana para volver al <a href='https://www.edx.org/course/data-science-r-basics-2'>curso</a>.
+
+`@pista`
+- Ninguna pista es necesaria!
+
+`@possible_answers`
+- [Asombroso]
+- No
+
+`@feedback`
+- Fabuloso! Ahora regrese al curso en edX!
+- Ahora regrese al curso en edX!

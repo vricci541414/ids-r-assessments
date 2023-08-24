@@ -1,0 +1,298 @@
+---
+title: "Fundamentos de R"
+description: En este curso, le presentamos los conceptos básicos de la computación y el análisis de datos en la interfaz útil y fácil de usar de R. Este primer capítulo comienza con los conceptos básicos de funciones, objetos para familiarizarnos con el mundo de R.
+free_preview: yes
+---
+
+## Usando variables 1
+
+```yaml
+type: NormalExercise
+key: 0cec712ce0
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Vamos a usar la fórmula $ n(n+1)/2 $ para calcular rápidamente la suma de los primeros $n$ enteros positivos, sin sumarlos individualmente.
+
+`@instructions`
+- Defina `n<-100`
+- Escriba código para calcular la suma de los primeros $n$ enteros (en este caso, los enteros del 1 al 100) usando la fórmula $ n(n+1)/2$
+- Asegúrese de no borrar o cambiar el código de muestra en los ejercicios de DataCamp
+
+`@hint`
+- Defina `n` para que sea 100 en una línea y simplemente escriba la fórmula usando el código R en la segunda línea.
+- Recuerde que en R se multiplica usando `*`.
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# Así es como se calcula la suma de los primeros 20 enteros
+20*(20+1)/2 
+
+# Sin embargo, podemos definir una variable para usar la fórmula para otros valores de n
+n <- 20
+n*(n+1)/2
+
+n <- 25
+n*(n+1)/2
+
+# A continuación, escriba el código para calcular la suma de los primeros 100 enteros
+
+```
+
+`@solution`
+```{r}
+# Así es como se calcula la suma de los primeros 20 enteros
+20*(20+1)/2 
+
+# Sin embargo, podemos definir una variable para usar la fórmula para otros valores de n
+n <- 20
+n*(n+1)/2
+
+n <- 25
+n*(n+1)/2
+
+# A continuación, escriba el código para calcular la suma de los primeros 100 enteros
+n <- 100
+n*(n+1)/2
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("n", incorrect_msg = "Asegúrese de usar `n` como el nombre de variable y de haber asignado el valor correcto a `n`.")
+test_output_contains("5050", incorrect_msg = "No está proporcionando una fórmula que dé la respuesta correcta. Mire el código de ejemplo.")
+success_msg("¡Buen trabajo! Apliquemos esto a otra pregunta.")
+```
+
+---
+
+## Usando variables 2
+
+```yaml
+type: NormalExercise
+key: 213f198401
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+¿Cuál es la suma de los primeros 1000 enteros positivos?
+
+Podemos usar la fórmula $ n(n+1)/2 $ para calcular rápidamente esta cantidad.
+
+`@instructions`
+- Use la misma fórmula que en el último ejercicio pero cambie el valor de `n`. Asegúrese de usar el nombre de variable `n` para almacenar el valor 1000.
+- En lugar de escribir el resultado, use la fórmula y la variable definida.
+
+`@hint`
+Use el mismo código R que usó en la primera pregunta después de cambiar el valor de `n`.
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# A continuación, escriba el código para calcular la suma de los primeros 1000 enteros
+
+```
+
+`@solution`
+```{r}
+# A continuación, escriba el código para calcular la suma de los primeros 1000 enteros
+n <- 1000
+n*(n+1)/2
+```
+
+`@sct`
+```{r}
+test_object("n", incorrect_msg = "Asegúrese de usar `n` como el nombre de variable y de haber asignado el valor correcto a `n`.")
+test_output_contains("500500", incorrect_msg = "No está proporcionando una fórmula que dé la respuesta correcta. Compara su código con la pregunta anterior.")
+success_msg("¡Buen trabajo! ¡Vamos a trabajar en otra pregunta!")
+```
+
+---
+
+## Funciones
+
+```yaml
+type: MultipleChoiceExercise
+key: 0e2a0ce37a
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Ejecute el siguiente código en la consola R:
+
+```
+n <- 1000
+x <- seq(1,n)
+sum(x)
+```
+
+Según el resultado, ¿qué cree que hacen las funciones `seq` y `sum`? Puede utilizar el sistema de ayuda.
+
+`@possible_answers`
+- sum crea una lista de números y seq los suma.
+- seq crea una lista de números y sum los suma.
+- seq calcula la diferencia entre dos argumentos y sum calcula la suma de 1 a 1000.
+- sum siempre devuelve el mismo número
+
+`@hint`
+Vaya a la consola R y escriba `seq(1,5)`. Mire lo que obtiene. Luego vaya a la consola R nuevamente y escriba `sum (seq (1,5))`. Cambie el `5` a otros números.
+También puede escribir `?` antes de una función para obtener ayuda.
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sct`
+```{r}
+msg1 = "¡Inténtelo de nuevo! Lea atentamente las opciones. Inténtelo de nuevo."
+msg2 = "Bien hecho. Continúe con el siguiente ejercicio."
+msg3 = "No hay ninguna especificación de 1 a 1000 para la suma. Inténtalo de nuevo."
+msg4 = "Lea el archivo de ayuda de sum escribiendo `?sum` en la consola R."
+test_mc(correct = 2, feedback_msgs = c(msg1,msg2,msg3,msg4))
+```
+
+---
+
+## Funciones anidads 1
+
+```yaml
+type: NormalExercise
+key: 7df9567ad1
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+En matemáticas y programación decimos que evaluamos una función cuando reemplazamos argumentos con valores específicos. Así que si escribimos `log2(16)` evaluamos la función `log2` para obtener el logaritmo base 2 de `16` que es `4`.
+
+En R suele ser útil evaluar una función dentro de otra función.
+Por ejemplo, `sqrt(log2(16))` calculará el logaritmo en base 2 de 16 y luego calculará la raíz cuadrada de ese valor.
+Así que la primera evaluación da un 4 y esto es evaluado por `sqrt` para dar la respuesta final de 2.
+
+`@instructions`
+- Utilice una línea de código para calcular el logaritmo, en base 10, de la raíz cuadrada de 100.
+- Asegúrese de que su código incluya las funciones `log10` y `sqrt`.
+
+`@hint`
+La llamada a la función `log10` debería ser el argumento de la función `sqrt`.
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# logaritmo en base 2
+log2(16)
+
+# raíz cuadrada (sqrt) del logaritmo a la base 2 de 16:
+sqrt(log2(16))
+
+# Calcule log en base 10 (log10) de la raíz cuadrada de 100. No use variables.
+```
+
+`@solution`
+```{r}
+# logaritmo en base 2
+log2(16)
+
+# raíz cuadrada (sqrt) del logaritmo a la base 2 de 16:
+sqrt(log2(16))
+
+# Calcule log en base 10 (log10) de la raíz cuadrada de 100. No use variables.
+log10(sqrt(100))
+```
+
+`@sct`
+```{r}
+test_error() 
+test_output_contains("log10(sqrt(100))", incorrect_msg = "Asegúrese de usar la base correcta para el log y coloque la función sqrt dentro de la función log.")
+success_msg("¡Muy bien!")
+```
+
+---
+
+## Funciones anadidas 2 (Nested functions call 2)
+
+```yaml
+type: MultipleChoiceExercise
+key: b755d1a929
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+¿Cuál de los siguientes siempre devolverá el valor numérico almacenado en `x`? Puede probar ejemplos y usar el sistema de ayuda en la consola R.
+
+`@possible_answers`
+- `log(10^x)`
+- `log10(x^10)`
+- `log(exp(x))`
+- `exp(log(x, base = 2))`
+
+`@hint`
+Esta buscando el caso en el que una función y su inversa se llaman secuencialmente. También puede probar cada uno en la consola: asigne un valor numérico a `x` y luego pruebe cada una de las líneas de código dadas en las opciones.
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sct`
+```{r}
+msg1 = "¡Inténtalo de nuevo! Tenga en cuenta que `log(10^1)` no es 1 sino el logaritmo natural de 10."
+msg2 = "¡Inténtelo de nuevo! Tenga en cuenta que `log(1^10)` es 0, no 1."
+msg3 = "Bien hecho. Continúe con el siguiente ejercicio."
+msg4 = "¡Inténtelo de nuevo! Tenga en cuenta que `exp(log(2, base = 2)` es 0, no 2."
+test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
+```
+
+---
+
+## Fin de la Evaluación 1
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 5d1f828748
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el final de la asignación de programación para esta sección. Por favor NO haga clic para acceder a evaluaciones adicionales desde esta página. Por favor, RESPONDA la pregunta en esta página. Si hace clic, es posible que NO se registren sus puntajes.
+
+Haga clic en "Impresionante" para obtener los "puntos" de esta pregunta y luego regrese al curso en edX.
+
+Ahora puede cerrar esta ventana para volver a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- ¡No es necesaria ninguna pista!
+
+`@possible_answers`
+- [Impresionante]
+- No
+
+`@feedback`
+- ¡Excelente! ¡Ahora vuelva al curso en edX!
+- ¡Ahora vuelva al curso en edX!

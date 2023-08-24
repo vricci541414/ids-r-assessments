@@ -1,0 +1,225 @@
+---
+title: Aritmética de Vectores
+description: >-
+  Aprenderemos cuáles son las funciones aritméticas más poderosas en R, las cuales nos ayudarán a resolver problemas más complicados. 
+---
+
+## Operaciones Aritméticas con Vectores
+
+```yaml
+type: NormalExercise
+key: 496010199b
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Previamente creamos el marco de datos:
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+```
+
+`@instructions`
+Estamos interesados en especificar grados Celsius en lugar de grados Fahrenheit. Recuerde que para convertir de Fahrenheit a Celsius utilizamos $C = 5/9 \times (F-32)$.
+
+- Use el vector aritmético para convertir `temp` a Celsius
+- Genere un marco de datos llamado `city_temps` con los nombres de las ciudades y las temperaturas en Celsius. 
+
+`@hint`
+Para sustraer una constante `a` a cada entrada de un vector `x` y luego multiplicar cada uno por `b` use `(x-a)*b`
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# Asigne los nombres de las ciudades a `city` 
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Guarde los valores de las temperaturas en `temp`
+temp <- c(35, 88, 42, 84, 81, 30)
+
+# Convierta la temperatura a Celsius y reescriba los valores originales de 'temp' con los valores Celsius 
+
+# Genere un marco de datos `city_temps` 
+
+```
+
+`@solution`
+```{r}
+# Asigne los nombres de las ciudades a `city` 
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Guarde los valores de las temperaturas en `temp`
+temp <- c(35, 88, 42, 84, 81, 30)
+
+# Convierta la temperatura a Celsius y reescriba los valores originales de 'temp' con los valores Celsius 
+temp <- (temp - 32)*5/9
+
+# Genere un marco de datos `city_temps` 
+city_temps <- data.frame(name = city, temperature = temp)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("temp", incorrect_msg = "Convierta de Fahrenheit a Celsius usando `temp <- (temp - 32)*5/9`.")
+test_object("city", incorrect_msg = "Guarde los nombres de las ciudades.")
+test_object("city_temps", incorrect_msg = "Genere un marco de datos siguiendo el ejemplo mismo.")
+success_msg("¡Buen trabajo!")
+```
+
+---
+
+## Operaciones Aritméticas con Vectores, continuación...
+
+```yaml
+type: NormalExercise
+key: 657f51ea05
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ahora podemos usar algo e lo que hemos aprendido para realizar operaciones que de otra manera serían muy complicadas. Veamos un ejemplo.
+
+`@instructions`
+¿Cuál es la suma de la siguiente ecuación: `1 + 1/2^2 + 1/3^2 + ... + 1/100^2`? Gracias a Euler sabemos que debe ser cercana a $\pi^2/6$. 
+
+- Defina un objeto `x` que contenga los números del 1 al 100
+- Calcule la suma `1 + 1/2^2 + 1/3^2 + ... + 1/100^2`.
+
+`@hint`
+Recuerde que pueden utilizar aritméticas con vectores para obtener la serie usando `1/x^2`. Puede simplemente sumar estos vectores. 
+
+`@pre_exercise_code`
+```{r}
+# no pec 
+```
+
+`@sample_code`
+```{r}
+# Defina un objeto `x` con los números del 1 hasta el 100
+
+# Calcule la suma
+
+```
+
+`@solution`
+```{r}
+# Defina un objeto `x` con los números del 1 hasta el 100
+x <- seq(1, 100)
+
+# Calcule la suma
+sum(1/x^2) 
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("x", undefined_msg = "¡Defina x primero!", incorrect_msg = "Use el comando sequence para guardar 1,100 en x.")
+test_function("sum", incorrect_msg = "Use el código proveído en las instrucciones.")
+test_output_contains("sum(1/x^2)")
+success_msg("¡Buen trabajo!")
+```
+
+---
+
+## Operaciones Aritméticas con Vectores, continuación...
+
+```yaml
+type: NormalExercise
+key: e5215311fc
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+
+
+`@instructions`
+- Calcule la tasa de homicidios por 100,000 para cada estado y guárdelo en un objeto llamado `murder_rate`. 
+- Luego, calcule el promedio de las tasas de homicidios para EUA utilizando la función `mean`. ¿Cuál es el promedio?
+
+`@hint`
+Puede utilizar aritmética con vectores para calcular la tasa. Si `tot` contiene el total de homicidios y `pop` tiene la población para cada estado, entonces `tot/pop*100000` tiene la tasa de cada estado. Luego, simplemente puede calcular el promedio utilizando `mean`.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Cargue la base de datos
+library(dslabs)
+data(murders)
+
+# Guarde la tasa de homicidios por 100,000 para cada estado en murder_rate
+
+# Calcule el promedio de tasa de homicidios para EUA 
+
+```
+
+`@solution`
+```{r}
+# Cargue la base de datos
+library(dslabs)
+data(murders)
+
+# Guarde la tasa de homicidios por 100,000 para cada estado en murder_rate
+murder_rate <- murders$total/murders$population*100000
+
+# Calcule el promedio de tasa de homicidios para EUA
+mean(murder_rate)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("murder_rate", incorrect_msg = "La tasa de homicidios es incorrecta. Asegúrese de calcular el resultado por 100,000.")
+test_function("mean", incorrect_msg = "¿Olvidó el promedio de la tasa de homicidios?")
+test_output_contains("mean(murder_rate)",incorrect_msg = "Asegúrese de multiplicar el resultado por 100,000.")
+success_msg("¡Maravilloso!")
+```
+
+---
+
+## Fin de la Evaluación 5
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 9831da4a5f
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el final de la evaluación de programación para esta sección. Por favor no seleccione las evaluaciones adicionales de esta página. Por favor conteste la pregunta en esta página. Si selecciona más, sus calificaciones pudieran no ser registradas. 
+
+Haga click en "Impresionante" para obtener los "puntos" para esta pregunta y luego regrese al curso en edX. .
+
+Ahora puede cerrar esta ventana y regresar a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- ¡No se necesita pista!
+
+`@possible_answers`
+- [Impresionante]
+- Nope
+
+`@feedback`
+- ¡Grandioso! ¡Ahora regrese al curso en edX!
+- ¡Ahora puede regresar al curso en edX!

@@ -1,0 +1,841 @@
+---
+title: Vectores
+description: >-
+  La unidad más básica para guardar datos en R son los vectores. Aprenderemos sobre crear y trabajar con ellos en este capítulo. 
+---
+
+## Vectores Numéricos
+
+```yaml
+type: NormalExercise
+key: eb99436e3b
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Un vector es una serie de valores, todos del mismo tipo. Son la unidad más básica de datos en R y pueden guardar datos numéricos, caracteres o lógicos. En R, puedes crear un vector con la función de concatenar (o combinar) `c()`. Usted escribe los elementos del vector separado por una coma entre el paréntesis. Por ejemplo, un vector numérico se ve de la siguiente manera: 
+
+```{r}
+cost <- c(50, 75, 90, 100, 150)
+```
+
+`@instructions`
+Utilice la función `c()` para crear un vector numérico con el promedio de las temperaturas más altas en enero para Beijing, Lagos, Paris, Rio de Janeiro, San Juan, y Toronto.
+Las temperaturas promedio más altas son `35, 88, 42, 84, 81, and 30` grados  Fahrenheit. Llame al objeto `temp`.
+
+`@hint`
+Asegúrese que sus números se encuentren entre paréntesis y tengan comas separándolos. 
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# Aquí hay un ejemplo sobre cómo crear un vector numérico llamado cost 
+cost <- c(50, 75, 90, 100, 150)
+
+# Cree un vector numérico para guardar las temperaturas listadas en las instrucciones en un vector llamado temp
+# Asegúrese de seguir el mismo orden en las instrucciones 
+
+```
+
+`@solution`
+```{r}
+# Aquí se encuentra un ejemplo de un vector numérico llamado cost 
+cost <- c(50, 75, 90, 100, 150)
+
+# Cree un vector numérico para guardar las temperaturas listadas en las instrucciones en un vector llamado temp
+# Asegúrese de seguir el mismo orden que en las instrucciones 
+temp <- c(35, 88, 42, 84, 81, 30)
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("temp", incorrect_msg = "Asegúrese que los números que escribió sean los mismos que los números en las instrucciones.")
+success_msg("¡Buen trabajo! ¿Quiere intentar ahora crear un vector de caracteres?")
+```
+
+---
+
+## Vectores de caracteres
+
+```yaml
+type: NormalExercise
+key: a99d0bbace
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Como en la pregunta previa, vamos a crear un vector. Solamente que esta vez, aprenderemos a crear vectores de *caracteres*. La diferencia principal es que estos tienen que ser escritos en hileras y que los nombres estén entre comillas. 
+
+Un vector de *caracteres* se vería como algo así: 
+
+```{r}
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+```
+
+`@instructions`
+Las temperaturas que guardamos en `temp` son de las ciudades de Beijing, Lagos, Paris, Rio de Janeiro, San Juan, y Toronto.
+- Cree un vector con el nombre de estas ciudades y llame al objeto `city`. ¡Asegúrese de usar el orden correcto, ortografía y el uso de mayúsculas! 
+- (También noten que Ed no es compatible con la puntuación utilizada en Ipad o teléfonos celulares. Complete los ejercicios de Ed en una computadora para evitar que algunas respuestas que son correctas sean rechazadas).
+
+`@hint`
+Asegúrese de anotar los nombres entre comillas. 
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# aquí hay un ejemplo de como crear un vector de caracteres 
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+
+# Genere un vector de caracteres llamado city (ciudad) para guardar los nombres de las ciudades 
+# Asegúrese de seguir el mismo orden que en las instrucciones
+
+```
+
+`@solution`
+```{r}
+# aquí hay un ejemplo de como crear un vector de caracteres
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+
+# Genere un vector de caracteres llamado city (ciudad) para guardar los nombres de las ciudades 
+# Asegúrese de seguir el mismo orden que en las instrucciones
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("city", incorrect_msg = "Asegúrese de usar el orden correcto y la ortografía.",undefined_msg = "Cada nombre de ciudad necesita estar entre comillas.")
+success_msg("¡Fabuloso! Ahora han aprendido a guardar ambos vectores numéricos y de caracteres.")
+
+```
+
+---
+
+## Conectando los Vectores Numéricos y de Caracteres 
+
+```yaml
+type: NormalExercise
+key: 62bba83b36
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ya hemos asignado las temperaturas como valores *numéricos* a `temp` y los nombres de las ciudades como valores de *caracteres* a `city`. Sin embargo, ¿podemos asociar la temperatura a la ciudad que pertenece? ¡Sí! Podemos hacerlo utilizando un código que ya conocemos - `names`. Asignamos nombres a los valores *numéricos*.  
+
+Se vería de la siguiente manera: 
+
+```{r}
+cost <- c(50, 75, 90, 100, 150)
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+names(cost) <- food
+```
+
+`@instructions`
+Utilice la función `names` y los objetos definidos en los ejercicios previos para asociar los datos de la temperatura con su ciudad correspondiente. 
+(Pueden regresar a las preguntas previas y copiar los objetos guardados.) Nota: para ver lo que sucedió, después de asignar los nombres de la ciudad al vector de las temperaturas (temp), intente imprimir el vector temp para entender cómo los nombres han sido asociados con los elementos de temp.
+
+`@hint`
+Asigne los nombres a los valores numéricos. 
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# Asocie los valores de costo a su alimento correspondiente 
+cost <- c(50, 75, 90, 100, 150)
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+names(cost) <- food
+
+# Ya escribieron este código previamente
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Asocie los valores de las temperaturas con su ciudad correspondiente 
+
+```
+
+`@solution`
+```{r}
+# Asocie los valores de costo a su alimento correspondiente 
+cost <- c(50, 75, 90, 100, 150)
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+names(cost) <- food
+
+# Ya escribieron este código previamente
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Asocie los valores de las temperaturas con su ciudad correspondiente 
+names(temp) <- city
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("temp", incorrect_msg = "¡Revise que los números coincidan con los de la pregunta!")
+test_function("names",index=2,incorrect_msg = "El vector numérico debe ir entre paréntesis. Además, no elimine el código de muestra.") 
+test_student_typed("names(temp)<-city", not_typed_msg = "Queremos que usted asigne los nombres guardados en `city` utilizando la función names. Recuerde además utilizar `<-` en lugar de `=`.")
+success_msg("¡Buen trabajo! Ahora sabemos las temperaturas de sus respectivas ciudades.")
+```
+
+---
+
+## Subconjuntos de Vectores
+
+```yaml
+type: NormalExercise
+key: b9d09364f0
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Si quieren mostrar solamente valores seleccionados de un objeto, R puede ayudarnos a hacerlo fácilmente. . 
+
+Por ejemplo, si queremos ver el costo de los últimos tres productos en nuestra lista de comida, escribimos: 
+
+```{r}
+cost[3:5]
+```
+
+Fíjese aquí que también podríamos escribir `cost[c(3,4,5)]` y obtener el mismo resultado. 
+El operador `:` nos ayuda a condensar el código y obtener valores consecutivos. 
+
+`@instructions`
+Aprenderemos a crear subconjuntos utilizando diferentes operadores especiales. 
+- Utilice los operadores `[` y `:` para acceder a la temperatura de las primeras tres ciudades en la lista, las cuales están ya almacenadas en `temp`.
+
+`@hint`
+los corchetes (`[`) y `:` son importantes en esto. 
+
+`@pre_exercise_code`
+```{r}
+cost <- c(50, 75, 90, 100, 150)
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+names(cost) <- food
+
+temp <- c(35, 88, 42, 84, 81, 30) 
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+names(temp) <- city
+
+```
+
+`@sample_code`
+```{r}
+# costo de los 3 últimos elementos de nuestra lista de alimentos:  
+cost[3:5]
+
+# temperaturas de las primeras tres ciudades en la lista: 
+```
+
+`@solution`
+```{r}
+# costo de los 3 últimos elementos de nuestra lista de alimentos:
+cost[3:5]
+
+# temperaturas de las primeras tres ciudades en la lista:
+temp[1:3]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("temp[1:3]", incorrect_msg = "Los corchetes y los dos puntos son operadores esenciales para este comando.")
+test_student_typed(c("temp[1:3]", "temp[c(1,2,3)]", "temp[seq(1,3)]"), not_typed_msg = "Recuerde utilizar los corchetes `[` y `]`. Además dentro de los corchetes debe tener un vector con las entradas 1, 2 y 3 los cuales puede generar con `:`, `c` o `seq`")
+success_msg("¡Fabuloso! Ha aprendido a hacer su trabajo más fácil. Pero asegúrese de mantenerlo simple.")
+```
+
+---
+
+## Subconjuntos de Vectores continuación...
+
+```yaml
+type: NormalExercise
+key: 16e3329348
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+En la pregunta anterior, accesamos a la temperatura de ciudades consecutivas (las primeras tres). Pero, ¿qué sucede si queremos acceder a la temperatura de dos ciudades en específico? 
+
+Por ejemplo:
+Para acceder al costo de `pizza` (primer elemento) y `pasta` (quinto elemento) en nuestra lista, el código sería: 
+ 
+```{r}
+cost[c(1,5)]
+```
+
+`@instructions`
+Esta vez accederemos nuestro objeto utilizando solamente el operador `[`.
+Utilice el operador `[` para acceder a la temperatura de Paris y San Juan que ya están guardadas en el objeto `temp`.
+
+`@hint`
+No olvide la función para combinar, `c()`.
+
+`@pre_exercise_code`
+```{r}
+cost <- c(50, 75, 90, 100, 150)
+food <- c("pizza", "burgers", "salads", "cheese", "pasta")
+names(cost) <- food
+
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+names(temp) <- city
+```
+
+`@sample_code`
+```{r}
+# Acceda al costo de la pizza y la pasta de nuestra lista 
+cost[c(1,5)]
+
+# Defina temp
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+names(temp) <- city
+
+# Acceda a las temperaturas de Paris y San Juan
+
+```
+
+`@solution`
+```{r}
+# Acceda al costo de la pizza y la pasta de nuestra lista 
+cost[c(1,5)]
+
+# Defina temp
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+names(temp) <- city
+
+# Acceda a las temperaturas de Paris y San Juan
+temp[c(3,5)]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("temp[c(3,5)]", incorrect_msg = "Tiene que usar `c` y paréntesis dentro de los corchetes. Observe cómo se definió `temp` en el código de muestra para determinar las entradas asociadas con Paris y San Juan")
+success_msg("¡Fantástico! ¡Pasemos a nuestro siguiente ejercicio!")
+```
+
+---
+
+## Secuencias
+
+```yaml
+type: NormalExercise
+key: 90eed94daa
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+El operador `:` nos ayuda a crear secuencias de números. 
+Por ejemplo, `32:99` crearía una lista de números del 32 al 99. 
+
+Luego, si queremos saber el tamaño de esta secuencia, todo lo que tenemos que hacer es utilizar el comando `length`.
+
+`@instructions`
+Esta vez utilizaremos solamente el operador `:`.
+Use el operador `:` para crear una secuencia de integrales consecutivos que empiecen en el número 12 y terminen en el 73 y guárdelo en un objeto `x`, después determine el tamaño del objeto `x`.
+
+`@hint`
+Guarde la secuencia en un objeto llamado `x`.
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# Genere un vector m de integrales que empieza en 32 y termina en 99. 
+m <- 32:99
+
+# Determine el tamaño del objeto m.
+length(m)
+
+# Genere un vector x de integrales que comienza en 12 y termina en 73. 
+
+# Determine el tamaño del objeto x.
+
+
+```
+
+`@solution`
+```{r}
+# Genere un vector m de integrales que empieza en 32 y termina en 99.
+m <- 32:99
+
+# Determine el tamaño del objeto m.
+length(m)
+
+# Genere un vector x de integrales que comienza en 12 y termina en 73. 
+x <- 12:73
+
+# Determine el tamaño del objeto x.
+length(x)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("x", undefined_msg = "Asegúrese de definir `x`!", incorrect_msg = "¿Ha asignado correctamente 12:73 a `x`?")
+test_function("length",index=2,not_called_msg="Asegúrese de llamar el tamaño en x y no lo elimine del código muestra")
+test_output_contains("length(x)", incorrect_msg = "Asegúrese que está obteniendo el tamaño correcto.")
+success_msg("¡Buen trabajo! ¡Vamos a la siguiente pregunta!")
+```
+
+---
+
+## Secuencias continuación...
+
+```yaml
+type: NormalExercise
+key: c6535a161e
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+También podemos crear diferentes tipos de secuencias en R. 
+Por ejemplo, en `seq(7, 49, 7)`, el primer argumento define el inicio y el segundo define el final. Predeterminadamente, aumenta en incrementos de 1, pero un tercer argumento nos dice por cuánto intervalo. 
+
+`@instructions`
+Aprenderemos a utilizar la función `seq()` en esta pregunta. 
+- Genere un vector que contenga todos los números positivos nones menores a 100. Los números deberán estar en orden ascendente. 
+
+`@hint`
+Si comienza en 1 y aumenta en 2, obtendrá los números nones positivos. 
+
+`@pre_exercise_code`
+```{r}
+# no pec
+```
+
+`@sample_code`
+```{r}
+# Genere un vector con múltiplos de 7, menores a 50. 
+seq(7, 49, 7) 
+
+# Genere un vector que contenga todos los números positivos nones menores a 100. 
+# Los números deberán estar en orden ascendente 
+
+```
+
+`@solution`
+```{r}
+# Genere un vector con múltiplos de 7, menores a 50.  
+seq(7, 49, 7) 
+
+## Genere un vector que contenga todos los números positivos nones menores a 100.
+# Los números deberán estar en orden ascendente
+seq(1, 100, 2)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("seq(1,100,2)", incorrect_msg = "Asegúrese que el tercer argumento tenga el valor por la cual la secuencia necesita ascender.")
+success_msg("¡Maravilloso! ¡Vamos al siguiente ejercicio.")
+```
+
+---
+
+## Secuencias y longitud
+
+```yaml
+type: NormalExercise
+key: c8deb909eb
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+El segundo argumento de la función `seq` es de hecho un máximo, no necesariamente el final. Entonces, si escribimos 
+
+```{r}
+seq(7, 50, 7)
+```
+
+de hecho obtendremos el vector de integrales como si hubiéramos escrito 
+
+```{r}
+seq(7, 49, 7)
+```
+
+Esto puede ser útil porque algunas veces lo único que queremos son números consecutivos que sean menores a un valor predeterminado.  
+
+Veamos un ejemplo.
+
+`@instructions`
+Genere un vector de números que comience en 6, no vaya más allá de 55 y añada números en incrementos de 4/7.
+Así que los primeros tres números serán 6, 6+4/7, y 6+8/7. ¿Cuántos números tiene la lista? Use solamente una línea de código para contestar ambas preguntas. 
+
+`@hint`
+Utilice `length` y luego `seq` entre paréntesis.
+
+`@pre_exercise_code`
+```{r}
+# no pec 
+```
+
+`@sample_code`
+```{r}
+# Podemos crear un vector con múltiples de 7, menores que 50 de la siguiente manera 
+seq(7, 49, 7) 
+
+# Pero note que el segundo argumento no necesita ser el último número 
+# Simplemente determina el número más grande permitido
+# Así que la siguiente línea de código produce el mismo vector que seq(7, 49, 7)
+seq(7, 50, 7)
+
+# Genere una secuencia de números de 6 a 55, con incrementos de 4/7 y determine su tamaño 
+
+
+```
+
+`@solution`
+```{r}
+# Podemos crear un vector con múltiples de 7, menores a 50 de la siguiente manera 
+seq(7, 49, 7) 
+
+# Pero note que el segundo argumento no necesita ser el último número 
+# Simplemente determina el número más grande permitido
+# Así que la siguiente línea de código produce el mismo vector que seq(7, 49, 7)
+seq(7, 50, 7)
+
+# Genere una secuencia de números de 6 a 55, con incrementos de 4/7 y determine su tamaño 
+length(seq(6, 55, 4/7))
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("length(seq(6, 55, 4/7))", incorrect_msg = "Revise el código otra vez.")
+success_msg("¡Gran trabajo! ¡Está volviéndose un experto en secuencias!")
+```
+
+---
+
+## Secuencias con tamaño determinado
+
+```yaml
+type: NormalExercise
+key: a005f7b688
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+La función `seq()` tiene otro argumento útil. El argumento *length.out*. Este argumento nos permite generar secuencias que incrementan en una misma magnitud pero con un tamaño especificado previamente.  
+
+Por ejemplo, esta línea de código 
+
+```{r}
+x <- seq(0, 100, length.out = 5)
+```
+
+produce los números 0, 25, 50, 75, 100. 
+
+Ahora vamos a crear un vector y ver cuál es la clase del objeto producido. 
+
+`@instructions`
+- Determine la clase de un vector generado con `seq` utilizando el argumento *length.out*. 
+- Específicamente, ¿cuál es la clase del siguiente objeto `a <- seq(1, 10, length.out = 100)`?
+
+`@hint`
+Genere la secuencia, guárdelo en un objeto y luego revise la clase. 
+
+`@pre_exercise_code`
+```{r}
+#no pec 
+```
+
+`@sample_code`
+```{r}
+# Guarde la secuencia en un objeto a
+
+
+# Determine la clase de a
+
+
+```
+
+`@solution`
+```{r}
+# Guarde la secuencia en un objeto a
+a <- seq(1, 10, length.out = 100)
+
+# Determine la clase de a
+class(a)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("a", undefined_msg = "Asegúrese de guardar la secuencia en un objeto `a`.", incorrect_msg = "Hay algo malo con la secuencia.")
+test_function("class")
+success_msg("¡Buen trabajo! Continuemos con el siguiente ejercicio!")
+```
+
+---
+
+## Enteros
+
+```yaml
+type: NormalExercise
+key: b5c6d6d5ab
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Hemos discutido la clase *numérica*. Acabamos de ver que la función `seq` puede generar objetos de esta clase. Para otro ejemplo, escriba 
+
+```{r}
+class(seq(1, 10, 0.5))
+```
+en la consola y note que la clase `class` es *numérica*. R tiene otro tipo de vector que no hemos descrito, la clase de los *enteros*. Usted puede crear un *entero* al añadir la letra `L` después de un número entero. Si escribe 
+
+```{r}
+class(3L)
+```
+
+en la consola, puede ver que esto es un *entero* y no *numérico*. Para la mayoría de propósitos, los enteros y numéricos son indistinguibles. Por ejemplo 3, el entero, menos 3 el número, es 0. Para ver esto, escriba en la consola 
+
+```{r}
+3L - 3
+```
+
+La principal diferencia es que los enteros ocupan menos espacio en la memoria de la computadora, entonces para grandes operaciones, el uso de enteros puede tener un impacto sustancial. 
+
+`@instructions`
+¿Esto cambia dependiendo de qué guardemos en un objeto? 
+¿Cuál es la clase del siguiente objeto `a <- seq(1, 10)`?
+
+`@hint`
+Note que solamente hay valores enteros dentro del paréntesis de seq. 
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# Guarde la secuencia en un objeto a 
+
+
+# Determine la clase de a
+
+```
+
+`@solution`
+```{r}
+# Guarde la secuencia en un objeto a
+a <- seq(1, 10)
+
+# Determine la clase de a
+class(a)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("a", undefined_msg = "Asegúrese de guardar la secuencia en un objeto `a`.", incorrect_msg = "Hay algo incorrecto con la secuencia.")
+test_function("class")
+test_output_contains("class(a)", incorrect_msg = "Asegúrese de llamar a la función `class` para el objeto correcto.")
+success_msg("¡Buen trabajo! ¡Continuemos con el siguiente ejercicio!")
+```
+
+---
+
+## Enteros y Numéricos
+
+```yaml
+type: NormalExercise
+key: 8517a900a9
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Confirmemos que `1L` es un *entero* y no un *numérico*.
+
+`@instructions`
+Confirme que la clase `class` de `1` es *numérico* y que la clase `class` de `1L` es *entero*.
+
+`@hint`
+Llamemos a la función `class` con `1L` como un argumento.
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# Revise la clase de 1, asignado al objeto a 
+class(1)
+
+# Confirme que la clase de 1L es un entero 
+
+```
+
+`@solution`
+```{r}
+# Revise la clase de 1, asignado al objeto a 
+class(1)
+
+# Confirme que la clase de 1L es un entero
+class(1L)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("class(1L)", incorrect_msg = "Revise la clase de `1L` para asegurarse que la L lo haga entero.")
+success_msg("Grandioso, ahora que ya sabe cómo forzar a un número a convertirse en entero, pasemos a una cosa más divertida en este módulo.")
+```
+
+---
+
+## Coerción
+
+```yaml
+type: NormalExercise
+key: '6508787042'
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+El concepto de coerción es uno muy importante. Al mirar el video, hemos aprendido que cuando una entrada no coincide con lo que una función de R está esperando, R intenta adivinar qué queríamos decir antes de señalarlo como un error. Esto puede ser confuso a veces. 
+
+Como hemos discutido en preguntas anteriores, hay vectores numéricos y de caracteres. Los vectores de caracteres son escritos entre comillas mientras que los numéricos no. 
+
+Podemos evitar estos problemas con la coerción en R cambiando los caracteres a números y  vice-versa. Esto se conoce como encasillamiento. La función `as.numeric(x)` nos ayuda a convertir series de caracteres a números. Hay una función equivalente que convierte su argumento a serie, `as.character(x)`.
+
+¡En este ejercicio practicaremos estas conversiones! 
+
+`@instructions`
+- Defina el siguiente vector:
+
+```{r}
+x <- c(1, 3, 5,"a")
+```
+
+- Note que `x` ha sido forzado a ser serie de caracteres. 
+- Puede cambiar la definición de una variable que ya ha sido creada por medio de asignar la nueva definición al nombre de la variable existente. 
+	- Use la función `as.numeric()` para redefinir (convertir) `x` a un vector de números en lugar de uno de caracteres. (Note que aparecerá un mensaje de alerta ¡pero está bien!)
+
+`@hint`
+Para actualizar la definición de un vector que ya ha creado, use el código como `x <- ___`.
+
+`@pre_exercise_code`
+```{r}
+#no pec
+```
+
+`@sample_code`
+```{r}
+# Defina el vector x
+x <- c(1, 3, 5,"a")
+
+# Note que x es un vector de caracteres
+x
+
+# Use `as.numeric()` para redefinir `x` como vector numérico 
+# Le aparecerá un mensaje de advertencia ¡pero está bien!
+
+```
+
+`@solution`
+```{r}
+# Defina el vector x
+x <- c(1, 3, 5,"a")
+
+# Note que x es un vector de caracteres
+x
+
+# Use `as.numeric()` para redefinir `x` como vector numérico 
+# Le aparecerá un mensaje de advertencia ¡pero está bien!
+x <- as.numeric(x)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("x", undefined_msg = "Asegúrese de definir x primero.", incorrect_msg = "Actualice la definición de `x`: asigne el vector de vuelta a sí mismo usando el código como `x <- ___`.")
+test_function("as.numeric")
+success_msg("¡Maravilloso! ¿No es grandioso? Ahora puede intentar cambiarlo de vuelta a caracter usando el código `as.character(x)`.")
+```
+
+---
+
+## Fin de la evaluación 3
+
+```yaml
+type: PureMultipleChoiceExercise
+key: d596636416
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el final de la evaluación de programación para esta sección. Por favor no seleccione las evaluaciones adicionales de esta página. Por favor conteste la pregunta en esta página. Si selecciona más, sus calificaciones pudieran no ser registradas. 
+
+Haga click en "Impresionante" para obtener los "puntos" para esta pregunta y luego regrese al curso en edX. .
+
+Ahora puede cerrar esta ventana y regresar a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- ¡No se necesita pista!
+
+`@possible_answers`
+- [Impresionante]
+- Nope
+
+`@feedback`
+- ¡Grandioso! ¡Ahora regrese al curso en edX!
+- ¡Ahora puede regresar al curso en edX!

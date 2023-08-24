@@ -1,0 +1,639 @@
+---
+title: Wrangling de Datos Básico
+description: Proveemos una introducción en breve al paquete dplyr.
+---
+
+## dplyr
+
+```yaml
+type: NormalExercise
+key: 766d9c4eab
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Cargue el paquete `dplyr` y el conjunto de datos murders.
+
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+Puede añadir columnas usando la función de `dplyr` llamada `mutate`. Esta función está consciente de los nombres de las columnas y dentro de la función, puede referirse a ellas sin comillas. Así:
+
+```{r}
+murders <- mutate(murders, population_in_millions = population / 10^6)
+```
+
+Observe que podemos escribir `population` en vez de `murders$population`. La función `mutate` sabe que estamos escogiendo columnas del conjunto de datos `murders`.
+
+`@instructions`
+- Use la función `mutate` para añadir una columna a murders llamada `rate` con la tasa de homicidios que corresponde a cada 100,000.
+- Asegurese de redefinir `murders` tal como lo ve en el código de ejemplo arriba.
+
+Recurde que la tasa de homicidios está definida como el número total de homicidios dividido por el tamaño de la población multiplicado por 100,000.
+
+`@hint`
+Puede definir una función nueva que sea basada en otras que existen así:
+```{r}
+mutate(murders, raw_rate =  total / population) 
+```
+Observe que usamos los nombres de las columnas `total` y `population` sin tener que usar el accessor. 
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Cargando data
+library(dslabs)
+data(murders)
+
+# Cargando dplyr
+library(dplyr)
+
+# Redefina murders para que incluya una columna llamada tasa con la tasa de homicidios que corresponde a cada 100,000
+
+```
+
+`@solution`
+```{r}
+# Cargando data
+library(dslabs)
+data(murders)
+
+# Cargando dplyr
+library(dplyr)
+
+# Redefina murders para que incluya una columna llamada tasa con la tasa de homicidios que corresponde a cada 100,000
+murders <- mutate(murders, rate =  total / population * 100000)
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("murders", undefined_msg = "Defina murder primero.", incorrect_msg = "Revise el código otra vez.")
+success_msg("Excelente! Aprendamos otro comando con mutate.")
+```
+
+---
+
+## mutate
+
+```yaml
+type: NormalExercise
+key: 79bec8ece0
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Observe que si `rank(x)` le provee los rangos de `x` desde el menor hasta el mayor, `rank(-x)` le provee los rangos desde el mayor hasta el menor.
+
+`@instructions`
+- Use la función `mutate` para añadir una columna llamada `rank` que contenga el rango, desde la tasa mayor de homicidios hasta la tasa menor de homicidios. Asegurese de redefinir murders.
+
+`@hint`
+Observe que `rate` ya está definida y que `rank(-rate)` le provee los rangos que desea. Ahora simplemente añada esa columna y llame la columna `rank`.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Observe que si quiere que el rango sea de mayor a menor puede tomar el signo de negativo y entonces computar los rangos 
+x <- c(88, 100, 83, 92, 94)
+rank(-x)
+
+# Definiendo la tasa
+rate <-  murders$total/ murders$population * 100000
+
+# Redefina murders de manera tal que incluya una columna llamada rank
+# can los rangos de la tasa desde mayor a menor
+
+```
+
+`@solution`
+```{r}
+# Observe que si quiere que el rango sea de mayor a menor puede tomar el signo de negativo y entonces computar los rangos
+x <- c(88, 100, 83, 92, 94)
+rank(-x)
+
+# Definiendo la tasa
+rate <-  murders$total/ murders$population * 100000
+
+# Redefina murders de manera tal que incluya una columna llamada rank
+# can los rangos de la tasa desde mayor a menor
+murders <- mutate(murders, rank = rank(-rate))
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("mutate")
+test_object("murders", incorrect_msg = "Recuerde, clasifíque desde mayor a menor.")
+success_msg("Buen trabajo!")
+```
+
+---
+
+## select
+
+```yaml
+type: NormalExercise
+key: 0e7a94d0a3
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Con `dplyr` podemos usar `select` para mostrar solamente ciertas columnas. Por ejemplo, con este código solamente mostraríamos los estados y los tamaños de las poblaciones:
+
+```{r}
+select(murders, state, population)
+```
+
+`@instructions`
+- Use `select` para mostrar los nombres de los estados y las abreviaturas en `murders`. Solamente muestrelos, no defina un objeto nuevo.
+
+`@hint`
+Puede utilizar select para mostrar una columna o más de una columna así
+
+```{r}
+select(data_frame, column_name_1, column_name_2)
+```
+Las columnas que desea son `state` y `abb`. El data frame que desea es `murders`.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Cargue dplyr
+library(dplyr)
+
+# Use select para mostrar solo los nombres de los estados y las abreviaturas de murders
+
+```
+
+`@solution`
+```{r}
+# Cargue dplyr
+library(dplyr)
+
+# Use select para mostrar solo los nombres de los estados y las abreviaturas de murders_south
+select(murders, state, abb)
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("select")
+test_output_contains("select(murders, state, abb)", incorrect_msg = "You need to use select. The columns you want are state and abb. The data you want is `murders`")
+success_msg("Now you know how to use select! Let's move on to filter.")
+```
+
+---
+
+## filter
+
+```yaml
+type: NormalExercise
+key: 9a56fa2057
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+La función de `dplyr` llamada `filter` se usa para escoger filas particulares del data frame que se mantendrán. A diference de `select` que es para columnas, `filter` is para filas. Por ejemplo, puede mostrar solamente la fila de Nueva York así:
+
+```{r}
+filter(murders, state == "New York")
+```
+Puede usar otros vectores lógicos para filtrar filas.
+
+`@instructions`
+- Use `filter` para mostrar los 5 estados con las tasas de homicidio más altas. Despues de añadir la tasa de homicidio y el rango, no cambie el conjunto de datos murders, simplemente muestre el resultado. Observe que puede filtrar según la columna `rank`.
+
+`@hint`
+El vector lógico según el cual quiere filtrar es `rank <= 5`.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+
+```
+
+`@sample_code`
+```{r}
+# Añada las columnas necesarias
+murders <- mutate(murders, rate = total/population * 100000, rank = rank(-rate))
+
+# Filter para mostrar los 5 estados con las tasas de homicidio mas altas
+
+```
+
+`@solution`
+```{r}
+# Añada las columnas necesarias
+murders <- mutate(murders, rate = total/population * 100000, rank = rank(-rate))
+
+# Filter para mostrar los 5 estados con las tasas de homicidio mas altas
+filter(murders, rank <= 5)
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("filter")
+test_output_contains("filter(murders, rank <= 5)", incorrect_msg = "Asegurese de haber escrito murders en su código.")
+success_msg("Buen trabajo!")
+```
+
+---
+
+## filter con !=
+
+```yaml
+type: NormalExercise
+key: 846dd29c6c
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Podemos remover filas usando el operador `!=` . Por ejemplo, para remover a la Florida haríamos esto:
+
+```{r}
+no_florida <- filter(murders, state != "Florida")
+```
+
+`@instructions`
+- Cree un nuevo data frame llamado `no_south` que remueva a los estados de la región sureña.
+- Cuantos estados están en esta categoría? Puede usar la función `nrow` para esto.
+
+`@hint`
+Use `filter` con el operador `!=` para remover los estados de la región sureña. El vector lógico que desea es `region!="South". Una vez que defina un nuevo data frame sin estos estados, 
+puede usar `nrow`, el cual obtiene el número de filas de un data frame.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Use filter para crear un nuevo data frame no_south
+
+# Use nrow() para calcular el número de filas
+```
+
+`@solution`
+```{r}
+# Use filter para crear un nuevo data frame no_south
+no_south <- filter(murders, region != "South" )
+
+# Use nrow() para calcular el número de filas 
+nrow(no_south)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("no_south", undefined_msg = "Defina no_south primero!", incorrect_msg = "El objeto no_south parece estar incorrectamente definido. Asegurese de haber excluido los estados que no estan en el sur.")
+test_function("nrow")
+test_output_contains("nrow(no_south)", incorrect_msg = "Le hace falta el número de filas para el número de estados. Puede que haya destruido el objeto no_south equivocado.")
+success_msg("Que bien! Continuemos con el próximo ejercicio.")
+```
+
+---
+
+## filter con %in%
+
+```yaml
+type: NormalExercise
+key: 4e5d7ac60f
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+También podemos usar el `%in%` para filtrar con `dplyr`. Por ejemplo, puede ver la data de Nueva York y Texas así:
+
+```{r}
+filter(murders, state %in% c("New York", "Texas"))
+```
+
+`@instructions`
+- Cree un nuevo data frame llamado `murders_nw` solamente con los estados del noreste y del oeste. 
+- Cuantos estados hay en esta categoría ?
+
+`@hint`
+Use filter y el operador `%in%`. El vector lógico en `filter` que desea es `region %in% c("Northeast", "West")`
+Puede usar `nrow` para obtener rapidamente el número de filas de un data frame.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Cree un nuevo data frame llamado murders_nw con solamente estados del noreste y el oeste 
+
+# Número de estados (filas) en esta categoría
+
+```
+
+`@solution`
+```{r}
+# Cree un nuevo data frame llamado murders_nw con solamente estados del noreste y el oeste
+murders_nw <- filter(murders, region %in% c("Northeast", "West"))
+
+# Número de estados (filas) en esta categoría
+nrow(murders_nw)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("filter")
+test_function("nrow")
+test_object("murders_nw", undefined_msg = "Defina murders_nw primero", incorrect_msg = "Asegurese de que está usando el comando %in% .")
+test_output_contains("nrow(murders_nw)", incorrect_msg = "Como en la pregunta anterior, le hace falta el número de filas.")
+success_msg("Genial!")
+```
+
+---
+
+## filtering según dos condiciones
+
+```yaml
+type: NormalExercise
+key: 6e8611adb6
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Supongamos que quiera vivir en el noreste u oeste **y** que quiera que la tasa de homicidios sea menor que 1. Queremos ver la data para los estados que satisfacen estas opciones. Observe que puede usar los operadores lógicos con `filter`: 
+
+```{r}
+filter(murders, population < 5000000 & region == "Northeast")
+```
+
+`@instructions`
+- Añada una columna de tasa de homicidios y una columna de rangos como hicimos anteriormente
+- Cree una tabla y llamela `my_states` que satisfaga ambas de las siguientes condiciones: el estado está en el noreste u oeste y la tasa de homicidios es menor que 1
+- Use select para mostrar solo el nombre del estado, la tasa, y el rango
+
+`@hint`
+Use el código `my_states <- filter(murders, region %in% c("Northeast", "West") & rate < 1)`. Entonces use `select`. Las columnas que desea son estado, tasa, y rango.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Añada la columna de tasa
+murders <- mutate(murders, rate =  total / population * 100000, rank = rank(-rate))
+
+# Cree una tabla y llamela my_states que satisfaga las dos condiciones 
+
+# Use select para mostrar solamente el nombre del estado, la tasa de homicidio y el rango
+```
+
+`@solution`
+```{r}
+# Añada la columna de tasa
+murders <- mutate(murders, rate =  total / population * 100000, rank = rank(-rate))
+
+# Cree una tabla y llamela my_states que satisfaga las dos condiciones 
+my_states <- filter(murders, region %in% c("Northeast", "West") & rate < 1)
+
+# Use select para mostrar solamente el nombre del estado, la tasa de homicidio y el rango
+select(my_states, state, rate, rank)
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("filter")
+test_object("my_states", undefined_msg = "Defina my_states primero!", incorrect_msg = "Use los comandos filter, %in% y < .")
+test_output_contains("select(my_states, state, rate, rank)", incorrect_msg = "Tiene que aplicar la función select a `my_states`. Desea ver el estado, la tasa, y el rango.")
+success_msg("Ahora sabe como combinar functiones y usarlas para obtener respuestas especificas. Hagamoslo una vez más!")
+```
+
+---
+
+## Usando el pipe %>%
+
+```yaml
+type: NormalExercise
+key: 72305c532e
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+El pipe `%>%` se puede usar para realizar operaciones secuencialmente 
+sin tener que definir objetos intermediarios. Despues de redefinir murder de manera tal que incluyera tasa y rango,
+
+```{r}
+library(dplyr)
+murders <- mutate(murders, rate =  total / population * 100000, rank = (-rate))
+```
+
+en la solución al ejercicio anterior, hicimos lo siguiente:
+```{r}
+# Cree una tabla
+my_states <- filter(murders, region %in% c("Northeast", "West") & rate < 1)
+
+# Use select para mostrar solamente el nombre del estado, la tasa de homicidio y el rango
+select(my_states, state, rate, rank)
+```
+
+El pipe `%>%` nos permite realizar operaciones secuencialmente y sin tener que definir una variable intermediaria `my_states`
+
+Por ejemplo, podriamos haber mutado y seleccionado en la misma línea de tal manera: 
+
+```{r}
+mutate(murders, rate =  total / population * 100000, rank = rank(-rate)) %>% 
+    select(state, rate, rank)
+```
+
+Observe que `select` ya no tiene un data frame como su primer argumento. Se asume que el primer argumento es el resultado de la operación realizada justo antes del `%>%`
+
+`@instructions`
+- Repita el ejercicio anterior, pero ahora en vez de crear un nuevo objeto, muestre el resultado y solamente incluya el estado, la tasa, y las columnas de rango en ese orden.
+- Use un pipe `%>%` para hacer esto en una línea nada más.
+
+`@hint`
+Use el código: `filter(murders, region %in% c("Northeast", "West") & rate < 1) %>% 
+    select(state, rate, rank)`
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+## Defina la columna de tasa
+murders <- mutate(murders, rate =  total / population * 100000, rank = rank(-rate))
+
+# muestre el resultado y solamente incluya el estado, la tasa,y las columnas de rango, en una sola línea y en ese orden
+
+```
+
+`@solution`
+```{r}
+## Defina la columna de tasa
+murders <- mutate(murders, rate =  total / population * 100000, rank = rank(-rate))
+
+# muestre el resultado y solamente incluya el estado, la tasa,y las columnas de rango, en una sola línea y en ese orden
+filter(murders, region %in% c("Northeast", "West") & rate < 1) %>%  
+   select(state, rate, rank)
+   
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("filter", incorrect_msg = "Todo debe estar en una sola línea! Use un pipe para ayudarle a hacer esto!")
+test_output_contains("filter(murders, region %in% c('Northeast', 'West') & rate < 1) %>%  select(state, rate, rank)")
+test_pipe(num = 1, absent_msg = "Queremos que use un pipe %>%", insuf_msg = "Queremos que use un pipe %>%")
+success_msg("Está haciendolo todo muy bien!") 
+```
+
+---
+
+## mutate, filter y select
+
+```yaml
+type: NormalExercise
+key: 60fa0dbe3a
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ahora vamos a reinicializar murders a la tabla original usando `data(murders)`.
+
+`@instructions`
+Use una sola línea de código para crear un nuevo data frame, llamado `my_states`, que tenga tasa de homicio y columnas de rango (con el rango ordenado desde mayor a menor), que considere solamente los estados en el noreste u oeste que tengan una tasa de homicidio menor que 1, y que contenga solamente el estado, la tasa, y las columnas de rango. La línea debe tener cuatro componentes separados por **tres** operadores `%>%`:
+- El conjunto de datos original `murders`
+- Una referencia a `mutate` para añadir la tasa de homicidio y el rango.
+- Una referencia a `filter` para mantener solamente los estados del noreste u oeste y que tengan una tasa de homicidio menor que 1
+- Una referencia a `select` que mantenga solamente las columnas con el nombre del estado, la tasa de homicidios, y el rango.
+
+La línea debe lucir como que esto `my_states <- murders %>%` mutate (muta) also `%>%` filter (filtra) algo `%>%` select (selecciona) algo
+Las columnas en el data frame final DEBEN estar en el orden: `state`, `rate`, `rank`.
+
+`@hint`
+Las siguientes piezas de código deben ser unidas por pipes:
+- `mutate(rate =  total / population * 100000, rank = rank(-rate))`
+- `filter(region %in% c("Northeast", "West") & rate < 1)`
+- `select(state, rate, rank
+Asegurese de usar 3 pipes.
+
+`@pre_exercise_code`
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Cree un nuevo data frame llamado my_states (acorde con las especificaciones en las instrucciones)
+
+```
+
+`@solution`
+```{r}
+# Cree un nuevo data frame llamado my_states (acorde con las especificaciones en las instrucciones)
+my_states <- murders %>% 
+    mutate(rate =  total / population * 100000, rank = rank(-rate)) %>%
+    filter(region %in% c("Northeast", "West") & rate < 1) %>%
+    select(state, rate, rank)
+    
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("mutate")
+test_function("filter")
+test_function("select")
+test_object("my_states", undefined_msg = "Defina my_states!", incorrect_msg = "Hay un error con su definición de my_states. Revise su ortografía y sus comandos de mutate, filter y select.")
+test_pipe(num = 3, absent_msg = "Queremos que use tres pipes %>%", insuf_msg = "Queremos que use tres pipes %>%")
+success_msg("Fantastico! Ahora sabe utilizar técnicas básicas de manipulación de datos en R.")
+```
+
+---
+
+## End of Assessment 7
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 54b0aa0655
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el fin del trabajo asignado de programación de esta sección. Por favor NO avanze a evaluaciones adicionales desde esta página. Por favor SÍ conteste la pregunta en esta página. Si avanza a otra página sin contestar la pregunta, puede que sus resultados NO sean grabados.
+
+Seleccione "Fantástico" para obtener los "puntos" por la pregunta y entonces devuélvase al curso en edX.
+
+Ya puede cerrar esta ventana para volver a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- No hint necessary!
+
+`@possible_answers`
+- [Fantastico]
+- No
+
+`@feedback`
+- Fabuloso! Ahora regrese al curso en edX!
+- Ahora regrese al curso en edX!

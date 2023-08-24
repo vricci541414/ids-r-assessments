@@ -1,0 +1,626 @@
+---
+title: Sorting
+description: >-
+  Este capítulo tiene como objetivo el analizar más los datos que tenemos, al ayudarnos a clasificarlos. 
+---
+
+## clasificación
+
+```yaml
+type: NormalExercise
+key: 8d2a5d166c
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Cuando vemos una base de datos, quizás queramos clasificar los datos en un orden que haga más sentido para su análisis. Vamos a aprender como hacer esto utilizando la base de datos de `murders` como ejemplo. 
+
+`@instructions`
+- Use el operador `$` para acceder a los datos del tamaño de la población y guárdelos en el objeto `pop`. 
+- Después use la función `sort` para redefinir `pop` de manera que esté clasificada.
+- Finalmente use el operador `[` para reportar el menor tamaño de población. 
+
+`@hint`
+Asegúrese de usar la función `sort` para redefinir `pop` para que sea clasificada. 
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Acceda a la variable `state` y guárdela en un objeto 
+states <- murders$state 
+
+# Clasifique el objeto alfabéticamente y redefina el objeto 
+states <- sort(states) 
+
+# Reporte el primer valor alfabético   
+states[1]
+
+# Acceda a los valores de la población del conjunto de datos y guárdelo en pop
+
+# Clasifique el objeto y guárdelo en el mismo objeto 
+
+# Reporte el menor tamaño de población  
+
+```
+
+`@solution`
+```{r}
+# Acceda a la variable `state` y guárdela en un objeto
+states <- murders$state 
+
+# Clasifique el objeto alfabéticamente y redefina el objeto  
+states <- sort(states) 
+
+# Reporte el primer valor alfabético   
+states[1]
+
+# Acceda a los valores de la población del conjunto de datos y guárdelo en pop
+pop <- murders$population
+
+# Clasifique el objeto y guárdelo en el mismo objeto 
+pop <- sort(pop)
+
+# Reporte el menor tamaño de población
+pop[1]
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("pop", undefined_msg = "Asegúrese de definir el objeto pop.", 
+              incorrect_msg = "Revise que pop esté propiamente definido y que haya redefinido pop usando la función sort.")
+test_function("sort", not_called_msg = "Asegúrese de llamar a la función sort.",
+              incorrect_msg = "Asegúrese de llamar a la función sort en el objeto pop.")
+test_output_contains("pop[1]", incorrect_msg = "Use los corchetes, [, para reportar el valor de la población más pequeña.")
+success_msg("¡Buen trabajo! Ahora ya sabe cómo clasificar datos en un orden ascendente.")
+```
+
+---
+
+## orden
+
+```yaml
+type: NormalExercise
+key: 9bf4a9a8ca
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+La función `order()` produce el vector índice necesitado para ordenar al vector. Esto implica que `sort(x)` y `x[order(x)]` producen el mismo resultado. 
+
+Esto puede ser útil para encontrar números en filas con ciertas propiedades como "la fila para el estado con la población más pequeña". 
+Recuerde que cuando extraemos una variable de una base de datos, el orden del vector que resulta es el mismo que el orden de las columnas del marco de datos. 
+Por ejemplo, las entradas del vector `murders$state` están ordenados en la misma manera que los estados si mira hacia abajo en la columna de `murders`.
+
+`@instructions`
+- Ahora en lugar de la población más pequeña, encontremos el número en la fila de los datos `murders`, del estado con el tamaño de la población más pequeña. 
+- Esta vez tenemos que usar `order()` en lugar de `sort()`. 
+- Recuerde que las entradas en el vector `murders$population` siguen el orden de las filas de `murders`.
+
+`@hint`
+Una vez que defina `pop` con la variable de población, obtenga todos los índices usando `ord <- order(pop)`. El primer índice relaciona a la fila con la población más pequeña. 
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Acceda a la población de la base de datos y guárdela en pop 
+
+# Use el comando order para encontrar el vector de índices que ordena pop y guárdelo en ord 
+
+# Encuentre el número del índice de la entrada con el tamaño de población más pequeño 
+
+```
+
+`@solution`
+```{r}
+# Acceda a la población de la base de datos y guárdela en pop
+pop <- murders$population
+
+# Use el comando order para encontrar el vector de índices que ordena pop y guárdelo en ord
+ord <- order(pop)
+
+# Encuentre el número del índice de la entrada con el tamaño de población más pequeño 
+ord[1]
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("pop", undefined_msg = "Defina pop primero.", incorrect_msg = "Asegúrese de haber guardado a la población en pop.")
+test_object("ord", undefined_msg = "¡Asegúrese de definir ord primero!", incorrect_msg = "Guarde pop usando el código de order en objeto ord.")
+test_output_contains("ord[1]", incorrect_msg = "Utilice el comando proveído en las instrucciones.") 
+test_function("order", index = 1,eval = TRUE,eq_condition = "equivalent", not_called_msg = "Asegúrese de llamar a la función order.",
+              incorrect_msg = "Asegúrese de llamarla en el objeto `pop`.")
+success_msg("¡Excelente trabajo!")
+```
+
+---
+
+## Nuevos Códigos
+
+```yaml
+type: NormalExercise
+key: 69b30d5992
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+De hecho podemos realizar la misma operación del ejercicio pasado utilizando la función `which.min`. Básicamente nos indica cuál es el valor mínimo. 
+
+`@instructions`
+Escribe una línea de código que provea el índice de la entrada de la población más bajo.
+Use el comando `which.min` .
+
+`@hint`
+Use `which.min` directamente.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Encuentre el índice del valor más pequeño para la variable total 
+which.min(murders$total)
+
+# Encuentre el índice del valor más pequeño de población 
+
+```
+
+`@solution`
+```{r}
+# Encuentre el índice del valor más pequeño para la variable total 
+which.min(murders$total)
+
+# Encuentre el índice del valor más pequeño de población
+which.min(murders$population)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("which.min(murders$population)", incorrect_msg = "Asegúrese de usar $ para obtener los datos de la población y utilice simultáneamente which.min. Recuerde no asignarlo a una variable.")
+test_function("which.min",index=2)
+test_student_typed("which.min(murders$population)",
+                   fixed = TRUE,times = 1,not_typed_msg ="Use $ simultáneamente con la función which.min .")
+success_msg("¡Grandioso! ¡Aprendió una nueva función en R!")
+```
+
+---
+
+## Utilizar el resultado de ordenar (order) 
+
+```yaml
+type: NormalExercise
+key: 3daf04cc14
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Ahora sabemos qué tan pequeño es el estado más pequeño y sabemos qué fila lo representa. Sin embargo, ¿qué estado es? 
+
+`@instructions`
+- Encuentre el índice del estado más pequeño usando `which.min(murders$population)`. 
+- Defina una variable `states` que guarde los nombres de los estados desde la base de datos de murders. 
+- Combínelos para encontrar el nombre del estado más pequeño. 
+
+`@hint`
+Indexe la lista de variables 
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Defina la variable i para ser el índice del estado más pequeño 
+i <- which.min(murders$population)
+
+# Defina la variable states que guarde a los estados 
+
+# Use el índice que acaba de definir para encontrar el estado con la población más pequeña 
+```
+
+`@solution`
+```{r}
+# Defina la variable i para ser el índice del estado más pequeño 
+i <- which.min(murders$population)
+
+# Defina la variable states que guarde a los estados 
+states <- murders$state
+
+# Use el índice que acaba de definir para encontrar el estado con la población más pequeña 
+states[i]
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("which.min")
+test_object("states", undefined_msg = "¡Defina states primero!", incorrect_msg = "Asigne valores de los estados de la base de datos a states.")
+test_output_contains("states[which.min(murders$population)]", incorrect_msg = "Copie el código de las instrucciones.")
+success_msg("¡Maravilloso! ¡Ahora tenemos los nombres de los estados también!")
+```
+
+---
+
+## Rangos
+
+```yaml
+type: NormalExercise
+key: 655d8a25c3
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Pueden crear un marco de datos usando la función `data.frame`. Aquí hay un ejemplo rápido: 
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+```
+
+`@instructions`
+- Defina una variable `states` para que sea la que contenga los nombres de los estados desde la base `murders`
+- Use `rank(murders$population)` para determinar el rango del tamaño de la población (de más pequeño a más grande) de cada estado.  
+- Guarde estos rangos en un objeto llamado `ranks`.
+- Genere un marco de datos con los nombres de los estados y sus respectivos rangos. Llame al marco de datos `my_df`.
+
+`@hint`
+
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Guarde las temperaturas en un objeto  
+temp <- c(35, 88, 42, 84, 81, 30)
+
+# Guarde los nombres de las ciudades en un objeto  
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Genere un marco de datos con los nombres de las ciudades y las temperaturas 
+city_temps <- data.frame(name = city, temperature = temp)
+
+# Defina una variable estados para que contenga el nombre de los estados provenientes de la base de datos murders
+
+
+# Defina una variable de rangos "ranks" para determinar el rango de los tamaños de la población  
+
+
+# Genere un marco de datos my_df con el nombre de los estados y su rango 
+
+```
+
+`@solution`
+```{r}
+# Guarde las temperaturas en un objeto  
+temp <- c(35, 88, 42, 84, 81, 30)
+
+# Guarde los nombres de las ciudades en un objeto 
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+
+# Genere un marco de datos con los nombres de las ciudades y las temperaturas 
+city_temps <- data.frame(name = city, temperature = temp)
+
+# Defina una variable estados para que contenga el nombre de los estados provenientes de la base de datos murders
+states <- murders$state
+
+# Defina una variable de rangos "ranks" para determinar el rango de los tamaños de la población 
+ranks <- rank(murders$population)
+
+# Genere un marco de datos my_df con el nombre de los estados y su rango 
+my_df <- data.frame(states = states, ranks = ranks)
+```
+
+`@sct`
+```{r}
+test_error()
+test_function("rank")
+test_function("data.frame",index=2,incorrect_msg = "No elimine el código muestra.")
+test_object("states", incorrect_msg = "Guarde los nombres de los estados en states!")
+test_object("ranks", undefined_msg = "¡Defina los rangos primero!", incorrect_msg = "Defina el rango de los valores de la población!")
+test_object("my_df", undefined_msg = "Defina el marco de datos primero.", incorrect_msg = "Use el comando similar al ejemplo.")
+success_msg("¡Maravilloso! ¡Muy bien aprendido!")
+```
+
+---
+
+## Marcos de Datos, Rangos y Órdenes 
+
+```yaml
+type: NormalExercise
+key: 62209cebec
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Este ejercicio es un poco más desafiante. Vamos a repetir los ejercicios previos pero esta vez ordene `my_df` de manera que los estados se ordenen de los que cuenten con menor población a mayor. 
+
+`@instructions`
+- Genere las variables `states` y `ranks` para guardar los nombres de los estados y el rango del tamaño de la población respectivamente. 
+- Genere un objeto `ind` que guarde los índices necesarios para ordenar los valores de la población, usando el comando `order`. Por ejemplo, podemos definir `o <- order(murders$population)`
+- Genere un marco de datos con ambas variables siguiendo el orden correcto. Use el operador de corchete `[` para reordenar cada columna en el marco de datos. Por ejemplo, `states[o]` ordena las abreviaciones basado en el tamaño de la población. 
+- Las columnas del marco de datos debe estar en un orden específico y tener los nombres específicos: `states`, `ranks`.
+
+`@hint`
+Cuando defina `my_df`, cada columna será ordenada usando `ind`. Se verá como algo así  
+
+```{r}
+my_df <- data.frame(name_1 = var_1[o], name_2 = var_2[o])
+```
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(murders)
+```
+
+`@sample_code`
+```{r}
+# Defina una variable states para que contenga los nombres de los estados de la base de datos murders
+
+
+# Defina una variable de rangos, ranks, para determinar los rangos del tamaño de la población 
+
+
+# Defina una variable ind para guardar los índices necesarios para ordenar los valores de la población
+
+
+# Genere un marco de datos my_df con el nombre del estado y su rango ordenado del de menor población al de mayor población 
+
+```
+
+`@solution`
+```{r}
+# Defina una variable states para que contenga los nombres de los estados de la base de datos murders
+states <- murders$state
+
+# Defina una variable de rangos, ranks, para determinar los rangos del tamaño de la población  
+ranks <- rank(murders$population)
+
+# Defina una variable ind para guardar los índices necesarios para ordenar los valores de la población
+ind <- order(murders$population)
+
+# Genere un marco de datos my_df con el nombre del estado y su rango ordenado del de menor población al de mayor población 
+my_df <- data.frame(states = states[ind], ranks = ranks[ind])
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("states", undefined_msg = "Defina states primero.", incorrect_msg = "")
+test_object("ranks",undefined_msg = "Defina ranks primero.", incorrect_msg = "")
+test_function("rank")
+test_object("ind",undefined_msg = "Defina ind primero.", incorrect_msg = "Use el comando order cuando genere ind. Utilizará ind dos veces cuando genere el marco de datos.")
+test_function("order")
+test_object("my_df", undefined_msg = "Defina my_df primero", incorrect_msg = "Revise su código. Su código para my_df debe utilizar ind dos veces.")
+success_msg("¡Gran trabajo! ¡Note cuánto conocimiento de R está obteniendo!")
+```
+
+---
+
+## NA
+
+```yaml
+type: NormalExercise
+key: babfb93aab
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+La base de datos `na_example` representa una serie de cuentas. Está incluida en el paquete *dslabs*. Pueden examinar rápidamente el objeto usando 
+
+```{r}
+library(dslabs)
+data(na_example)
+str(na_example)
+```
+
+Sin embargo, cuando calculamos el promedio obtenemos un `NA`. Puede ver esto al escribir  
+
+```{r}
+mean(na_example)
+```
+
+`@instructions`
+- El `is.na` da como resultado un vector lógico que nos dice qué entradas son `NA`. Asigna el vector lógico que es resultado de `is.na(na_example)` a un objeto llamado `ind`.
+- Determine cuántos `NA`s  `na_example` tiene, utilizando el comando `sum`.
+
+`@hint`
+Si`x` es lógico, `sum(x)` convierte el `TRUE` a 1 y el `FALSE` a 0 antes de sumar. De manera que la suma es el número de entradas de `TRUE`.
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(na_example)  
+```
+
+`@sample_code`
+```{r}
+# Utilizar la nueva base de datos 
+library(dslabs)
+data(na_example)
+
+# Revisar la estructura 
+str(na_example)
+
+# Encontrar cuál es el promedio de la base de datos completa 
+mean(na_example)
+
+# Use is.na para crear un índice lógico ind que diga qué entradas son NA
+
+# Determine cuántos NA ind tiene por medio de usar la función sum 
+
+```
+
+`@solution`
+```{r}
+# Utilizar la nueva base de datos 
+library(dslabs)
+data(na_example)
+
+# Revisar la estructura  
+str(na_example)
+
+# Encontrar cuál es el promedio de la base de datos completa  
+mean(na_example)
+
+# Use is.na para crear un índice lógico ind que diga qué entradas son NA
+ind <- is.na(na_example)
+
+# Determine cuántos NA ind tiene por medio de usar la función sum
+sum(ind)
+
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("ind", undefined_msg = "Asegúrese de definir ind primero.", incorrect_msg = "Revise las instrucciones para ver el código.")
+test_output_contains("sum(ind)", incorrect_msg = "Use el comando sum para obtener el número de NAs.")
+success_msg("¡Grandioso trabajo! Ahora continuemos a una última cosa en este capítulo.")
+```
+
+---
+
+## Remover NAs
+
+```yaml
+type: NormalExercise
+key: 0462684851
+lang: r
+xp: 100
+skills:
+  - 1
+```
+
+Previamente intentamos calcular el promedio (la media= del ejemplo `na_example` usando `mean(na_example)` y obtuvimos `NA`. Esto es porque la función `mean` da como resultado `NA` si encuentra al menos un `NA`.
+
+Una operación común como consecuencia, es remover las entradas que son NA y después de eso, realizar las operaciones en el resto de las entradas. El operador `!` puede ayudarnos con esto. El operador `!` es un "no" lógico - da como resultado el valor opuesto un puede usarse para invertir vectores lógicos (por ejemplo, `!TRUE` da como resultado `FALSE`).
+
+En el ejercicio previo, definimos `ind` como el vector lógico que nos dice cuántas entradas son `NA`. Utilizaremos `ind` aquí otra vez. 
+
+`@instructions`
+Escriba una línea de código para calcular el promedio (la media) de `na_example` después de remover las entradas de `NA` usando el operador `!` en `ind`.  (Recuerde que puede usar `help("!")` para conocer más sobre lo que `!` hace.)
+
+`@hint`
+Recuerde que el operador `!`, el cual actúa como el operador "no". Si decimos  `!TRUE`, dará como resultado `FALSE`. Note que `na_example[!ind]` regresa las entradas que no son NA. 
+
+`@pre_exercise_code`
+```{r}
+library(dslabs)
+data(na_example)
+ind <- is.na(na_example)
+```
+
+`@sample_code`
+```{r}
+# Note qué podemos hacer con el operador ! 
+x <- c(1, 2, 3)
+ind <- c(FALSE, TRUE, FALSE)
+x[!ind]
+
+# Genere el vector ind para `na_example`
+library(dslabs)
+data(na_example)
+ind <- is.na(na_example)
+
+# Cuando intentamos calcular el promedio, obtenemos como respuesta NA 
+mean(na_example)
+
+# Calcule el promedio (la media) de `na_example` después de remover las entradas  `NA` por medio de usar el operador `!` en `ind`
+
+```
+
+`@solution`
+```{r}
+# Note qué podemos hacer con el operador ! 
+x <- c(1, 2, 3)
+ind <- c(FALSE, TRUE, FALSE)
+x[!ind]
+
+# Genere el vector ind para `na_example`
+library(dslabs)
+data(na_example)
+ind <- is.na(na_example)
+
+# Cuando intentamos calcular el promedio, obtenemos como respuesta NA
+mean(na_example)
+
+# Calcule el promedio (la media) de `na_example` después de remover las entradas  `NA` por medio de usar el operador `!` en `ind`
+mean(na_example[!ind])
+```
+
+`@sct`
+```{r}
+test_error()
+test_output_contains("mean(na_example[!ind])", incorrect_msg = "Revise su código con las instrucciones otra vez.")
+success_msg("¡Maravilloso! ¡Han terminado con los vectores! ¡Ahora practique por sí mismo!")
+```
+
+---
+
+## Fin de la Evaluación 4
+
+```yaml
+type: PureMultipleChoiceExercise
+key: be5cd4c525
+lang: r
+xp: 50
+skills:
+  - 1
+```
+
+Este es el final de la evaluación de programación para esta sección. Por favor no seleccione las evaluaciones adicionales de esta página. Por favor conteste la pregunta en esta página. Si selecciona más, sus calificaciones pudieran no ser registradas. 
+
+Haga click en "Impresionante" para obtener los "puntos" para esta pregunta y luego regrese al curso en edX. .
+
+Ahora puede cerrar esta ventana y regresar a <a href='https://www.edx.org/course/data-science-r-basics-2'>course</a>.
+
+`@hint`
+- ¡No se necesita pista!
+
+`@possible_answers`
+- [Impresionante]
+- Nope
+
+`@feedback`
+- ¡Grandioso! ¡Ahora regrese al curso en edX!
+- ¡Ahora puede regresar al curso en edX!
